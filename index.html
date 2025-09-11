@@ -2,26 +2,26 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Google Fonts: Outfit -->
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <title>Home</title>
+    <title>Home</title>
 
-  <style>
-    /* Apply Outfit as the default font */
-    body {
-      font-family: 'Outfit', sans-serif;
-    }
-  </style>
+    <style>
+        /* Apply Outfit as the default font */
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+    </style>
 </head>
 
 <body class="">
@@ -29,10 +29,10 @@
 
 
 
-    <header class="flex justify-between items-center px-10 shadow-xl sticky top-0 bg-white z-50">
+    <header class="flex justify-between items-center px-10 shadow-xl py-2 sticky top-0 bg-white z-50">
 
         <div>
-            <img src="/images/LOGO.webp" alt="" class="w-[120px]">
+            <img src="/images/LOGO.jpg" alt="" class="w-[80px]">
         </div>
 
 
@@ -77,15 +77,15 @@
         </nav>
 
 
-        <div>
-
-            <Button
-                class=" flex items-center justify-center gap-2 rounded-md px-6 py-2 bg-[#11327f] shadow-md text-white">
+        <div class="group inline-block">
+            <button
+                class="flex items-center justify-center gap-2 rounded-md px-6 py-2 bg-[#11327f] shadow-md text-white transition-all duration-300">
                 Join Us
-                <img src="./images/arrow.png" alt="" class="w-8">
-            </Button>
-
+                <img src="./images/arrow.png" alt=""
+                    class="w-6 transform transition-transform duration-300 group-hover:translate-x-2">
+            </button>
         </div>
+
 
     </header>
 
@@ -108,13 +108,15 @@
                     Trusted by Researchers Worldwide
                 </div>
 
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight lg:mt-10">
-                    Discover, Learn & <span class="text-[#11327f]">Innovate</span>
+                <h1 class="text-4xl md:text-6xl lg:text-5xl font-bold leading-tight lg:mt-10">
+                    Discover Insights & <span class="text-[#11327f]">Advance Research</span>
+
                 </h1>
 
-                <p class="mt-6 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed">
-                    From awareness to innovation, explore trusted news, research showcases, and impactful studies all in
-                    one place.
+                <p class="mt-6 text-lg md:text-xl lg:text-xl max-w-3xl mx-auto leading-relaxed">
+                    Explore authentic research papers, latest studies, and innovative ideas from experts across diverse
+                    fields.
+                    Stay informed, learn, and contribute to the world of knowledge.
                 </p>
 
                 <!-- Stats Section -->
@@ -125,11 +127,11 @@
                     </div>
                     <div class="text-center">
                         <div class="text-2xl md:text-3xl font-bold">200+</div>
-                        <div class="text-sm opacity-80">Experts</div>
+                        <div class="text-sm opacity-80">Expert Contributors</div>
                     </div>
                     <div class="text-center">
                         <div class="text-2xl md:text-3xl font-bold">50+</div>
-                        <div class="text-sm opacity-80">Categories</div>
+                        <div class="text-sm opacity-80">Research Categories</div>
                     </div>
                 </div>
                 <!-- cta -->
@@ -288,6 +290,223 @@
         </div>
 
     </div>
+
+
+
+    <!-- Our Team Section -->
+    <section class="py-16 bg-gray-50 ">
+        <div class="max-w-7xl mx-auto px-20">
+            <!-- Section Header -->
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800">Meet Our <span
+                        class="text-[#11327f]">Team</span></h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Dedicated professionals working together to
+                    drive innovation and excellence in research.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Executive Director -->
+                <div
+                    class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 text-center p-6">
+                    <div class="relative inline-block">
+                        <img src="./images/team member 2.avif" alt="Dr. Josep Smith"
+                            class="rounded-full w-40 h-40 object-cover object-top mx-auto border-4 border-[#11327f]">
+                        <div
+                            class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-[#11327f] text-white text-xs font-semibold px-3 py-1 rounded-full">
+                            Executive Director
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mt-6">Dr. Josep Smith</h3>
+                    <p class="text-gray-600 mt-2">Leading our vision with expertise and dedication</p>
+                    <div class="mt-4 flex justify-center space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
+                            <i class="far fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Team Leader -->
+                <div
+                    class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 text-center p-6">
+                    <img src="./images/team member 3.avif" alt="Jacob Fitzgraid"
+                        class="rounded-full w-32 h-32 object-cover object-top mx-auto border-4 border-white shadow-md">
+                    <h3 class="text-lg font-semibold text-[#11327f] mt-4">TEAM LEADER</h3>
+                    <h2 class="text-xl font-bold text-gray-800">Jacob Fitzgraid</h2>
+                    <p class="text-gray-600 mt-2 text-sm">Guiding our projects to success efficiently</p>
+                    <div class="mt-4 flex justify-center space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
+                            <i class="far fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Design -->
+                <div
+                    class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 text-center p-6">
+                    <img src="./images/team member 1.avif" alt="Hayati Jacob"
+                        class="rounded-full w-32 h-32 object-cover object-top mx-auto border-4 border-white shadow-md">
+                    <h3 class="text-lg font-semibold text-[#11327f] mt-4">DESIGN</h3>
+                    <h2 class="text-xl font-bold text-gray-800">Hayati Jacob</h2>
+                    <p class="text-gray-600 mt-2 text-sm">Creating visually compelling experiences</p>
+                    <div class="mt-4 flex justify-center space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
+                            <i class="far fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Programmer -->
+                <div
+                    class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 text-center p-6">
+                    <img src="./images/team member 4.avif" alt="Herry Sent"
+                        class="rounded-full w-32 h-32 object-cover object-top mx-auto border-4 border-white shadow-md">
+                    <h3 class="text-lg font-semibold text-[#11327f] mt-4">DEVELOPER</h3>
+                    <h2 class="text-xl font-bold text-gray-800">Herry Sent</h2>
+                    <p class="text-gray-600 mt-2 text-sm">Building innovative technical solutions</p>
+                    <div class="mt-4 flex justify-center space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
+                            <i class="far fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Featured Research Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-15">
+            <!-- Section Header -->
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Featured <span
+                        class="text-[#11327f]">Research</span></h2>
+                <p class="mt-3 text-lg text-gray-600">Explore our latest and most impactful research projects</p>
+            </div>
+
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Research Card 1 -->
+                <div
+                    class="research-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="./images/feature 3.avif" alt="Data Visualization"
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-[#11327f] text-white text-xs font-medium px-2.5 py-0.5 rounded">Data
+                                Science</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Machine Learning Applications in Climate
+                            Science</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Dr. Sarah Johnson, Dr. Michael Chen</p>
+                        <p class="text-gray-700 mb-5">Exploring how predictive algorithms can enhance climate modeling
+                            accuracy and improve long-term forecasting.</p>
+                        <div class="flex justify-between items-center">
+                            <a href="#"
+                                class="text-[#11327f] font-medium hover:text-blue-800 transition-colors flex items-center gap-1">
+                                Read More
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+
+                            <div class="flex items-center text-gray-500 text-sm">
+                                <i class="far fa-calendar-alt mr-1"></i>
+                                <span>Oct 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Card 2 -->
+                <div
+                    class="research-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="./images/feature 2.avif" alt="Neuroscience Research"
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span
+                                class="bg-[#11327f] text-white text-xs font-medium px-2.5 py-0.5 rounded">Neuroscience</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Cognitive Impacts of Digital Media Consumption
+                        </h3>
+                        <p class="text-gray-600 mb-4 text-sm">Dr. Emily Rodriguez, Prof. James Wilson</p>
+                        <p class="text-gray-700 mb-5">A longitudinal study examining the effects of prolonged digital
+                            exposure on attention span and memory formation.</p>
+                        <div class="flex justify-between items-center">
+                            <a href="#"
+                                class="text-[#11327f] font-medium hover:text-blue-800 transition-colors flex items-center gap-1">
+                                Read More
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+
+                            <div class="flex items-center text-gray-500 text-sm">
+                                <i class="far fa-calendar-alt mr-1"></i>
+                                <span>Sep 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Card 3 -->
+                <div
+                    class="research-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="./images/feature 3.avif" alt="Renewable Energy"
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span
+                                class="bg-[#11327f] text-white text-xs font-medium px-2.5 py-0.5 rounded">Sustainability</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Advanced Photovoltaic Materials for Urban
+                            Environments</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Dr. Robert Kim, Dr. Lisa Anderson</p>
+                        <p class="text-gray-700 mb-5">Developing next-generation solar cells with improved efficiency in
+                            low-light conditions for city applications.</p>
+                        <div class="flex justify-between items-center">
+                            <a href="#"
+                                class="text-[#11327f] font-medium hover:text-blue-800 transition-colors flex items-center gap-1">
+                                Read More
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+
+                            <div class="flex items-center text-gray-500 text-sm">
+                                <i class="far fa-calendar-alt mr-1"></i>
+                                <span>Aug 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- button -->
+            <div class="text-center mt-12">
+                <a href="#"
+                    class="group inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[#11327f] hover:bg-[#11327f]/90 transition-colors duration-300">
+                    View All Research
+                    <i
+                        class="fas fa-arrow-right ml-2 transform transition-transform duration-300 group-hover:translate-x-2"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
 
 
 
