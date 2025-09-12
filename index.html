@@ -29,22 +29,23 @@
 
 
 
-    <header class="flex justify-between items-center px-10 shadow-xl py-2 sticky top-0 bg-white z-50">
-
+    <header class="flex justify-between items-center px-6 sm:px-10 shadow-xl py-3 sticky top-0 bg-white z-50">
+        <!-- Logo -->
         <div>
-            <img src="/images/LOGO.jpg" alt="" class="w-[80px]">
+            <img src="./images/LOGO.jpg" alt="Logo" class="w-[70px] sm:w-[80px]">
         </div>
 
-
-        <nav>
+        <!-- Desktop Nav -->
+        <nav class="hidden lg:block">
             <ul class="flex justify-center items-center gap-10">
                 <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Home</li>
                 <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">About</li>
                 <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Team</li>
-                <li class="relative group z-50">
+                <li class="relative group">
                     <!-- Trigger -->
                     <div class="cursor-pointer py-2 px-4 rounded-lg transition-colors duration-200 flex items-center">
-                        <span class="text-gray-800 group-hover:text-[#444a96] text-lg font-semibold">Category</span>
+                        <span class="text-gray-800 group-hover:text-[#444a96] text-lg font-semibold">Research
+                            Library</span>
                         <i
                             class="fas fa-chevron-down ml-2 text-xs transition-transform duration-200 group-hover:rotate-180"></i>
                     </div>
@@ -54,16 +55,13 @@
                         class="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible transition-all duration-300 transform origin-top -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 z-50">
                         <div class="py-2">
                             <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
-                                <h2 class="text-gray-800 font-medium hover:text-white">Awareness</h2>
+                                <h2 class="text-gray-800 font-medium hover:text-white">Research Video</h2>
                             </div>
                             <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
-                                <h2 class="text-gray-800 font-medium hover:text-white">Latest</h2>
+                                <h2 class="text-gray-800 font-medium hover:text-white">Free Resources</h2>
                             </div>
                             <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
                                 <h2 class="text-gray-800 font-medium hover:text-white">News</h2>
-                            </div>
-                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
-                                <h2 class="text-gray-800 font-medium hover:text-white">Research Showcase</h2>
                             </div>
                             <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
                                 <h2 class="text-gray-800 font-medium hover:text-white">Research Work</h2>
@@ -71,23 +69,47 @@
                         </div>
                     </div>
                 </li>
-
                 <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Contact</li>
             </ul>
         </nav>
 
 
-        <div class="group inline-block">
-            <button
-                class="flex items-center justify-center gap-2 rounded-md px-6 py-2 bg-[#11327f] shadow-md text-white transition-all duration-300">
-                Join Us
-                <img src="./images/arrow.png" alt=""
-                    class="w-6 transform transition-transform duration-300 group-hover:translate-x-2">
+        <div class="flex items-center gap-4">
+            <div class="group hidden sm:inline-block">
+                <button
+                    class="flex items-center justify-center gap-2 rounded-md px-6 py-2 bg-[#11327f] shadow-md text-white transition-all duration-300">
+                    Join Us
+                    <img src="./images/arrow.png" alt=""
+                        class="w-6 transform transition-transform duration-300 group-hover:translate-x-2">
+                </button>
+            </div>
+
+            <!-- Hamburger -->
+            <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 focus:outline-none">
+                <span class="w-6 h-0.5 bg-gray-800"></span>
+                <span class="w-6 h-0.5 bg-gray-800"></span>
+                <span class="w-6 h-0.5 bg-gray-800"></span>
             </button>
         </div>
-
-
     </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="fixed top-0 left-0 w-full bg-white shadow-lg rounded-b-2xl transform -translate-y-full transition-transform duration-500 ease-in-out lg:hidden z-40">
+        <ul class="flex flex-col gap-6 p-6 text-center">
+            <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Home</li>
+            <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">About</li>
+            <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Team</li>
+            <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Research Library</li>
+            <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Contact</li>
+            <button
+                class="mt-4 px-6 py-3 bg-[#11327f] text-white rounded-lg font-semibold shadow-md hover:shadow-xl transition">
+                Join Us
+            </button>
+        </ul>
+    </div>
+
+
 
 
     <!-- HERO SECTION -->
@@ -138,7 +160,7 @@
                 <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
                     <button
                         class="px-8 py-4 bg-[#11327f] text-white rounded-full cursor-pointer transition-all duration-300 transform font-semibold text-lg shadow-lg border border-transparent hover:bg-white hover:text-[#11327f]">
-                        Get Started
+                        Free Resources
                     </button>
                     <button
                         class="px-8 py-4 bg-transparent text-white border border-white rounded-full cursor-pointer transition-all duration-300 font-semibold text-lg hover:bg-[#11327f] hover:border-[#11327f] hover:text-white">
@@ -149,34 +171,34 @@
         </div>
     </div>
 
-
     <!-- About section -->
-    <div class="max-w-7xl mx-auto lg:mt-20">
+    <div class="max-w-7xl mx-auto lg:mt-20 px-4">
         <div class="max-w-6xl mx-auto">
-            <div class="mt-5 ">
+            <!-- Heading Badge -->
+            <div class="mt-5 text-center md:text-left">
                 <h2
-                    class="inline-block px-4 py-1 border-2 border-[#11327f] hover:text-white hover:bg-[#11327f] rounded-full shadow-xl text-lg font-semibold">
+                    class="inline-block px-4 py-1 border-2 border-[#11327f] hover:text-white hover:bg-[#11327f] rounded-full shadow-xl text-sm sm:text-base md:text-lg font-semibold">
                     About Us
                 </h2>
             </div>
 
-            <!-- heading -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mt-3 mb-12">
-
-                <div class="text-center md:text-left">
-                    <h2 class="text-4xl md:text-5xl font-semibold text-[#39ddaf] leading-snug">
+            <!-- Main Heading -->
+            <div
+                class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center mt-3 mb-12 text-center md:text-left">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl md:text-5xl font-semibold text-[#39ddaf] leading-snug">
                         Explore <span class="text-[#11327f]">Research, News & Ideas</span>
                     </h2>
                 </div>
                 <div>
-                    <p class="text-gray-700 text-base leading-relaxed">
+                    <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
                         Welcome to a space where awareness meets innovation.
                         We bring together news, research, and showcase groundbreaking projects.
                         Our mission is to make knowledge accessible, engaging, and beneficial for all.
                     </p>
                 </div>
                 <div>
-                    <p class="text-gray-700 text-base leading-relaxed">
+                    <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
                         Our Research Hub spreads awareness, shares the latest insights, and showcases innovative work.
                         We provide reliable updates that empower learners, professionals, and communities with knowledge
                         that matters.
@@ -184,69 +206,81 @@
                 </div>
             </div>
 
-            <!-- cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start mt-3 mb-12">
-
+            <!-- Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 items-start mt-3 mb-12">
                 <div
-                    class="flex justify-center items-center gap-3 p-6 shadow-lg rounded-lg bg-white text-center hover:shadow-xl transition">
-                    <div class="  mb-4 text-[#11327f]">
-                        <i class="fas fa-lightbulb text-5xl"></i>
+                    class="flex flex-col sm:flex-row justify-center items-center gap-3 p-6 shadow-lg rounded-lg bg-white text-center hover:shadow-xl transition">
+                    <div class="mb-4 sm:mb-0 text-[#11327f]">
+                        <i class="fas fa-lightbulb text-4xl md:text-5xl"></i>
                     </div>
                     <div>
-                        <h2 class="text-xl font-semibold mb-2">Spreading Awareness</h2>
-                        <p class="text-gray-600">We provide authentic insights to keep you informed and aware of key
-                            research topics.
+                        <h2 class="text-lg md:text-xl font-semibold mb-2">Spreading Awareness</h2>
+                        <p class="text-gray-600 text-sm md:text-base">
+                            We provide authentic insights to keep you informed and aware of key research topics.
                         </p>
                     </div>
                 </div>
 
                 <div
-                    class="flex justify-center items-center gap-3 p-6 shadow-lg rounded-lg bg-white text-center hover:shadow-xl transition">
-                    <div class=" mb-4 text-[#11327f]">
-                        <i class="fas fa-flask text-5xl"></i>
+                    class="flex flex-col sm:flex-row justify-center items-center gap-3 p-6 shadow-lg rounded-lg bg-white text-center hover:shadow-xl transition">
+                    <div class="mb-4 sm:mb-0 text-[#11327f]">
+                        <i class="fas fa-flask text-4xl md:text-5xl"></i>
                     </div>
                     <div>
-                        <h2 class="text-xl font-semibold mb-2">Research Updates</h2>
-                        <p class="text-gray-600">Stay updated with the latest studies, projects, and innovations from
-                            diverse fields.
+                        <h2 class="text-lg md:text-xl font-semibold mb-2">Research Updates</h2>
+                        <p class="text-gray-600 text-sm md:text-base">
+                            Stay updated with the latest studies, projects, and innovations from diverse fields.
                         </p>
                     </div>
                 </div>
 
                 <div
-                    class="flex justify-center items-center gap-3 p-6 shadow-lg rounded-lg bg-white text-center hover:shadow-xl transition">
-                    <div class=" mb-4 text-[#11327f]">
-                        <i class="fas fa-users text-5xl"></i>
+                    class="flex flex-col sm:flex-row justify-center items-center gap-3 p-6 shadow-lg rounded-lg bg-white text-center hover:shadow-xl transition">
+                    <div class="mb-4 sm:mb-0 text-[#11327f]">
+                        <i class="fas fa-users text-4xl md:text-5xl"></i>
                     </div>
                     <div>
-                        <h2 class="text-xl font-semibold mb-2">Professional Network</h2>
-                        <p class="text-gray-600">Connecting learners, researchers, and professionals to share impactful
-                            knowledge.
+                        <h2 class="text-lg md:text-xl font-semibold mb-2">Professional Network</h2>
+                        <p class="text-gray-600 text-sm md:text-base">
+                            Connecting learners, researchers, and professionals to share impactful knowledge.
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- images + video side by side -->
-            <div class="relative w-full max-w-3xl mb-10 ">
+            <!-- Image + Video -->
+            <!-- Image + Video -->
+            <div class="relative w-full mb-10 flex justify-start">
                 <!-- Image -->
-                <img src="./images/about image.avif" alt="About Us" class="w-full rounded-lg shadow-lg">
+                <img src="./images/about image.avif" alt="About Us"
+                    class="w-full md:w-[70%] lg:w-[65%] rounded-lg shadow-lg object-cover">
 
-                <!-- Video Overlay -->
+                <!-- Video -->
+                <!-- Small & Medium Screens: Normal flow -->
+                <div class="w-full mt-6 lg:hidden flex justify-center">
+                    <iframe
+                        class="w-full max-w-sm sm:max-w-md h-[200px] sm:h-[250px] md:h-[300px] rounded-lg shadow-xl border-4 border-white"
+                        src="https://www.youtube.com/embed/mV0bUQpz468" title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <!-- Large Screens: Absolute overlay -->
                 <iframe
-                    class="absolute top-[70px] right-[-350px] w-[300px] md:w-[500px] h-[300px] aspect-video rounded-lg shadow-xl border-4 border-white"
+                    class="hidden lg:block absolute top-[70px] right-[-10px] w-[280px] md:w-[450px] lg:w-[500px] h-[250px] md:h-[300px] aspect-video rounded-lg shadow-xl border-4 border-white"
                     src="https://www.youtube.com/embed/mV0bUQpz468" title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen>
                 </iframe>
             </div>
-
         </div>
     </div>
 
 
+
     <!-- video presentation -->
-    <div class="max-w-7xl mx-auto my-10">
+    <div class="max-w-7xl mx-auto my-10 lg:px-0 px-4">
         <div class="text-center mb-8">
             <h2 class="text-3xl font-bold text-[#11327f]">Research Showcase</h2>
             <p class="text-gray-600 mt-2">Explore featured research videos that highlight innovation, awareness, and
@@ -293,102 +327,9 @@
 
 
 
-    <!-- Our Team Section -->
-    <section class="py-16 bg-gray-50 ">
-        <div class="max-w-7xl mx-auto px-20">
-            <!-- Section Header -->
-            <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800">Meet Our <span
-                        class="text-[#11327f]">Team</span></h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Dedicated professionals working together to
-                    drive innovation and excellence in research.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Executive Director -->
-                <div
-                    class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 text-center p-6">
-                    <div class="relative inline-block">
-                        <img src="./images/team member 2.avif" alt="Dr. Josep Smith"
-                            class="rounded-full w-40 h-40 object-cover object-top mx-auto border-4 border-[#11327f]">
-                        <div
-                            class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-[#11327f] text-white text-xs font-semibold px-3 py-1 rounded-full">
-                            Executive Director
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mt-6">Dr. Josep Smith</h3>
-                    <p class="text-gray-600 mt-2">Leading our vision with expertise and dedication</p>
-                    <div class="mt-4 flex justify-center space-x-3">
-                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
-                            <i class="far fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Team Leader -->
-                <div
-                    class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 text-center p-6">
-                    <img src="./images/team member 3.avif" alt="Jacob Fitzgraid"
-                        class="rounded-full w-32 h-32 object-cover object-top mx-auto border-4 border-white shadow-md">
-                    <h3 class="text-lg font-semibold text-[#11327f] mt-4">TEAM LEADER</h3>
-                    <h2 class="text-xl font-bold text-gray-800">Jacob Fitzgraid</h2>
-                    <p class="text-gray-600 mt-2 text-sm">Guiding our projects to success efficiently</p>
-                    <div class="mt-4 flex justify-center space-x-3">
-                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
-                            <i class="far fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Design -->
-                <div
-                    class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 text-center p-6">
-                    <img src="./images/team member 1.avif" alt="Hayati Jacob"
-                        class="rounded-full w-32 h-32 object-cover object-top mx-auto border-4 border-white shadow-md">
-                    <h3 class="text-lg font-semibold text-[#11327f] mt-4">DESIGN</h3>
-                    <h2 class="text-xl font-bold text-gray-800">Hayati Jacob</h2>
-                    <p class="text-gray-600 mt-2 text-sm">Creating visually compelling experiences</p>
-                    <div class="mt-4 flex justify-center space-x-3">
-                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
-                            <i class="far fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Programmer -->
-                <div
-                    class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 text-center p-6">
-                    <img src="./images/team member 4.avif" alt="Herry Sent"
-                        class="rounded-full w-32 h-32 object-cover object-top mx-auto border-4 border-white shadow-md">
-                    <h3 class="text-lg font-semibold text-[#11327f] mt-4">DEVELOPER</h3>
-                    <h2 class="text-xl font-bold text-gray-800">Herry Sent</h2>
-                    <p class="text-gray-600 mt-2 text-sm">Building innovative technical solutions</p>
-                    <div class="mt-4 flex justify-center space-x-3">
-                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
-                            <i class="far fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
     <!-- Featured Research Section -->
     <section class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-15">
+        <div class="max-w-7xl mx-auto lg:px-15 px-4">
             <!-- Section Header -->
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Featured <span
@@ -508,7 +449,536 @@
         </div>
     </section>
 
+    <!-- Country MAp -->
+    <section class="relative w-full"
+        style="background-image: url('./images/map.avif'); background-size: cover; background-position: center;">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-white/80 w-full "></div>
+        <div class="relative max-w-7xl mx-auto w-full h-[600px]  shadow-xl overflow-hidden">
 
+
+
+            <div class="absolute top-10 left-0 right-0 max-w-3xl mx-auto text-center z-10">
+                <h2 class="text-lg text-[#08cea0] font-bold uppercase tracking-wider">OUR LOCATIONS</h2>
+                <h2 class="text-4xl md:text-5xl  text-[#11327f] mt-2">
+                    Support across 18+ countries worldwide
+                </h2>
+            </div>
+
+            <div class="relative z-10 flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12 mt-58 px-6">
+                <!-- Card 1 -->
+                <div
+                    class="relative max-w-sm w-full md:w-[400px] text-center shadow-xl bg-white rounded-xl pt-16 pb-8 px-6 transition-all duration-300 hover:-translate-y-2">
+                    <div class="absolute -top-12 left-1/2 transform -translate-x-1/2">
+                        <img src="./images/map office.avif" alt="US Office"
+                            class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg">
+                    </div>
+
+                    <div class="mt-6">
+                        <h2 class="text-md text-[#08cea0] font-semibold uppercase tracking-wide">UNITED STATES</h2>
+                        <h2 class="text-xl font-bold text-[#11327f] mt-1">Rochester, New York</h2>
+                        <p class="text-gray-600 text-md py-4 leading-relaxed">
+                            145 Elmgrove Park Rochester, NY 14624, USA <br> +1 866 405 0400
+                        </p>
+                        <a href="mailto:us-office@example.com"
+                            class="inline-flex items-center text-[#11327f] font-medium hover:text-[#08cea0] transition-colors duration-300 group">
+                            Send Email
+                            <svg class="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-1 group-hover:translate-x-0"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="relative max-w-sm w-full md:w-[400px] text-center shadow-xl bg-white rounded-xl pt-16 pb-8 px-6 transition-all duration-300 hover:-translate-y-2">
+                    <div class="absolute -top-12 left-1/2 transform -translate-x-1/2">
+                        <img src="./images/map office 2.avif" alt="Europe Office"
+                            class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg">
+                    </div>
+                    <div class="mt-6">
+                        <h2 class="text-md text-[#08cea0] font-semibold uppercase tracking-wide">UNITED KINGDOM</h2>
+                        <h2 class="text-xl font-bold text-[#11327f] mt-1">London, England</h2>
+                        <p class="text-gray-600 text-md py-4 leading-relaxed">
+                            123 Innovation Drive London, EC1A 1BB, UK <br> +44 20 7946 0958
+                        </p>
+                        <a href="mailto:uk-office@example.com"
+                            class="inline-flex items-center text-[#11327f] font-medium hover:text-[#08cea0] transition-colors duration-300 group">
+                            Send Email
+                            <svg class="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-1 group-hover:translate-x-0"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Premium Membership Section -->
+    <section class="py-20 bg-white text-black relative overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10">
+            <div class="absolute top-20 left-20 w-80 h-80 bg-blue-500 rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-20 right-20 w-96 h-96 bg-indigo-600 rounded-full filter blur-3xl"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="inline-block bg-[#11327f] text-white text-sm font-semibold px-4 py-2 rounded-full mb-4">
+                    EXCLUSIVE ACCESS
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Premium Research Membership</h2>
+                <p class="text-xl max-w-2xl mx-auto opacity-90">Unlock the full potential of our research platform with
+                    exclusive content, tools, and resources</p>
+            </div>
+
+            <!-- Membership Tiers -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Basic Tier -->
+                <div
+                    class="bg-white/5 backdrop-blur-md shadow-2xl rounded-2xl p-8 border border-white/10 hover:border-blue-400/30 transition-all duration-500 hover:-translate-y-2">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-semibold mb-2">Research Explorer</h3>
+                        <div class="flex items-baseline justify-center">
+                            <span class="text-4xl font-bold">$19</span>
+                            <span class="text-gray-400 ml-2">/month</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-blue-400 mr-3"></i>
+                            <span>Access to basic research library</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-blue-400 mr-3"></i>
+                            <span>Monthly research summaries</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-blue-400 mr-3"></i>
+                            <span>Community forum access</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-times-circle mr-3"></i>
+                            <span>Premium content</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-times-circle mr-3"></i>
+                            <span>Expert webinars</span>
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl font-medium text-[#11327f] border-2 border-[#11327f] 
+                        hover:bg-[#11327f] hover:text-white 
+                        transition-all duration-300">
+                        Get Started
+                    </button>
+
+                </div>
+
+                <!-- Premium Tier (Featured) -->
+                <div
+                    class="bg-[#11327f]  text-white rounded-2xl p-8 border border-blue-400/50 relative overflow-hidden transform hover:-translate-y-2 transition-all duration-500">
+                    <div class="absolute top-5 right-5">
+                        <span class="bg-white text-blue-700 text-xs font-bold px-3 py-1 rounded-full">POPULAR</span>
+                    </div>
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-semibold mb-2">Research Pro</h3>
+                        <div class="flex items-baseline justify-center">
+                            <span class="text-4xl font-bold">$49</span>
+                            <span class="text-blue-200 ml-2">/month</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-white mr-3"></i>
+                            <span>Full research library access</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-white mr-3"></i>
+                            <span>Weekly research briefings</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-white mr-3"></i>
+                            <span>Exclusive video content</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-white mr-3"></i>
+                            <span>Live expert webinars</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-white mr-3"></i>
+                            <span>Research tools & datasets</span>
+                        </li>
+                    </ul>
+                    <button
+                        class="w-full py-3 bg-white text-blue-700 hover:bg-blue-50 rounded-xl font-bold transition-all duration-300 shadow-lg">
+                        Start Premium Trial
+                    </button>
+                </div>
+
+                <!-- Enterprise Tier -->
+                <div
+                    class="bg-white/5 backdrop-blur-md rounded-2xl shadow-2xl p-8 border border-white/10 hover:border-indigo-400/30 transition-all duration-500 hover:-translate-y-2">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-semibold mb-2">Research Enterprise</h3>
+                        <div class="flex items-baseline justify-center">
+                            <span class="text-4xl font-bold">$99</span>
+                            <span class="text-gray-400 ml-2">/month</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-blue-400 mr-3"></i>
+                            <span>All Pro features</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-blue-400 mr-3"></i>
+                            <span>Custom research reports</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-blue-400 mr-3"></i>
+                            <span>Dedicated research support</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-blue-400 mr-3"></i>
+                            <span>Team management tools</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-blue-400 mr-3"></i>
+                            <span>API access</span>
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl font-medium text-[#11327f] border-2 border-[#11327f] 
+         hover:bg-[#11327f] hover:text-white 
+         transition-all duration-300">
+                        Contact Sales
+                    </button>
+
+                </div>
+            </div>
+
+            <!-- Additional Features -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-4xl mx-auto">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[#11327f] rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lock-open text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Cancel Anytime</h3>
+                    <p class="opacity-80">No long-term commitment, cancel your subscription whenever you need</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[#11327f] rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-download text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Offline Access</h3>
+                    <p class="opacity-80">Download research papers and content for offline reading</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[#11327f] rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-headset text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Priority Support</h3>
+                    <p class="opacity-80">Get help from our dedicated research support team</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section class="py-16 bg-gray-50 ">
+        <div class="max-w-7xl mx-auto lg:px-20 px-4">
+            <!-- Section Header -->
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800">Meet Our <span
+                        class="text-[#11327f]">Team</span></h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Dedicated professionals working together to
+                    drive innovation and excellence in research.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Executive Director -->
+                <div
+                    class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 text-center p-6">
+                    <div class="relative inline-block">
+                        <img src="./images/team member 2.avif" alt="Dr. Josep Smith"
+                            class="rounded-full w-40 h-40 object-cover object-top mx-auto border-4 border-[#11327f]">
+                        <div
+                            class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-[#11327f] text-white text-xs font-semibold px-3 py-1 rounded-full">
+                            Executive Director
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mt-6">Dr. Josep Smith</h3>
+                    <p class="text-gray-600 mt-2">Leading our vision with expertise and dedication</p>
+                    <div class="mt-4 flex justify-center space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
+                            <i class="far fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Team Leader -->
+                <div
+                    class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 text-center p-6">
+                    <img src="./images/team member 3.avif" alt="Jacob Fitzgraid"
+                        class="rounded-full w-32 h-32 object-cover object-top mx-auto border-4 border-white shadow-md">
+                    <h3 class="text-lg font-semibold text-[#11327f] mt-4">TEAM LEADER</h3>
+                    <h2 class="text-xl font-bold text-gray-800">Jacob Fitzgraid</h2>
+                    <p class="text-gray-600 mt-2 text-sm">Guiding our projects to success efficiently</p>
+                    <div class="mt-4 flex justify-center space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
+                            <i class="far fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Design -->
+                <div
+                    class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 text-center p-6">
+                    <img src="./images/team member 1.avif" alt="Hayati Jacob"
+                        class="rounded-full w-32 h-32 object-cover object-top mx-auto border-4 border-white shadow-md">
+                    <h3 class="text-lg font-semibold text-[#11327f] mt-4">DESIGN</h3>
+                    <h2 class="text-xl font-bold text-gray-800">Hayati Jacob</h2>
+                    <p class="text-gray-600 mt-2 text-sm">Creating visually compelling experiences</p>
+                    <div class="mt-4 flex justify-center space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
+                            <i class="far fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Programmer -->
+                <div
+                    class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 text-center p-6">
+                    <img src="./images/team member 4.avif" alt="Herry Sent"
+                        class="rounded-full w-32 h-32 object-cover object-top mx-auto border-4 border-white shadow-md">
+                    <h3 class="text-lg font-semibold text-[#11327f] mt-4">DEVELOPER</h3>
+                    <h2 class="text-xl font-bold text-gray-800">Herry Sent</h2>
+                    <p class="text-gray-600 mt-2 text-sm">Building innovative technical solutions</p>
+                    <div class="mt-4 flex justify-center space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
+                            <i class="far fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 relative"
+        style="background-image: url(./images/cta\ bg.avif); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+
+                <!-- Left Column -->
+                <div class=" flex-1 text-center lg:text-left text-white">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                        Shape Your Digital <br class="hidden md:block">Future Today
+                    </h2>
+                    <p class="text-lg md:text-xl mb-8 opacity-90 leading-relaxed max-w-xl">
+                        Explore trusted research, insights, and innovation. Take the first step to enhance your
+                        knowledge and shape your digital future with us.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button
+                            class="px-8 py-4 bg-white text-[#11327f] rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            Explore Free Resources
+                        </button>
+                        <button
+                            class="px-8 py-4 bg-transparent border-2 border-white text-white rounded-xl font-semibold hover:bg-white hover:text-[#11327f] transition-all duration-300">
+                            Join Our Membership
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column (Testimonial) -->
+                <div
+                    class="flex-1 relative max-w-md w-full rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-300">
+
+                    <!-- Content with glass effect -->
+                    <div class="bg-white/20 backdrop-blur-md p-8 text-gray-800 flex flex-col gap-6">
+                        <!-- Icon at Top -->
+                        <div class="text-4xl text-[#11327f]">
+                            <i class="fas fa-quote-right text-white"></i>
+                        </div>
+
+                        <!-- Testimonial Text -->
+                        <blockquote class="text-lg italic text-white leading-relaxed">
+                            "This platform transformed how I access and share research. The insights are top-notch and
+                            helped me innovate faster than ever!"
+                        </blockquote>
+
+                        <!-- Author Info -->
+                        <div class="flex items-center gap-4 mt-4">
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-r from-[#22d4ad] to-[#11327f] p-0.5">
+                                <img src="./images/team member 5.avif" alt="James Cooper"
+                                    class="w-full h-full rounded-full object-cover border-2 border-white">
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-white">James Cooper</h3>
+                                <p class="text-sm text-white">Chief Executive Officer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- footer -->
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8 px-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Brand Column -->
+                <div class="lg:col-span-1">
+                    <img src="./images/ralogo.webp" alt="Logo" class="w-32 mix-blend-mix">
+
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Advancing knowledge through cutting-edge research and innovation. Join our community of
+                        researchers and professionals.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-linkedin-in text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-instagram text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Research Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6 relative inline-block">
+                        Research Areas
+                        <span class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"></span>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Data Science</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Artificial
+                                Intelligence</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Biotechnology</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Renewable Energy</a>
+                        </li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Neuroscience</a></li>
+                    </ul>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6 relative inline-block">
+                        Quick Links
+                        <span class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"></span>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Publications</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Research Grants</a>
+                        </li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Events &
+                                Conferences</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                
+                <!-- Contact & Newsletter -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6 relative inline-block">
+                        Stay Updated
+                        <span class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"></span>
+                    </h4>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for the latest research updates.</p>
+                    <form class="mb-4">
+                        <div class="flex w-full max-w-md">
+                            <input type="email" placeholder="Your email address"
+                                class="px-4 py-3 w-full rounded-l-lg border border-white text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400" />
+                            <button type="submit"
+                                class="bg-blue-500 hover:bg-blue-600 text-white px-5 rounded-r-lg border border-white border-l-0  transition-colors flex items-center justify-center">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+
+                    </form>
+                    <div class="flex items-start mt-6">
+                        <div class="text-blue-400 mr-3">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm">145 Research Park Drive, Innovation City, IC 12345</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                        © 2023 ResearchHub. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Terms of
+                            Service</a>
+                        <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+    <!-- Hamburger -->
+    <script>
+        const menuBtn = document.getElementById( "menu-btn" );
+        const mobileMenu = document.getElementById( "mobile-menu" );
+
+        menuBtn.addEventListener( "click", () => {
+            mobileMenu.classList.toggle( "-translate-y-full" );
+            mobileMenu.classList.toggle( "translate-y-0" );
+        } );
+    </script>
 
 </body>
 
