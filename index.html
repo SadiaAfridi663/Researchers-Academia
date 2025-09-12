@@ -29,7 +29,7 @@
 
 
 
-    <header class="flex justify-between items-center px-6 sm:px-10 shadow-xl py-3 sticky top-0 bg-white z-50">
+    <header class="flex justify-between items-center px-6 sm:px-10 shadow-xl py-3 sticky top-0 bg-white   z-50">
         <!-- Logo -->
         <div>
             <img src="./images/LOGO.jpg" alt="Logo" class="w-[70px] sm:w-[80px]">
@@ -38,8 +38,12 @@
         <!-- Desktop Nav -->
         <nav class="hidden lg:block">
             <ul class="flex justify-center items-center gap-10">
-                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Home</li>
-                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">About</li>
+                <a href="./index.html">
+                    <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Home</li>
+                </a>
+                <a href="./about.html">
+                    <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">About</li>
+                </a>
                 <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Team</li>
                 <li class="relative group">
                     <!-- Trigger -->
@@ -91,23 +95,30 @@
                 <span class="w-6 h-0.5 bg-gray-800"></span>
             </button>
         </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="fixed top-0 left-0 w-full bg-white shadow-lg rounded-b-2xl transform -translate-y-full transition-transform duration-500 ease-in-out lg:hidden z-40">
+            <ul class="flex flex-col gap-6 p-6 text-center">
+                <a href="./index.html">
+                    <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Home</li>
+                </a>
+                <a href="./about.html">
+                    <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">About</li>
+                </a>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Team</li>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Research Library
+                </li>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Contact</li>
+                <button
+                    class="mt-4 px-6 py-3 bg-[#11327f] text-white rounded-lg font-semibold shadow-md hover:shadow-xl transition">
+                    Join Us
+                </button>
+            </ul>
+        </div>
     </header>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu"
-        class="fixed top-0 left-0 w-full bg-white shadow-lg rounded-b-2xl transform -translate-y-full transition-transform duration-500 ease-in-out lg:hidden z-40">
-        <ul class="flex flex-col gap-6 p-6 text-center">
-            <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Home</li>
-            <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">About</li>
-            <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Team</li>
-            <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Research Library</li>
-            <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Contact</li>
-            <button
-                class="mt-4 px-6 py-3 bg-[#11327f] text-white rounded-lg font-semibold shadow-md hover:shadow-xl transition">
-                Join Us
-            </button>
-        </ul>
-    </div>
+
 
 
 
@@ -855,8 +866,6 @@
 
 
     <!-- footer -->
-
-    <!-- Footer Section -->
     <footer class="bg-gray-900 text-white pt-16 pb-8 px-10">
         <div class="max-w-7xl mx-auto px-4">
             <!-- Main Footer Content -->
@@ -919,7 +928,7 @@
                     </ul>
                 </div>
 
-                
+
                 <!-- Contact & Newsletter -->
                 <div>
                     <h4 class="text-lg font-semibold mb-6 relative inline-block">
@@ -969,17 +978,7 @@
 
 
 
-    <!-- Hamburger -->
-    <script>
-        const menuBtn = document.getElementById( "menu-btn" );
-        const mobileMenu = document.getElementById( "mobile-menu" );
-
-        menuBtn.addEventListener( "click", () => {
-            mobileMenu.classList.toggle( "-translate-y-full" );
-            mobileMenu.classList.toggle( "translate-y-0" );
-        } );
-    </script>
-
+    <script src="./script.js"></script>
 </body>
 
 </html>
