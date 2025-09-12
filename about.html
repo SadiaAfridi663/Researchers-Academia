@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts: Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <title>About</title>
+
+    <style>
+        /* Apply Outfit as the default font */
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-slide-left {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+
+        .animate-slide-right {
+            animation: slideInRight 1s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="flex justify-between items-center px-6 sm:px-10 shadow-xl py-3 sticky top-0 bg-white   z-50">
+        <!-- Logo -->
+        <div>
+            <img src="./images/LOGO.jpg" alt="Logo" class="w-[70px] sm:w-[80px]">
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden lg:block">
+            <ul class="flex justify-center items-center gap-10">
+                <a href="./index.html">
+                    <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Home</li>
+                </a>
+                <a href="./about.html">
+                    <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">About</li>
+                </a>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Team</li>
+                <li class="relative group">
+                    <!-- Trigger -->
+                    <div class="cursor-pointer py-2 px-4 rounded-lg transition-colors duration-200 flex items-center">
+                        <span class="text-gray-800 group-hover:text-[#444a96] text-lg font-semibold">Research
+                            Library</span>
+                        <i
+                            class="fas fa-chevron-down ml-2 text-xs transition-transform duration-200 group-hover:rotate-180"></i>
+                    </div>
+
+                    <!-- Dropdown -->
+                    <div
+                        class="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible transition-all duration-300 transform origin-top -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 z-50">
+                        <div class="py-2">
+                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                                <h2 class="text-gray-800 font-medium hover:text-white">Research Video</h2>
+                            </div>
+                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                                <h2 class="text-gray-800 font-medium hover:text-white">Free Resources</h2>
+                            </div>
+                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                                <h2 class="text-gray-800 font-medium hover:text-white">News</h2>
+                            </div>
+                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                                <h2 class="text-gray-800 font-medium hover:text-white">Research Work</h2>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Contact</li>
+            </ul>
+        </nav>
+
+
+        <div class="flex items-center gap-4">
+            <div class="group hidden sm:inline-block">
+                <button
+                    class="flex items-center justify-center gap-2 rounded-md px-6 py-2 bg-[#11327f] shadow-md text-white transition-all duration-300">
+                    Join Us
+                    <img src="./images/arrow.png" alt=""
+                        class="w-6 transform transition-transform duration-300 group-hover:translate-x-2">
+                </button>
+            </div>
+
+            <!-- Hamburger -->
+            <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 focus:outline-none">
+                <span class="w-6 h-0.5 bg-gray-800"></span>
+                <span class="w-6 h-0.5 bg-gray-800"></span>
+                <span class="w-6 h-0.5 bg-gray-800"></span>
+            </button>
+        </div>
+
+
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="fixed top-0 left-0 w-full bg-white shadow-lg rounded-b-2xl transform -translate-y-full transition-transform duration-500 ease-in-out lg:hidden z-40">
+            <ul class="flex flex-col gap-6 p-6 text-center">
+                <a href="./index.html">
+                    <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Home</li>
+                </a>
+                <a href="./about.html">
+                    <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">About</li>
+                </a>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Team</li>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Research Library
+                </li>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Contact</li>
+                <button
+                    class="mt-4 px-6 py-3 bg-[#11327f] text-white rounded-lg font-semibold shadow-md hover:shadow-xl transition">
+                    Join Us
+                </button>
+            </ul>
+        </div>
+
+    </header>
+
+    <!-- Hero Section -->
+    <section
+        class="relative w-full min-h-[500px] flex items-center justify-center bg-gray-900 text-white overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0">
+            <img src="./images/about hero bg.avif" alt="Research Background"
+                class="w-full h-full object-cover opacity-40">
+            <div class="absolute inset-0 bg-black/60"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative container mx-auto px-6 lg:px-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center z-10">
+            <!-- Left Content -->
+            <div class="animate-slide-left">
+                <span class="text-sm font-semibold tracking-widest uppercase">
+                    Since 2020
+                </span>
+
+                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mt-2 
+                    bg-gradient-to-r from-[#103182] to-[#4fc5c1] 
+                    bg-clip-text text-transparent">
+                    Advancing Knowledge Through Research
+                </h1>
+
+
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-2"></div>
+
+                <p class="mt-4 text-lg md:text- text-gray-200 max-w-xl leading-relaxed ">
+                    Exploring innovative solutions to global challenges through <span
+                        class="font-semibold text-blue-400">collaboration</span> and <span
+                        class="font-semibold text-[#4fc5c1]">discovery</span>.
+                </p>
+
+                <!-- Stats -->
+                <div class="mt-4 grid grid-cols-2 gap-6 max-w-md">
+                    <div class="stats-card p-5 rounded-xl text-center "
+                        style=" backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.08);border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <h3 class="text-3xl font-bold text-blue-400">50+</h3>
+                        <p class="text-sm text-gray-300">Research Papers</p>
+                    </div>
+                    <div class="stats-card p-5 rounded-xl text-center" style=" backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1);>
+                        <h3 class=" text-3xl font-bold text-purple-400">12+</h3>
+                        <p class="text-sm text-gray-300">Global Partners</p>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <a href="#"
+                        class="bg-gradient-to-r from-[#103182] to-[#4fc5c1] hover:from-[#4fc5c1] hover:to-[#103182] transition-all transform hover:scale-105 px-7 py-3.5 rounded-xl shadow-xl font-medium flex items-center group">
+                        Explore Research
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+
+                    <a href="#"
+                        class="border border-gray-500 hover:border-blue-400 transition-all px-7 py-3.5 rounded-xl font-medium text-gray-200 hover:text-white flex items-center group">
+                        Learn More
+                        <i class="fas fa-chevron-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Image -->
+            <div class="animate-slide-right flex justify-center">
+                <img src="./images/about hero man.png" alt="Research Illustration" class="w-72 md:w-96 drop-shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="py-20 bg-gradient-to-br from-gray-50 to-blue-50/30 relative overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-5">
+            <div
+                class="absolute top-10 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse-slow">
+            </div>
+            <div
+                class="absolute bottom-10 right-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse-slow animation-delay-2000">
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 lg:px-20 relative z-10">
+            <!-- Heading -->
+            <div class="text-center mb-16">
+                <span class="text-sm font-semibold tracking-widest text-blue-500 uppercase">Our Guiding
+                    Principles</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mt-3">Our Mission & Vision</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full mt-4"></div>
+                <p class="mt-5 text-gray-600 max-w-3xl mx-auto text-lg">
+                    We are committed to advancing knowledge through impactful research and long-term innovation that
+                    transforms lives.
+                </p>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Mission -->
+                <div
+                    class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 p-8 lg:p-10 relative overflow-hidden group">
+                    <!-- Decorative corner -->
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full"></div>
+
+                    <div class="mb-6 relative">
+                        <!-- Font Awesome CDN -->
+                        <link rel="stylesheet"
+                            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+                        <div
+                            class="w-14 h-14 bg-[#103182] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-clock text-white text-2xl"></i>
+                        </div>
+
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Our Mission</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        To make research more accessible, collaborative, and impactful by creating a platform
+                        that empowers researchers and inspires innovation across the globe.
+                    </p>
+
+                    
+
+                    <div class="mt-6 space-y-2">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-check text-blue-500 mr-2"></i>
+                            <span class="text-gray-700">Democratizing research access</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-check text-blue-500 mr-2"></i>
+                            <span class="text-gray-700">Fostering global collaboration</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-check text-blue-500 mr-2"></i>
+                            <span class="text-gray-700">Empowering researchers</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Vision -->
+                <div
+                    class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 p-8 lg:p-10 relative overflow-hidden group">
+                    <!-- Decorative corner -->
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-green-50 rounded-bl-full"></div>
+
+                    <!-- Font Awesome CDN -->
+                    <link rel="stylesheet"
+                        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+                    <div class="mb-6 relative">
+                        <div
+                            class="w-14 h-14 bg-[#103182] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+
+                            <i class="fa-solid fa-arrow-trend-up text-white text-2xl"></i>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Our Vision</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        To become a leading global hub where knowledge transforms into real-world solutions,
+                        fostering progress and shaping a sustainable future for generations to come.
+                    </p>
+
+                    <!-- Vision highlights -->
+                    <div class="mt-6 space-y-2">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-gray-700">Creating real-world solutions</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-gray-700">Fostering global progress</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-gray-700">Building sustainable futures</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Core Values -->
+
+        </div>
+    </section>
+
+
+    </style>
+
+
+
+
+
+
+
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
