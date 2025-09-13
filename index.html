@@ -21,6 +21,26 @@
         body {
             font-family: 'Outfit', sans-serif;
         }
+
+
+        /* Default lines */
+        #menu-btn span {
+            background-color: #333;
+            /* dark for white bg */
+        }
+
+        /* Open (Cross) state */
+        #menu-btn.open #line1 {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        #menu-btn.open #line2 {
+            opacity: 0;
+        }
+
+        #menu-btn.open #line3 {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
     </style>
 </head>
 
@@ -44,7 +64,7 @@
                 <a href="./about.html">
                     <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">About</li>
                 </a>
-                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Team</li>
+                <a href="./team.html"><li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Team</li></a>
                 <li class="relative group">
                     <!-- Trigger -->
                     <div class="cursor-pointer py-2 px-4 rounded-lg transition-colors duration-200 flex items-center">
@@ -88,12 +108,14 @@
                 </button>
             </div>
 
-            <!-- Hamburger -->
-            <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 focus:outline-none">
-                <span class="w-6 h-0.5 bg-gray-800"></span>
-                <span class="w-6 h-0.5 bg-gray-800"></span>
-                <span class="w-6 h-0.5 bg-gray-800"></span>
+
+            <button id="menu-btn" class="lg:hidden flex flex-col justify-between w-8 h-6 relative  z-50">
+                <span id="line1" class="w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center"></span>
+                <span id="line2" class="w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center"></span>
+                <span id="line3" class="w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center"></span>
             </button>
+
+
         </div>
 
         <!-- Mobile Menu -->
@@ -106,7 +128,7 @@
                 <a href="./about.html">
                     <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">About</li>
                 </a>
-                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Team</li>
+                <a href="./team.html"><li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Team</li></a>
                 <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Research Library
                 </li>
                 <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Contact</li>

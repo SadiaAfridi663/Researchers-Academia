@@ -1,199 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Tailwind CSS CDN -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS CDN -->
 
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Outfit -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    <title>Research</title>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#103182",
-              secondary: "#4fc5c1",
-            },
+  <!-- Google Fonts: Outfit -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <title>Research</title>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#103182",
+            secondary: "#4fc5c1",
           },
         },
-      };
-    </script>
+      },
+    };
+  </script>
 
-    <style>
-      /* Apply Outfit as the default font */
-      body {
-        font-family: "Outfit", sans-serif;
-      }
-    </style>
-  </head>
-  <body>
-    <header
-      class="flex justify-between items-center px-6 sm:px-10 shadow-xl py-3 sticky top-0 bg-white z-40"
-    >
-      <!-- Logo -->
-      <div>
-        <img src="./images/LOGO.jpg" alt="Logo" class="w-[70px] sm:w-[80px]" />
-      </div>
+  <style>
+    /* Apply Outfit as the default font */
+    body {
+      font-family: "Outfit", sans-serif;
+    }
+    /* Default lines */
+        #menu-btn span {
+            background-color: #333;
+            /* dark for white bg */
+        }
 
-      <!-- Desktop Nav -->
-      <nav class="hidden lg:block">
-        <ul class="flex justify-center items-center gap-10">
-          <li
-            class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
-          >
-            Home
-          </li>
-          <li
-            class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
-          >
-            About
-          </li>
-          <li
-            class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
-          >
-            Team
-          </li>
-          <li class="relative group">
-            <!-- Trigger -->
-            <div
-              class="cursor-pointer py-2 px-4 rounded-lg transition-colors duration-200 flex items-center"
-            >
-              <span
-                class="text-gray-800 group-hover:text-[#444a96] text-lg font-semibold"
-                >Research Library</span
-              >
-              <i
-                class="fas fa-chevron-down ml-2 text-xs transition-transform duration-200 group-hover:rotate-180"
-              ></i>
-            </div>
+        /* Open (Cross) state */
+        #menu-btn.open #line1 {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
 
-            <!-- Dropdown -->
-            <div
-              class="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible transition-all duration-300 transform origin-top -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 z-50"
-            >
-              <div class="py-2">
-                <div
-                  class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150"
-                >
-                  <h2 class="text-gray-800 font-medium hover:text-white">
-                    Research Video
-                  </h2>
-                </div>
-                <div
-                  class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150"
-                >
-                  <h2 class="text-gray-800 font-medium hover:text-white">
-                    Free Resources
-                  </h2>
-                </div>
-                <div
-                  class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150"
-                >
-                  <h2 class="text-gray-800 font-medium hover:text-white">
-                    News
-                  </h2>
-                </div>
-                <div
-                  class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150"
-                >
-                  <h2 class="text-gray-800 font-medium hover:text-white">
-                    Research Work
-                  </h2>
-                </div>
+        #menu-btn.open #line2 {
+            opacity: 0;
+        }
+
+        #menu-btn.open #line3 {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+  </style>
+</head>
+
+<body>
+  <header class="flex justify-between items-center px-6 sm:px-10 shadow-xl py-3 sticky top-0 bg-white   z-50">
+    <!-- Logo -->
+    <div>
+      <img src="./images/LOGO.jpg" alt="Logo" class="w-[70px] sm:w-[80px]">
+    </div>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden lg:block">
+      <ul class="flex justify-center items-center gap-10">
+        <a href="./index.html">
+          <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Home</li>
+        </a>
+        <a href="./about.html">
+          <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">About</li>
+        </a>
+        <a href="./team.html"><li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Team</li></a>
+        <li class="relative group">
+          <!-- Trigger -->
+          <div class="cursor-pointer py-2 px-4 rounded-lg transition-colors duration-200 flex items-center">
+            <span class="text-gray-800 group-hover:text-[#444a96] text-lg font-semibold">Research
+              Library</span>
+            <i class="fas fa-chevron-down ml-2 text-xs transition-transform duration-200 group-hover:rotate-180"></i>
+          </div>
+
+          <!-- Dropdown -->
+          <div
+            class="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible transition-all duration-300 transform origin-top -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 z-50">
+            <div class="py-2">
+              <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                <h2 class="text-gray-800 font-medium hover:text-white">Research Video</h2>
+              </div>
+              <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                <h2 class="text-gray-800 font-medium hover:text-white">Free Resources</h2>
+              </div>
+              <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                <h2 class="text-gray-800 font-medium hover:text-white">News</h2>
+              </div>
+              <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                <h2 class="text-gray-800 font-medium hover:text-white">Research Work</h2>
               </div>
             </div>
-          </li>
-          <li
-            class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
-          >
-            Contact
-          </li>
-        </ul>
-      </nav>
+          </div>
+        </li>
+        <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Contact</li>
+      </ul>
+    </nav>
 
-      <div class="flex items-center gap-4">
-        <div class="group hidden sm:inline-block">
-          <button
-            class="flex items-center justify-center gap-2 rounded-md px-6 py-2 bg-[#11327f] shadow-md text-white transition-all duration-300"
-          >
-            Join Us
-            <img
-              src="./images/arrow.png"
-              alt=""
-              class="w-6 transform transition-transform duration-300 group-hover:translate-x-2"
-            />
-          </button>
-        </div>
 
-        <!-- Hamburger -->
+    <div class="flex items-center gap-4">
+      <div class="group hidden sm:inline-block">
         <button
-          id="menu-btn"
-          class="lg:hidden flex flex-col gap-1.5 focus:outline-none"
-        >
-          <span class="w-6 h-0.5 bg-gray-800"></span>
-          <span class="w-6 h-0.5 bg-gray-800"></span>
-          <span class="w-6 h-0.5 bg-gray-800"></span>
+          class="flex items-center justify-center gap-2 rounded-md px-6 py-2 bg-[#11327f] shadow-md text-white transition-all duration-300">
+          Join Us
+          <img src="./images/arrow.png" alt=""
+            class="w-6 transform transition-transform duration-300 group-hover:translate-x-2">
         </button>
       </div>
-    </header>
+
+
+      <button id="menu-btn" class="lg:hidden flex flex-col justify-between w-8 h-6 relative  z-50">
+        <span id="line1" class="w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center"></span>
+        <span id="line2" class="w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center"></span>
+        <span id="line3" class="w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center"></span>
+      </button>
+
+
+    </div>
 
     <!-- Mobile Menu -->
-    <div
-      id="mobile-menu"
-      class="fixed top-0 left-0 w-full bg-white shadow-lg rounded-b-2xl transform -translate-y-full transition-transform duration-500 ease-in-out lg:hidden z-40"
-    >
+    <div id="mobile-menu"
+      class="fixed top-0 left-0 w-full bg-white shadow-lg rounded-b-2xl transform -translate-y-full transition-transform duration-500 ease-in-out lg:hidden z-40">
       <ul class="flex flex-col gap-6 p-6 text-center">
-        <li
-          class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
-        >
-          Home
+        <a href="./index.html">
+          <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Home</li>
+        </a>
+        <a href="./about.html">
+          <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">About</li>
+        </a>
+        <a href="./team.html"><li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Team</li></a>
+        <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Research Library
         </li>
-        <li
-          class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
-        >
-          About
-        </li>
-        <li
-          class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
-        >
-          Team
-        </li>
-        <li
-          class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
-        >
-          Research Library
-        </li>
-        <li
-          class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
-        >
-          Contact
-        </li>
+        <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Contact</li>
         <button
-          class="mt-4 px-6 py-3 bg-[#11327f] text-white rounded-lg font-semibold shadow-md hover:shadow-xl transition"
-        >
+          class="mt-4 px-6 py-3 bg-[#11327f] text-white rounded-lg font-semibold shadow-md hover:shadow-xl transition">
           Join Us
         </button>
       </ul>
     </div>
+  </header>
 
-    <!-- Page Header -->
-    <section
-      style="
+  <!-- Page Header -->
+  <section style="
         background-image: linear-gradient(
             rgba(0, 0, 0, 0.5),
             rgba(0, 0, 0, 0.4)
@@ -202,736 +156,538 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
-      "
-      class="text-white py-16"
-    >
-      <div class="max-w-7xl mx-auto px-4 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6">Research Library</h1>
-        <p class="text-xl max-w-3xl mx-auto">
-          Explore our comprehensive collection of research papers, case studies,
-          and publications across multiple disciplines
-        </p>
+      " class="text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">Research Library</h1>
+      <p class="text-xl max-w-3xl mx-auto">
+        Explore our comprehensive collection of research papers, case studies,
+        and publications across multiple disciplines
+      </p>
 
-        <!-- Search Bar -->
-        <div class="max-w-xl mx-auto mt-10">
-          <div class="relative">
-            <input
-              type="text"
-              placeholder="Search research papers, topics, or authors..."
-              class="w-full py-4 px-6 rounded-lg text-gray-800 focus:outline-none focus:ring focus:ring-primary"
-            />
-            <button
-              class="absolute right-2 top-2 bg-blue-800 text-white p-2 rounded-md hover:bg-blue-700 transition"
-            >
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
+      <!-- Search Bar -->
+      <div class="max-w-xl mx-auto mt-10">
+        <div class="relative">
+          <input type="text" placeholder="Search research papers, topics, or authors..."
+            class="w-full py-4 px-6 rounded-lg text-gray-800 focus:outline-none focus:ring focus:ring-primary" />
+          <button class="absolute right-2 top-2 bg-blue-800 text-white p-2 rounded-md hover:bg-blue-700 transition">
+            <i class="fas fa-search"></i>
+          </button>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-12 py-8">
-      <!-- Filter Toggle Button -->
-      <div class="flex justify-between items-center mb-8">
-        <h2 class="text-2xl font-bold text-primary">Latest Research Papers</h2>
-        <button
-          id="filterToggle"
-          class="bg-primary text-white px-4 py-2 rounded-md flex items-center"
-        >
-          <i class="fas fa-sliders-h mr-2"></i> Filters
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-12 py-8">
+    <!-- Filter Toggle Button -->
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-2xl font-bold text-primary">Latest Research Papers</h2>
+      <button id="filterToggle" class="bg-primary text-white px-4 py-2 rounded-md flex items-center">
+        <i class="fas fa-sliders-h mr-2"></i> Filters
+      </button>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Research Grid - Full width by default, 2/3 when filter is open -->
+      <div id="researchGrid" class="w-full transition-all duration-300 ease-in-out">
+        <div id="researchCards"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-300 ease-in-out">
+          <!-- Research Card 1 -->
+          <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+            <div class="h-48 flex items-center justify-center">
+              <img src="./images/research-page-hero-image.jpg" alt="" />
+            </div>
+            <div class="p-6 mt-3">
+              <div class="flex space-x-2 mb-3">
+                <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">Law</span>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">
+                Impact of Forensic Evidence on Verdicts
+              </h3>
+              <p class="text-gray-600 mb-4 text-sm">
+                Dr. Sarah Johnson, Dr. Michael Chen
+              </p>
+              <p class="text-gray-700 mb-5 text-sm">
+                A comprehensive analysis of how forensic science influences
+                judicial decisions in criminal cases.
+              </p>
+              <div class="flex justify-between items-center">
+                <a href="#" class="text-blue-800 font-medium flex items-center text-sm">
+                  Read Abstract
+                  <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                </a>
+                <span class="text-xs text-gray-500"><i class="far fa-calendar-alt mr-1"></i> Oct 2023</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Research Card 2 -->
+          <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+            <div class="h-48 flex items-center justify-center">
+              <img src="./images/research-page-hero-image.jpg" alt="" />
+            </div>
+            <div class="p-6 mt-3">
+              <div class="flex space-x-2 mb-3">
+                <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">Medicine</span>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">
+                Neurobiology of Criminal Behavior
+              </h3>
+              <p class="text-gray-600 mb-4 text-sm">
+                Dr. Emily Rodriguez, Prof. James Wilson
+              </p>
+              <p class="text-gray-700 mb-5 text-sm">
+                Exploring the neurological factors that may contribute to
+                antisocial and criminal behavior patterns.
+              </p>
+              <div class="flex justify-between items-center">
+                <a href="#" class="text-blue-800 font-medium flex items-center text-sm">
+                  Read Abstract
+                  <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                </a>
+                <span class="text-xs text-gray-500"><i class="far fa-calendar-alt mr-1"></i> Sep 2023</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Research Card 3 -->
+          <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+            <div class="h-48 flex items-center justify-center">
+              <img src="./images/research-page-hero-image.jpg" alt="" />
+            </div>
+            <div class="p-6 mt-3">
+              <div class="flex space-x-2 mb-3">
+                <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">Environment</span>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">
+                Environmental Policy and Public Health
+              </h3>
+              <p class="text-gray-600 mb-4 text-sm">
+                Dr. Robert Kim, Dr. Lisa Anderson
+              </p>
+              <p class="text-gray-700 mb-5 text-sm">
+                Examining the intersection of environmental regulations,
+                public health outcomes, and legal frameworks.
+              </p>
+              <div class="flex justify-between items-center">
+                <a href="#" class="text-blue-800 font-medium flex items-center text-sm">
+                  Read Abstract
+                  <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                </a>
+                <span class="text-xs text-gray-500"><i class="far fa-calendar-alt mr-1"></i> Aug 2023</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Research Card 4 -->
+          <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+            <div class="h-48 flex items-center justify-center">
+              <img src="./images/research-page-hero-image.jpg" alt="" />
+            </div>
+            <div class="p-6 mt-3">
+              <div class="flex space-x-2 mb-3">
+                <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">Law</span>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">
+                Legal Implications of AI in Healthcare
+              </h3>
+              <p class="text-gray-600 mb-4 text-sm">
+                Dr. Amanda Williams, Prof. Thomas Reed
+              </p>
+              <p class="text-gray-700 mb-5 text-sm">
+                Analyzing liability and regulatory challenges in AI-assisted
+                medical diagnosis and treatment.
+              </p>
+              <div class="flex justify-between items-center">
+                <a href="#" class="text-blue-800 font-medium flex items-center text-sm">
+                  Read Abstract
+                  <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                </a>
+                <span class="text-xs text-gray-500"><i class="far fa-calendar-alt mr-1"></i> Jul 2023</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Research Card 5 -->
+          <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+            <div class="h-48 flex items-center justify-center">
+              <img src="./images/research-page-hero-image.jpg" alt="" />
+            </div>
+            <div class="p-6 mt-3">
+              <div class="flex space-x-2 mb-3">
+                <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">Medicine</span>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">
+                Neuroplasticity in Rehabilitation
+              </h3>
+              <p class="text-gray-600 mb-4 text-sm">
+                Dr. Michelle Wong, Dr. Carlos Rodriguez
+              </p>
+              <p class="text-gray-700 mb-5 text-sm">
+                Exploring how the brain rewires itself after trauma and
+                implications for rehabilitation protocols.
+              </p>
+              <div class="flex justify-between items-center">
+                <a href="#" class="text-blue-800 font-medium flex items-center text-sm">
+                  Read Abstract
+                  <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                </a>
+                <span class="text-xs text-gray-500"><i class="far fa-calendar-alt mr-1"></i> Jun 2023</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Research Card 6 -->
+          <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+            <div class="h-48 flex items-center justify-center">
+              <img src="./images/research-page-hero-image.jpg" alt="" />
+            </div>
+            <div class="p-6 mt-3">
+              <div class="flex space-x-2 mb-3">
+                <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">Criminology</span>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">
+                Cybercrime Prevention Strategies
+              </h3>
+              <p class="text-gray-600 mb-4 text-sm">
+                Dr. Benjamin Clarke, Prof. Sophia Martinez
+              </p>
+              <p class="text-gray-700 mb-5 text-sm">
+                Evaluating effectiveness of various cybersecurity measures in
+                preventing organized cybercrime.
+              </p>
+              <div class="flex justify-between items-center">
+                <a href="#" class="text-blue-800 font-medium flex items-center text-sm">
+                  Read Abstract
+                  <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                </a>
+                <span class="text-xs text-gray-500"><i class="far fa-calendar-alt mr-1"></i> May 2023</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-12">
+          <button
+            class="bg-white text-primary border border-primary px-8 py-3 rounded-md font-semibold hover:bg-primary hover:text-white transition">
+            Load More Research
+          </button>
+        </div>
+      </div>
+
+      <!-- Sidebar Filters - Hidden by default -->
+      <aside id="filterSidebar"
+        class="hidden fixed inset-y-0 right-0 w-80 bg-white transition-all  duration-300 ease-in-out lg:relative lg:w-1/3 z-50 lg:z-20 lg:z-0 overflow-y-auto">
+        <div class="bg-white p-6 lg:py-0 lg:px-6 rounded-lg h-full lg:sticky lg:top-24">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-bold text-primary">Filter Research</h2>
+            <button id="closeFilter" class="text-gray-500 hover:text-primary">
+              <i class="fas fa-angle-right text-primary text-xl"></i>
+            </button>
+          </div>
+          <!-- Categories -->
+          <div class="mb-6">
+            <h3 class="font-semibold mb-3 text-primary">Categories</h3>
+            <div class="space-y-2 flex flex-col">
+              <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox text-primary rounded" />
+                <span class="ml-2">Law & Legal Studies</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox text-primary rounded" />
+                <span class="ml-2">Medical Research</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox text-primary rounded" />
+                <span class="ml-2">Criminology</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox text-primary rounded" />
+                <span class="ml-2">Social Sciences</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox text-primary rounded" />
+                <span class="ml-2">Environmental Studies</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Resource Type -->
+          <div class="mb-6">
+            <h3 class="font-semibold mb-3 text-primary">Resource Type</h3>
+            <div class="space-y-2">
+              <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox rounded" checked />
+                <span class="ml-2">Free Resources</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox text-primary rounded" checked />
+                <span class="ml-2">Premium Content</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Date Range -->
+          <div class="mb-6">
+            <h3 class="font-semibold mb-3 text-primary">Publication Date</h3>
+            <select class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+              <option>All Time</option>
+              <option>Last 6 Months</option>
+              <option>Last Year</option>
+              <option>Last 2 Years</option>
+            </select>
+          </div>
+
+          <!-- Sort By -->
+          <div class="mb-6">
+            <h3 class="font-semibold mb-3 text-primary">Sort By</h3>
+            <select class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+              <option>Most Recent</option>
+              <option>Most Cited</option>
+              <option>A-Z</option>
+              <option>Z-A</option>
+            </select>
+          </div>
+
+          <button class="w-full bg-primary mb-6 text-white py-2 rounded-md hover:bg-[#0d2a6d] transition">
+            Apply Filters
+          </button>
+        </div>
+      </aside>
+
+      <!-- Overlay -->
+      <div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-70 z-40 lg:z-20 lg:hidden"></div>
+    </div>
+  </main>
+
+  <!-- Newsletter Section -->
+  <section style="
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.4)
+          ),
+          url('./images/research-page-hero-image.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      " class="py-16 text-white">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-4">
+        Stay Updated with Latest Research
+      </h2>
+      <p class="text-xl mb-8">
+        Subscribe to our newsletter for weekly research highlights and updates
+      </p>
+
+      <div class="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
+        <input type="email" placeholder="Your email address"
+          class="flex-grow py-3 px-4 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <button class="bg-white text-blue-800 py-3 px-6 rounded-lg font-semibold hover:bg-gray-100 transition">
+          Subscribe
         </button>
       </div>
 
-      <div class="flex flex-col lg:flex-row gap-8">
-        <!-- Research Grid - Full width by default, 2/3 when filter is open -->
-        <div
-          id="researchGrid"
-          class="w-full transition-all duration-300 ease-in-out"
-        >
-          <div
-            id="researchCards"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-300 ease-in-out"
-          >
-            <!-- Research Card 1 -->
-            <div
-              class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow"
-            >
-              <div class="h-48 flex items-center justify-center">
-                <img src="./images/research-page-hero-image.jpg" alt="" />
-              </div>
-              <div class="p-6 mt-3">
-                <div class="flex space-x-2 mb-3">
-                  <span
-                    class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full"
-                    >Law</span
-                  >
-                </div>
-                <h3 class="text-xl font-semibold mb-2">
-                  Impact of Forensic Evidence on Verdicts
-                </h3>
-                <p class="text-gray-600 mb-4 text-sm">
-                  Dr. Sarah Johnson, Dr. Michael Chen
-                </p>
-                <p class="text-gray-700 mb-5 text-sm">
-                  A comprehensive analysis of how forensic science influences
-                  judicial decisions in criminal cases.
-                </p>
-                <div class="flex justify-between items-center">
-                  <a
-                    href="#"
-                    class="text-blue-800 font-medium flex items-center text-sm"
-                  >
-                    Read Abstract
-                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                  </a>
-                  <span class="text-xs text-gray-500"
-                    ><i class="far fa-calendar-alt mr-1"></i> Oct 2023</span
-                  >
-                </div>
-              </div>
-            </div>
+      <p class="text-sm text-blue-200 mt-4">
+        We respect your privacy. Unsubscribe at any time.
+      </p>
+    </div>
+  </section>
 
-            <!-- Research Card 2 -->
-            <div
-              class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow"
-            >
-              <div class="h-48 flex items-center justify-center">
-                <img src="./images/research-page-hero-image.jpg" alt="" />
-              </div>
-              <div class="p-6 mt-3">
-                <div class="flex space-x-2 mb-3">
-                  <span
-                    class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full"
-                    >Medicine</span
-                  >
-                </div>
-                <h3 class="text-xl font-semibold mb-2">
-                  Neurobiology of Criminal Behavior
-                </h3>
-                <p class="text-gray-600 mb-4 text-sm">
-                  Dr. Emily Rodriguez, Prof. James Wilson
-                </p>
-                <p class="text-gray-700 mb-5 text-sm">
-                  Exploring the neurological factors that may contribute to
-                  antisocial and criminal behavior patterns.
-                </p>
-                <div class="flex justify-between items-center">
-                  <a
-                    href="#"
-                    class="text-blue-800 font-medium flex items-center text-sm"
-                  >
-                    Read Abstract
-                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                  </a>
-                  <span class="text-xs text-gray-500"
-                    ><i class="far fa-calendar-alt mr-1"></i> Sep 2023</span
-                  >
-                </div>
-              </div>
-            </div>
+  <!-- Footer Section -->
+  <footer class="bg-gray-900 text-white pt-16 pb-8 px-10">
+    <div class="max-w-7xl mx-auto px-4">
+      <!-- Main Footer Content -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <!-- Brand Column -->
+        <div class="lg:col-span-1">
+          <img src="./images/ralogo.webp" alt="Logo" class="w-32 mix-blend-mix" />
 
-            <!-- Research Card 3 -->
-            <div
-              class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow"
-            >
-              <div class="h-48 flex items-center justify-center">
-                <img src="./images/research-page-hero-image.jpg" alt="" />
-              </div>
-              <div class="p-6 mt-3">
-                <div class="flex space-x-2 mb-3">
-                  <span
-                    class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full"
-                    >Environment</span
-                  >
-                </div>
-                <h3 class="text-xl font-semibold mb-2">
-                  Environmental Policy and Public Health
-                </h3>
-                <p class="text-gray-600 mb-4 text-sm">
-                  Dr. Robert Kim, Dr. Lisa Anderson
-                </p>
-                <p class="text-gray-700 mb-5 text-sm">
-                  Examining the intersection of environmental regulations,
-                  public health outcomes, and legal frameworks.
-                </p>
-                <div class="flex justify-between items-center">
-                  <a
-                    href="#"
-                    class="text-blue-800 font-medium flex items-center text-sm"
-                  >
-                    Read Abstract
-                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                  </a>
-                  <span class="text-xs text-gray-500"
-                    ><i class="far fa-calendar-alt mr-1"></i> Aug 2023</span
-                  >
-                </div>
-              </div>
-            </div>
-
-            <!-- Research Card 4 -->
-            <div
-              class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow"
-            >
-              <div class="h-48 flex items-center justify-center">
-                <img src="./images/research-page-hero-image.jpg" alt="" />
-              </div>
-              <div class="p-6 mt-3">
-                <div class="flex space-x-2 mb-3">
-                  <span
-                    class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full"
-                    >Law</span
-                  >
-                </div>
-                <h3 class="text-xl font-semibold mb-2">
-                  Legal Implications of AI in Healthcare
-                </h3>
-                <p class="text-gray-600 mb-4 text-sm">
-                  Dr. Amanda Williams, Prof. Thomas Reed
-                </p>
-                <p class="text-gray-700 mb-5 text-sm">
-                  Analyzing liability and regulatory challenges in AI-assisted
-                  medical diagnosis and treatment.
-                </p>
-                <div class="flex justify-between items-center">
-                  <a
-                    href="#"
-                    class="text-blue-800 font-medium flex items-center text-sm"
-                  >
-                    Read Abstract
-                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                  </a>
-                  <span class="text-xs text-gray-500"
-                    ><i class="far fa-calendar-alt mr-1"></i> Jul 2023</span
-                  >
-                </div>
-              </div>
-            </div>
-
-            <!-- Research Card 5 -->
-            <div
-              class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow"
-            >
-              <div class="h-48 flex items-center justify-center">
-                <img src="./images/research-page-hero-image.jpg" alt="" />
-              </div>
-              <div class="p-6 mt-3">
-                <div class="flex space-x-2 mb-3">
-                  <span
-                    class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full"
-                    >Medicine</span
-                  >
-                </div>
-                <h3 class="text-xl font-semibold mb-2">
-                  Neuroplasticity in Rehabilitation
-                </h3>
-                <p class="text-gray-600 mb-4 text-sm">
-                  Dr. Michelle Wong, Dr. Carlos Rodriguez
-                </p>
-                <p class="text-gray-700 mb-5 text-sm">
-                  Exploring how the brain rewires itself after trauma and
-                  implications for rehabilitation protocols.
-                </p>
-                <div class="flex justify-between items-center">
-                  <a
-                    href="#"
-                    class="text-blue-800 font-medium flex items-center text-sm"
-                  >
-                    Read Abstract
-                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                  </a>
-                  <span class="text-xs text-gray-500"
-                    ><i class="far fa-calendar-alt mr-1"></i> Jun 2023</span
-                  >
-                </div>
-              </div>
-            </div>
-
-            <!-- Research Card 6 -->
-            <div
-              class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow"
-            >
-              <div class="h-48 flex items-center justify-center">
-                <img src="./images/research-page-hero-image.jpg" alt="" />
-              </div>
-              <div class="p-6 mt-3">
-                <div class="flex space-x-2 mb-3">
-                  <span
-                    class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full"
-                    >Criminology</span
-                  >
-                </div>
-                <h3 class="text-xl font-semibold mb-2">
-                  Cybercrime Prevention Strategies
-                </h3>
-                <p class="text-gray-600 mb-4 text-sm">
-                  Dr. Benjamin Clarke, Prof. Sophia Martinez
-                </p>
-                <p class="text-gray-700 mb-5 text-sm">
-                  Evaluating effectiveness of various cybersecurity measures in
-                  preventing organized cybercrime.
-                </p>
-                <div class="flex justify-between items-center">
-                  <a
-                    href="#"
-                    class="text-blue-800 font-medium flex items-center text-sm"
-                  >
-                    Read Abstract
-                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                  </a>
-                  <span class="text-xs text-gray-500"
-                    ><i class="far fa-calendar-alt mr-1"></i> May 2023</span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Load More Button -->
-          <div class="text-center mt-12">
-            <button
-              class="bg-white text-primary border border-primary px-8 py-3 rounded-md font-semibold hover:bg-primary hover:text-white transition"
-            >
-              Load More Research
-            </button>
+          <p class="text-gray-400 mb-6 leading-relaxed">
+            Advancing knowledge through cutting-edge research and innovation.
+            Join our community of researchers and professionals.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+              <i class="fab fa-twitter text-lg"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+              <i class="fab fa-linkedin-in text-lg"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+              <i class="fab fa-facebook-f text-lg"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+              <i class="fab fa-instagram text-lg"></i>
+            </a>
           </div>
         </div>
 
-        <!-- Sidebar Filters - Hidden by default -->
-        <aside
-          id="filterSidebar"
-          class="hidden fixed inset-y-0 right-0 w-80 bg-white transition-all  duration-300 ease-in-out lg:relative lg:w-1/3 z-50 lg:z-20 lg:z-0 overflow-y-auto"
-        >
-          <div
-            class="bg-white p-6 lg:py-0 lg:px-6 rounded-lg h-full lg:sticky lg:top-24"
-          >
-            <div class="flex justify-between items-center mb-6">
-              <h2 class="text-xl font-bold text-primary">Filter Research</h2>
-              <button id="closeFilter" class="text-gray-500 hover:text-primary">
-                <i class="fas fa-angle-right text-primary text-xl"></i>
+        <!-- Research Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-6 relative inline-block">
+            Research Areas
+            <span class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"></span>
+          </h4>
+          <ul class="space-y-3">
+            <li>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">Data Science</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">Artificial Intelligence</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">Biotechnology</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">Renewable Energy</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">Neuroscience</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-6 relative inline-block">
+            Quick Links
+            <span class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"></span>
+          </h4>
+          <ul class="space-y-3">
+            <li>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">Publications</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">Research Grants</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">Events & Conferences</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">Careers</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact & Newsletter -->
+        <div>
+          <h4 class="text-lg font-semibold mb-6 relative inline-block">
+            Stay Updated
+            <span class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"></span>
+          </h4>
+          <p class="text-gray-400 mb-4">
+            Subscribe to our newsletter for the latest research updates.
+          </p>
+          <form class="mb-4">
+            <div class="flex w-full max-w-md">
+              <input type="email" placeholder="Your email address"
+                class="px-4 py-3 w-full rounded-l-lg border border-white text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400" />
+              <button type="submit"
+                class="bg-blue-500 hover:bg-blue-600 text-white px-5 rounded-r-lg border border-white border-l-0 transition-colors flex items-center justify-center">
+                <i class="fas fa-paper-plane"></i>
               </button>
             </div>
-            <!-- Categories -->
-            <div class="mb-6">
-              <h3 class="font-semibold mb-3 text-primary">Categories</h3>
-              <div class="space-y-2 flex flex-col">
-                <label class="flex items-center">
-                  <input
-                    type="checkbox"
-                    class="form-checkbox text-primary rounded"
-                  />
-                  <span class="ml-2">Law & Legal Studies</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="checkbox"
-                    class="form-checkbox text-primary rounded"
-                  />
-                  <span class="ml-2">Medical Research</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="checkbox"
-                    class="form-checkbox text-primary rounded"
-                  />
-                  <span class="ml-2">Criminology</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="checkbox"
-                    class="form-checkbox text-primary rounded"
-                  />
-                  <span class="ml-2">Social Sciences</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="checkbox"
-                    class="form-checkbox text-primary rounded"
-                  />
-                  <span class="ml-2">Environmental Studies</span>
-                </label>
-              </div>
+          </form>
+          <div class="flex items-start mt-6">
+            <div class="text-blue-400 mr-3">
+              <i class="fas fa-map-marker-alt"></i>
             </div>
-
-            <!-- Resource Type -->
-            <div class="mb-6">
-              <h3 class="font-semibold mb-3 text-primary">Resource Type</h3>
-              <div class="space-y-2">
-                <label class="flex items-center">
-                  <input
-                    type="checkbox"
-                    class="form-checkbox rounded"
-                    checked
-                  />
-                  <span class="ml-2">Free Resources</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="checkbox"
-                    class="form-checkbox text-primary rounded"
-                    checked
-                  />
-                  <span class="ml-2">Premium Content</span>
-                </label>
-              </div>
-            </div>
-
-            <!-- Date Range -->
-            <div class="mb-6">
-              <h3 class="font-semibold mb-3 text-primary">Publication Date</h3>
-              <select
-                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                <option>All Time</option>
-                <option>Last 6 Months</option>
-                <option>Last Year</option>
-                <option>Last 2 Years</option>
-              </select>
-            </div>
-
-            <!-- Sort By -->
-            <div class="mb-6">
-              <h3 class="font-semibold mb-3 text-primary">Sort By</h3>
-              <select
-                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                <option>Most Recent</option>
-                <option>Most Cited</option>
-                <option>A-Z</option>
-                <option>Z-A</option>
-              </select>
-            </div>
-
-            <button
-              class="w-full bg-primary mb-6 text-white py-2 rounded-md hover:bg-[#0d2a6d] transition"
-            >
-              Apply Filters
-            </button>
-          </div>
-        </aside>
-
-        <!-- Overlay -->
-        <div
-          id="overlay"
-          class="hidden fixed inset-0 bg-black bg-opacity-70 z-40 lg:z-20 lg:hidden"
-        ></div>
-      </div>
-    </main>
-
-    <!-- Newsletter Section -->
-    <section
-      style="
-        background-image: linear-gradient(
-            rgba(0, 0, 0, 0.5),
-            rgba(0, 0, 0, 0.4)
-          ),
-          url('./images/research-page-hero-image.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-      "
-      class="py-16 text-white"
-    >
-      <div class="max-w-5xl mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold mb-4">
-          Stay Updated with Latest Research
-        </h2>
-        <p class="text-xl mb-8">
-          Subscribe to our newsletter for weekly research highlights and updates
-        </p>
-
-        <div class="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
-          <input
-            type="email"
-            placeholder="Your email address"
-            class="flex-grow py-3 px-4 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <button
-            class="bg-white text-blue-800 py-3 px-6 rounded-lg font-semibold hover:bg-gray-100 transition"
-          >
-            Subscribe
-          </button>
-        </div>
-
-        <p class="text-sm text-blue-200 mt-4">
-          We respect your privacy. Unsubscribe at any time.
-        </p>
-      </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer class="bg-gray-900 text-white pt-16 pb-8 px-10">
-      <div class="max-w-7xl mx-auto px-4">
-        <!-- Main Footer Content -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          <!-- Brand Column -->
-          <div class="lg:col-span-1">
-            <img
-              src="./images/ralogo.webp"
-              alt="Logo"
-              class="w-32 mix-blend-mix"
-            />
-
-            <p class="text-gray-400 mb-6 leading-relaxed">
-              Advancing knowledge through cutting-edge research and innovation.
-              Join our community of researchers and professionals.
+            <p class="text-gray-400 text-sm">
+              145 Research Park Drive, Innovation City, IC 12345
             </p>
-            <div class="flex space-x-4">
-              <a
-                href="#"
-                class="text-gray-400 hover:text-blue-400 transition-colors"
-              >
-                <i class="fab fa-twitter text-lg"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-blue-400 transition-colors"
-              >
-                <i class="fab fa-linkedin-in text-lg"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-blue-400 transition-colors"
-              >
-                <i class="fab fa-facebook-f text-lg"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-blue-400 transition-colors"
-              >
-                <i class="fab fa-instagram text-lg"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Research Links -->
-          <div>
-            <h4 class="text-lg font-semibold mb-6 relative inline-block">
-              Research Areas
-              <span
-                class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"
-              ></span>
-            </h4>
-            <ul class="space-y-3">
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Data Science</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Artificial Intelligence</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Biotechnology</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Renewable Energy</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Neuroscience</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <!-- Quick Links -->
-          <div>
-            <h4 class="text-lg font-semibold mb-6 relative inline-block">
-              Quick Links
-              <span
-                class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"
-              ></span>
-            </h4>
-            <ul class="space-y-3">
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Publications</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Research Grants</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Events & Conferences</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Careers</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Contact Us</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <!-- Contact & Newsletter -->
-          <div>
-            <h4 class="text-lg font-semibold mb-6 relative inline-block">
-              Stay Updated
-              <span
-                class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"
-              ></span>
-            </h4>
-            <p class="text-gray-400 mb-4">
-              Subscribe to our newsletter for the latest research updates.
-            </p>
-            <form class="mb-4">
-              <div class="flex w-full max-w-md">
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  class="px-4 py-3 w-full rounded-l-lg border border-white text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
-                />
-                <button
-                  type="submit"
-                  class="bg-blue-500 hover:bg-blue-600 text-white px-5 rounded-r-lg border border-white border-l-0 transition-colors flex items-center justify-center"
-                >
-                  <i class="fas fa-paper-plane"></i>
-                </button>
-              </div>
-            </form>
-            <div class="flex items-start mt-6">
-              <div class="text-blue-400 mr-3">
-                <i class="fas fa-map-marker-alt"></i>
-              </div>
-              <p class="text-gray-400 text-sm">
-                145 Research Park Drive, Innovation City, IC 12345
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bottom Footer -->
-        <div class="border-t border-gray-800 pt-8">
-          <div class="flex flex-col md:flex-row justify-between items-center">
-            <p class="text-gray-500 text-sm mb-4 md:mb-0">
-              © 2023 ResearchHub. All rights reserved.
-            </p>
-            <div class="flex space-x-6">
-              <a
-                href="#"
-                class="text-gray-500 hover:text-white text-sm transition-colors"
-                >Privacy Policy</a
-              >
-              <a
-                href="#"
-                class="text-gray-500 hover:text-white text-sm transition-colors"
-                >Terms of Service</a
-              >
-              <a
-                href="#"
-                class="text-gray-500 hover:text-white text-sm transition-colors"
-                >Cookie Policy</a
-              >
-            </div>
           </div>
         </div>
       </div>
-    </footer>
 
-    <!--navbar -->
-    <script>
-      const menuBtn = document.getElementById("menu-btn");
-      const mobileMenu = document.getElementById("mobile-menu");
+      <!-- Bottom Footer -->
+      <div class="border-t border-gray-800 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-500 text-sm mb-4 md:mb-0">
+            © 2023 ResearchHub. All rights reserved.
+          </p>
+          <div class="flex space-x-6">
+            <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Privacy Policy</a>
+            <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Terms of Service</a>
+            <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-      menuBtn.addEventListener("click", () => {
-        mobileMenu.classList.toggle("-translate-y-full");
-        mobileMenu.classList.toggle("translate-y-0");
-      });
-    </script>
+  <!--navbar -->
+  <script>
+    const menuBtn = document.getElementById( "menu-btn" );
+    const mobileMenu = document.getElementById( "mobile-menu" );
 
-    <!-- filter -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const filterToggle = document.getElementById("filterToggle");
-        const closeFilter = document.getElementById("closeFilter");
-        const filterSidebar = document.getElementById("filterSidebar");
-        const researchGrid = document.getElementById("researchGrid");
-        const researchCards = document.getElementById("researchCards");
-        const overlay = document.getElementById("overlay");
+    menuBtn.addEventListener( "click", () => {
+      mobileMenu.classList.toggle( "-translate-y-full" );
+      mobileMenu.classList.toggle( "translate-y-0" );
+    } );
+  </script>
 
-        // Start hidden at right side
-        filterSidebar.classList.add("translate-x-full");
+  <!-- filter -->
+  <script>
+    document.addEventListener( "DOMContentLoaded", function () {
+      const filterToggle = document.getElementById( "filterToggle" );
+      const closeFilter = document.getElementById( "closeFilter" );
+      const filterSidebar = document.getElementById( "filterSidebar" );
+      const researchGrid = document.getElementById( "researchGrid" );
+      const researchCards = document.getElementById( "researchCards" );
+      const overlay = document.getElementById( "overlay" );
 
-        // Open filter
-        filterToggle.addEventListener("click", function () {
-          filterSidebar.classList.remove("hidden");
-          overlay.classList.remove("hidden"); // show overlay
-          setTimeout(() => {
-            filterSidebar.classList.remove("translate-x-full");
-            filterSidebar.classList.add("translate-x-0");
-          }, 10);
+      // Start hidden at right side
+      filterSidebar.classList.add( "translate-x-full" );
 
-          if (window.innerWidth >= 1024) {
-            researchGrid.classList.remove("w-full");
-            researchGrid.classList.add("lg:w-2/3");
-            researchCards.classList.remove("lg:grid-cols-3");
-            researchCards.classList.add("lg:grid-cols-2");
-          } else {
-            // Disable scroll on mobile/tablet
-            document.body.style.overflow = "hidden";
-          }
-        });
+      // Open filter
+      filterToggle.addEventListener( "click", function () {
+        filterSidebar.classList.remove( "hidden" );
+        overlay.classList.remove( "hidden" ); // show overlay
+        setTimeout( () => {
+          filterSidebar.classList.remove( "translate-x-full" );
+          filterSidebar.classList.add( "translate-x-0" );
+        }, 10 );
 
-        // Close filter
-        function closeSidebar() {
-          filterSidebar.classList.remove("translate-x-0");
-          filterSidebar.classList.add("translate-x-full");
-          overlay.classList.add("hidden"); // hide overlay
-
-          setTimeout(() => {
-            filterSidebar.classList.add("hidden");
-          }, 300);
-
-          if (window.innerWidth >= 1024) {
-            researchGrid.classList.remove("lg:w-2/3");
-            researchGrid.classList.add("w-full");
-            researchCards.classList.remove("lg:grid-cols-2");
-            researchCards.classList.add("lg:grid-cols-3");
-          } else {
-            // Re-enable scroll on mobile/tablet
-            document.body.style.overflow = "auto";
-          }
+        if ( window.innerWidth >= 1024 ) {
+          researchGrid.classList.remove( "w-full" );
+          researchGrid.classList.add( "lg:w-2/3" );
+          researchCards.classList.remove( "lg:grid-cols-3" );
+          researchCards.classList.add( "lg:grid-cols-2" );
+        } else {
+          // Disable scroll on mobile/tablet
+          document.body.style.overflow = "hidden";
         }
+      } );
 
-        closeFilter.addEventListener("click", closeSidebar);
-        overlay.addEventListener("click", closeSidebar); // close when clicking outside
-      });
-    </script>
-  </body>
+      // Close filter
+      function closeSidebar() {
+        filterSidebar.classList.remove( "translate-x-0" );
+        filterSidebar.classList.add( "translate-x-full" );
+        overlay.classList.add( "hidden" ); // hide overlay
+
+        setTimeout( () => {
+          filterSidebar.classList.add( "hidden" );
+        }, 300 );
+
+        if ( window.innerWidth >= 1024 ) {
+          researchGrid.classList.remove( "lg:w-2/3" );
+          researchGrid.classList.add( "w-full" );
+          researchCards.classList.remove( "lg:grid-cols-2" );
+          researchCards.classList.add( "lg:grid-cols-3" );
+        } else {
+          // Re-enable scroll on mobile/tablet
+          document.body.style.overflow = "auto";
+        }
+      }
+
+      closeFilter.addEventListener( "click", closeSidebar );
+      overlay.addEventListener( "click", closeSidebar ); // close when clicking outside
+    } );
+  </script>
+</body>
+
 </html>

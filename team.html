@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts: Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <title>Team</title>
+
+    <style>
+        /* Apply Outfit as the default font */
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+        /* Default lines */
+        #menu-btn span {
+            background-color: #333;
+            /* dark for white bg */
+        }
+
+        /* Open (Cross) state */
+        #menu-btn.open #line1 {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        #menu-btn.open #line2 {
+            opacity: 0;
+        }
+
+        #menu-btn.open #line3 {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="flex justify-between items-center px-6 sm:px-10 shadow-xl py-3 sticky top-0 bg-white   z-50">
+        <!-- Logo -->
+        <div>
+            <img src="./images/LOGO.jpg" alt="Logo" class="w-[70px] sm:w-[80px]">
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden lg:block">
+            <ul class="flex justify-center items-center gap-10">
+                <a href="./index.html">
+                    <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Home</li>
+                </a>
+                <a href="./about.html">
+                    <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">About</li>
+                </a>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Team</li>
+                <li class="relative group">
+                    <!-- Trigger -->
+                    <div class="cursor-pointer py-2 px-4 rounded-lg transition-colors duration-200 flex items-center">
+                        <span class="text-gray-800 group-hover:text-[#444a96] text-lg font-semibold">Research
+                            Library</span>
+                        <i
+                            class="fas fa-chevron-down ml-2 text-xs transition-transform duration-200 group-hover:rotate-180"></i>
+                    </div>
+
+                    <!-- Dropdown -->
+                    <div
+                        class="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible transition-all duration-300 transform origin-top -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 z-50">
+                        <div class="py-2">
+                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                                <h2 class="text-gray-800 font-medium hover:text-white">Research Video</h2>
+                            </div>
+                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                                <h2 class="text-gray-800 font-medium hover:text-white">Free Resources</h2>
+                            </div>
+                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                                <h2 class="text-gray-800 font-medium hover:text-white">News</h2>
+                            </div>
+                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                                <h2 class="text-gray-800 font-medium hover:text-white">Research Work</h2>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Contact</li>
+            </ul>
+        </nav>
+
+
+        <div class="flex items-center gap-4">
+            <div class="group hidden sm:inline-block">
+                <button
+                    class="flex items-center justify-center gap-2 rounded-md px-6 py-2 bg-[#11327f] shadow-md text-white transition-all duration-300">
+                    Join Us
+                    <img src="./images/arrow.png" alt=""
+                        class="w-6 transform transition-transform duration-300 group-hover:translate-x-2">
+                </button>
+            </div>
+
+
+            <button id="menu-btn" class="lg:hidden flex flex-col justify-between w-8 h-6 relative  z-50">
+                <span id="line1" class="w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center"></span>
+                <span id="line2" class="w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center"></span>
+                <span id="line3" class="w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center"></span>
+            </button>
+
+
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="fixed top-0 left-0 w-full bg-white shadow-lg rounded-b-2xl transform -translate-y-full transition-transform duration-500 ease-in-out lg:hidden z-40">
+            <ul class="flex flex-col gap-6 p-6 text-center">
+                <a href="./index.html">
+                    <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Home</li>
+                </a>
+                <a href="./about.html">
+                    <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">About</li>
+                </a>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Team</li>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Research Library
+                </li>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Contact</li>
+                <button
+                    class="mt-4 px-6 py-3 bg-[#11327f] text-white rounded-lg font-semibold shadow-md hover:shadow-xl transition">
+                    Join Us
+                </button>
+            </ul>
+        </div>
+    </header>
+
+    <!-- hero section -->
+    <div class="  bg-gradient-to-br from-white to-gray-50">
+        <section class="relative max-w-7xl mx-auto px-2 lg:px-20 py-5 lg:py-10 md:py-0  rounded-2xl  overflow-hidden">
+
+            <div class="flex flex-col lg:flex-row justify-center items-center  z-10">
+                <!-- Left Content -->
+                <div class=" text-center lg:text-left space-y-5 lg:w-2/5  lg:mb-0">
+                    <h2 class="text-5xl md:text-6xl font-bold text-gray-800 tracking-tight">
+                        MEET <span class="text-5xl md:text-6xl italic font-semibold text-[#103182] tracking-tight">
+                            OUR</span></h2>
+
+                    <h2 class="text-5xl md:text-6xl font-bold text-gray-800 tracking-tight">
+                        TEAM</h2>
+
+                    <div class="h-1 w-20 bg-[#103182] mx-auto lg:mx-0 my-6"></div>
+
+                    <p class="text-lg text-gray-600 max-w-md leading-relaxed">
+                        Our creative and passionate team members are the backbone of our
+                        success.
+                        Get to know the talented professionals behind our innovative work.
+                    </p>
+
+                    <button
+                        class="mt-8 px-8 py-3 bg-[#103182] hover:bg-[#103182]/90 cursor-pointer text-white font-medium rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl">
+                        Explore Team
+                    </button>
+                </div>
+
+                <!-- Right Stacked Slider -->
+                <div class="relative mx-auto flex items-center justify-center w-full lg:w-1/2 h-96 lg:h-[500px]">
+                    <div id="stackedSlider" class="relative flex items-center justify-center">
+                        <!-- Team member 1 -->
+                        <div
+                            class="team-slide absolute w-64 h-80 md:w-72 md:h-96 transition-all duration-700 ease-out rounded-xl overflow-hidden">
+                            <img src="./images/team  1.avif" alt="Team Member 1" class="w-full h-full object-cover">
+                        </div>
+
+                        <!-- member 2 -->
+                        <div
+                            class="team-slide absolute w-64 h-80 md:w-72 md:h-96 transition-all duration-700 ease-out rounded-xl overflow-hidden">
+                            <img src="./images/team 2.avif" alt="Team Member 2" class="w-full h-full object-cover">
+                        </div>
+
+                        <!-- member 3 -->
+                        <div
+                            class="team-slide absolute w-64 h-80 md:w-72 md:h-96 transition-all duration-700 ease-out rounded-xl overflow-hidden">
+                            <img src="./images/team 3.avif" alt="Team Member 3" class="w-full h-full object-cover">
+                        </div>
+
+                        <!--member 4 -->
+                        <div
+                            class="team-slide absolute w-64 h-80 md:w-72 md:h-96 transition-all duration-700 ease-out rounded-xl overflow-hidden">
+                            <img src="./images/team 4.avif" alt="Team Member 4" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+
+
+    <!-- member -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800">Our Creative Team</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Meet the talented professionals who make our
+                    vision a reality with their expertise and dedication.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Team Member 1 -->
+                <div
+                    class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                    <div class="h-72 overflow-hidden">
+                        <img src="./images/team page member 1.avif" alt="Sarah Johnson"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800">Sarah Johnson</h3>
+                        <p class="text-blue-600 font-medium">Creative Director</p>
+                        <p class="mt-3 text-gray-600">Leads our creative vision with 10+ years of experience in branding
+                            and visual design.</p>
+
+                        <div class="mt-5 flex space-x-3">
+                           
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fab fa-twitter w-5 h-5"></i>
+                            </a>
+
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Hover overlay -->
+                    <div
+                        class="absolute inset-0 bg-[#103182] bg-opacity-90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-white">
+                        <h3 class="text-xl font-semibold">Sarah Johnson</h3>
+                        <p class="text-blue-200 font-medium">Creative Director</p>
+                        <p class="mt-3 text-center">Leads our creative vision with 10+ years of experience in branding
+                            and visual design across multiple industries.</p>
+                        <div class="mt-5 flex space-x-4">
+                             <a href="#"
+                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-twitter w-5 h-5"></i>
+                            </a>
+                            <a href="#"
+                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+                            <a href="#"
+                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div
+                    class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                    <div class="h-72 overflow-hidden">
+                        <img src="./images/team page member 2.avif" alt="Michael Chen"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800">Michael Chen</h3>
+                        <p class="text-blue-600 font-medium">Lead Developer</p>
+                        <p class="mt-3 text-gray-600">Full-stack developer specializing in React, Node.js, and cloud
+                            architecture solutions.</p>
+
+                        <div class="mt-5 flex space-x-3">
+                           
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fab fa-twitter w-5 h-5"></i>
+                            </a>
+
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Hover overlay -->
+                    <div
+                        class="absolute inset-0 bg-[#103182] bg-opacity-90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-white">
+                        <h3 class="text-xl font-semibold">Michael Chen</h3>
+                        <p class="text-blue-200 font-medium">Lead Developer</p>
+                        <p class="mt-3 text-center">Full-stack developer with expertise in React, Node.js, and cloud
+                            architecture. Passionate about creating scalable solutions.</p>
+                        <div class="mt-5 flex space-x-4">
+                             <a href="#"
+                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-twitter w-5 h-5"></i>
+                            </a>
+                            <a href="#"
+                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+                            <a href="#"
+                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div
+                    class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                    <div class="h-72 overflow-hidden">
+                        <img src="./images/team member 5.avif" alt="Emma Rodriguez"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800">Emma Rodriguez</h3>
+                        <p class="text-blue-600 font-medium">Marketing Strategist</p>
+                        <p class="mt-3 text-gray-600">Develops data-driven marketing campaigns that drive growth and
+                            engagement.</p>
+
+                        <div class="mt-5 flex space-x-3">
+                        
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fab fa-twitter w-5 h-5"></i>
+                            </a>
+
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <!-- Hover overlay -->
+                    <div
+                        class="absolute inset-0 bg-[#103182] bg-opacity-90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-white">
+                        <h3 class="text-xl font-semibold">Emma Rodriguez</h3>
+                        <p class="text-blue-200 font-medium">Marketing Strategist</p>
+                        <p class="mt-3 text-center">Specializes in data-driven marketing campaigns with expertise in
+                            SEO, content strategy, and social media marketing.</p>
+                        <div class="mt-5 flex space-x-4">
+                             <a href="#"
+                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-twitter w-5 h-5"></i>
+                            </a>
+                            <a href="#"
+                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+                            <a href="#"
+                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div
+                    class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                    <div class="h-72 overflow-hidden">
+                        <img src="./images/team page member 4.avif" alt="David Wilson"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800">David Wilson</h3>
+                        <p class="text-blue-600 font-medium">Project Manager</p>
+                        <p class="mt-3 text-gray-600">Ensures projects are delivered on time, within scope, and
+                            exceeding expectations.</p>
+
+                        <div class="mt-5 flex space-x-3">
+           
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fab fa-twitter w-5 h-5"></i>
+                            </a>
+
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Hover overlay -->
+                    <div
+                        class="absolute inset-0 bg-[#103182] bg-opacity-90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-white">
+                        <h3 class="text-xl font-semibold">David Wilson</h3>
+                        <p class="text-blue-200 font-medium">Project Manager</p>
+                        <p class="mt-3 text-center">Experienced in Agile methodologies with a track record of delivering
+                            complex projects on time and within budget.</p>
+                        <div class="mt-5 flex space-x-4">
+                            <a href="#"
+                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-twitter w-5 h-5"></i>
+                            </a>
+                            <a href="#"
+                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+                            <a href="#"
+                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    
+
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
