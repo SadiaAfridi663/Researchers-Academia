@@ -22,6 +22,10 @@
             font-family: 'Outfit', sans-serif;
         }
 
+        .font-newyork {
+            font-family: 'New York', serif;
+        }
+
         @keyframes slideInLeft {
             0% {
                 opacity: 0;
@@ -37,6 +41,8 @@
         @keyframes slideInRight {
             0% {
                 opacity: 0;
+
+
                 transform: translateX(50px);
             }
 
@@ -190,8 +196,9 @@
                         <h3 class="text-3xl font-bold text-blue-400">50+</h3>
                         <p class="text-sm text-gray-300">Research Papers</p>
                     </div>
-                    <div class="stats-card p-5 rounded-xl text-center" style=" backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1);>
-                        <h3 class=" text-3xl font-bold text-purple-400">12+</h3>
+                    <div class="stats-card p-5 rounded-xl text-center"
+                        style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <h3 class="text-3xl font-bold text-purple-400">12+</h3>
                         <p class="text-sm text-gray-300">Global Partners</p>
                     </div>
                 </div>
@@ -219,9 +226,42 @@
         </div>
     </section>
 
+
+    <!-- Join the Cause Section -->
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 font-newyork my-16">
+        <div class="flex flex-col lg:flex-row justify-center items-center gap-10">
+
+            
+            <div class="flex-shrink-0">
+                <img src="./images/team member 4.avif" alt="Join the Cause"
+                    class="w-64 h-auto rounded-xl shadow-md object-cover">
+            </div>
+
+            <!-- Content -->
+            <div class="max-w-2xl text-center lg:text-right space-y-6">
+                <h2 class="text-4xl font-bold leading-snug">
+                    Join The <span class="text-[#103182]">Cause</span>
+                </h2>
+                <p class="text-gray-600 leading-relaxed text-lg">
+                    Our mission is to make research accessible, impactful, and collaborative.
+                    By supporting our initiative, you contribute to groundbreaking discoveries,
+                    empower young researchers, and help transform knowledge into real-world solutions.
+                </p>
+                <div class="flex justify-center lg:justify-end">
+                    <a href="#donate"
+                        class="bg-[#103182] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#0c2560] transition">
+                        Donate Now
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
     <!-- Mission & Vision Section -->
     <section class="py-20 bg-gradient-to-br from-gray-50 to-blue-50/30 relative overflow-hidden">
-        <!-- Background decorative elements -->
+
         <div class="absolute top-0 left-0 w-full h-full opacity-5">
             <div
                 class="absolute top-10 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse-slow">
@@ -244,103 +284,466 @@
                 </p>
             </div>
 
-            <!-- Content Grid -->
+            <!-- mission cards Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                 <!-- Mission -->
                 <div
-                    class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 p-8 lg:p-10 relative overflow-hidden group">
+                    class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 p-8 lg:p-10 relative overflow-hidden group transition-all duration-500">
+
                     <!-- Decorative corner -->
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full"></div>
+                    <div
+                        class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full transition-colors duration-500 group-hover:bg-[#103182]/40">
+                    </div>
 
-                    <div class="mb-6 relative">
-                        <!-- Font Awesome CDN -->
-                        <link rel="stylesheet"
-                            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+                    <!-- hover overlay -->
+                    <div
+                        class="absolute inset-0 bg-[#103182]/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl z-0">
+                    </div>
 
+                    <div class="mb-6 relative z-10">
                         <div
                             class="w-14 h-14 bg-[#103182] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                             <i class="fa-solid fa-clock text-white text-2xl"></i>
                         </div>
-
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Our Mission</h3>
-                    <p class="text-gray-600 leading-relaxed text-lg">
+
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 group-hover:text-white relative z-10">Our Mission
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed text-lg group-hover:text-white relative z-10">
                         To make research more accessible, collaborative, and impactful by creating a platform
                         that empowers researchers and inspires innovation across the globe.
                     </p>
 
-                    
-
-                    <div class="mt-6 space-y-2">
+                    <div class="mt-6 space-y-2 relative z-10">
                         <div class="flex items-center">
-                            <i class="fa-solid fa-check text-blue-500 mr-2"></i>
-                            <span class="text-gray-700">Democratizing research access</span>
+                            <i class="fa-solid fa-check text-[#103182] mr-2 group-hover:text-white"></i>
+                            <span class="text-gray-700 group-hover:text-white">Democratizing research access</span>
                         </div>
                         <div class="flex items-center">
-                            <i class="fa-solid fa-check text-blue-500 mr-2"></i>
-                            <span class="text-gray-700">Fostering global collaboration</span>
+                            <i class="fa-solid fa-check text-[#103182] mr-2 group-hover:text-white"></i>
+                            <span class="text-gray-700 group-hover:text-white">Fostering global collaboration</span>
                         </div>
                         <div class="flex items-center">
-                            <i class="fa-solid fa-check text-blue-500 mr-2"></i>
-                            <span class="text-gray-700">Empowering researchers</span>
+                            <i class="fa-solid fa-check text-[#103182] mr-2 group-hover:text-white"></i>
+                            <span class="text-gray-700 group-hover:text-white">Empowering researchers</span>
                         </div>
                     </div>
-
                 </div>
 
-                <!-- Vision -->
+
+
+
+
+
+                <!--vission -->
                 <div
-                    class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 p-8 lg:p-10 relative overflow-hidden group">
-                    <!-- Decorative corner -->
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-green-50 rounded-bl-full"></div>
-
-                    <!-- Font Awesome CDN -->
-                    <link rel="stylesheet"
-                        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-                    <div class="mb-6 relative">
-                        <div
-                            class="w-14 h-14 bg-[#103182] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-
-                            <i class="fa-solid fa-arrow-trend-up text-white text-2xl"></i>
-                        </div>
+                    class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 lg:p-10 relative overflow-hidden group transition-all duration-500">
+                    <div
+                        class="absolute top-0 right-0 w-24 h-24 bg-green-50 rounded-bl-full transition-colors duration-500 group-hover:bg-[#103182]/40">
                     </div>
 
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Our Vision</h3>
-                    <p class="text-gray-600 leading-relaxed text-lg">
-                        To become a leading global hub where knowledge transforms into real-world solutions,
-                        fostering progress and shaping a sustainable future for generations to come.
+                    <!-- Hover overlay  -->
+                    <div
+                        class="absolute inset-0 bg-[#103182]/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl">
+                    </div>
+
+                    <!-- Content -->
+                    <div class="relative z-10">
+                        <div class="mb-6">
+                            <div
+                                class="w-14 h-14 bg-[#103182] rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                                <i class="fa-solid fa-arrow-trend-up text-white text-2xl"></i>
+                            </div>
+                        </div>
+
+                        <h3
+                            class="text-2xl font-bold text-gray-800 mb-4 transition-colors duration-500 group-hover:text-white">
+                            Our Vision
+                        </h3>
+                        <p
+                            class="text-gray-600 leading-relaxed text-lg transition-colors duration-500 group-hover:text-white">
+                            To become a leading global hub where knowledge transforms into real-world
+                            solutions, fostering progress and shaping a sustainable future for
+                            generations to come.
+                        </p>
+
+                        <!-- Vision highlights -->
+                        <div class="mt-6 space-y-2">
+                            <div class="flex items-center">
+                                <i
+                                    class="fas fa-check text-[#103182] mr-2 transition-colors duration-500 group-hover:text-white"></i>
+                                <span
+                                    class="text-gray-700 transition-colors duration-500 group-hover:text-white">Creating
+                                    real-world solutions</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i
+                                    class="fas fa-check text-[#103182] mr-2 transition-colors duration-500 group-hover:text-white"></i>
+                                <span
+                                    class="text-gray-700 transition-colors duration-500 group-hover:text-white">Fostering
+                                    global progress</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i
+                                    class="fas fa-check text-[#103182] mr-2 transition-colors duration-500 group-hover:text-white"></i>
+                                <span
+                                    class="text-gray-700 transition-colors duration-500 group-hover:text-white">Building
+                                    sustainable futures</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Our Values -->
+
+            <div class="max-7xl mx-auto my-15">
+
+
+
+
+                <div class="max-w-2xl mx-auto text-center space-y-2">
+                    <h2 class="text-3xl font-semibold">OUR VALUES</h2>
+                    <h2 class="uppercase text-[#22d4ad] font-bold">What drives us</h2>
+                    <p class="text-md text-gray-500 mt-2">
+                        We believe research should be open, collaborative, and impactful. Our work is guided by a
+                        commitment to
+                        knowledge sharing, innovation, and integrity—ensuring that science serves society.
                     </p>
+                    <p class="text-gray-600">
+                        Our foundation rests on four key principles that shape everything we do.
+                    </p>
+                </div>
 
-                    <!-- Vision highlights -->
-                    <div class="mt-6 space-y-2">
-                        <div class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span class="text-gray-700">Creating real-world solutions</span>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+                    <!-- TRUST -->
+                    <div
+                        class="relative p-8 shadow-md border border-gray-200 rounded-lg text-center hover:shadow-xl transition overflow-hidden">
+
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-transparent  to-[#103182]/20 pointer-events-none">
                         </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span class="text-gray-700">Fostering global progress</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span class="text-gray-700">Building sustainable futures</span>
+
+                        <div class="relative">
+                            <div
+                                class="w-14 h-14 mx-auto mb-4 flex items-center justify-center bg-[#103182] rounded-full">
+                                <i class="fa-solid fa-handshake text-white text-2xl"></i>
+                            </div>
+                            <h2 class="text-lg font-semibold">TRUST</h2>
+                            <p class="text-gray-500 mt-2">We prioritize transparency and honesty in everything we do.
+                            </p>
                         </div>
                     </div>
 
+                    <!-- ACCESSIBILITY -->
+                    <div
+                        class="relative p-8 shadow-md border border-gray-200 rounded-lg text-center hover:shadow-xl transition overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-transparent  to-[#103182]/20 pointer-events-none">
+                        </div>
+                        <div class="relative">
+                            <div
+                                class="w-14 h-14 mx-auto mb-4 flex items-center justify-center bg-[#103182] rounded-full">
+                                <i class="fa-solid fa-universal-access text-white text-2xl"></i>
+                            </div>
+                            <h2 class="text-lg font-semibold uppercase">Accessibility</h2>
+                            <p class="text-gray-500 mt-2">Making research and opportunities accessible to all.</p>
+                        </div>
+                    </div>
+
+                    <!-- INNOVATION -->
+                    <div
+                        class="relative p-8 shadow-md border border-gray-200 rounded-lg text-center hover:shadow-xl transition overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-transparent  to-[#103182]/20 pointer-events-none">
+                        </div>
+                        <div class="relative">
+                            <div
+                                class="w-14 h-14 mx-auto mb-4 flex items-center justify-center bg-[#103182] rounded-full">
+                                <i class="fa-solid fa-lightbulb text-white text-2xl"></i>
+                            </div>
+                            <h2 class="text-lg font-semibold">INNOVATION</h2>
+                            <p class="text-gray-500 mt-2">Driving progress with creative and innovative solutions.</p>
+                        </div>
+                    </div>
+
+                    <!-- GLOBAL REACH -->
+                    <div
+                        class="relative p-8 shadow-md border border-gray-200 rounded-lg text-center hover:shadow-xl transition overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-transparent  to-[#103182]/20 pointer-events-none">
+                        </div>
+                        <div class="relative">
+                            <div
+                                class="w-14 h-14 mx-auto mb-4 flex items-center justify-center bg-[#103182] rounded-full">
+                                <i class="fa-solid fa-globe text-white text-2xl"></i>
+                            </div>
+                            <h2 class="text-lg font-semibold">GLOBAL REACH</h2>
+                            <p class="text-gray-500 mt-2">Connecting with people and ideas across the globe.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Our Achievemnets -->
+    <section class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center my-16 px-6">
+
+        <!-- Achievements Text -->
+        <div class="max-w-md mx-auto">
+            <h2 class="text-2xl font-semibold text-[#103182] uppercase text-center md:text-left">
+                Our Achievements
+            </h2>
+            <h3 class="text-gray-400 font-md text-center md:text-left">
+                Recognizing the milestones that define our research journey
+            </h3>
+
+            <!-- Achievement Items -->
+            <div class="space-y-5 mt-6">
+                <!-- Achievement Item -->
+                <div class="flex items-center gap-4">
+                    <div class="w-7 h-7 flex items-center justify-center bg-[#103182] text-white rounded-full shrink-0">
+                        <i class="fa-solid fa-check text-sm"></i>
+                    </div>
+                    <p class="text-gray-700">Published <span class="font-semibold">20+ research papers</span> in reputed
+                        international journals.</p>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="w-7 h-7 flex items-center justify-center bg-[#103182] text-white rounded-full shrink-0">
+                        <i class="fa-solid fa-check text-sm"></i>
+                    </div>
+                    <p class="text-gray-700">Successfully presented findings at <span class="font-semibold">5+
+                            international conferences</span>.</p>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="w-7 h-7 flex items-center justify-center bg-[#103182] text-white rounded-full shrink-0">
+                        <i class="fa-solid fa-check text-sm"></i>
+                    </div>
+                    <p class="text-gray-700">Collaborated with <span class="font-semibold">leading universities and
+                            institutions</span> worldwide.</p>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="w-7 h-7 flex items-center justify-center bg-[#103182] text-white rounded-full shrink-0">
+                        <i class="fa-solid fa-check text-sm"></i>
+                    </div>
+                    <p class="text-gray-700">Research work cited in <span class="font-semibold">100+ academic
+                            studies</span> globally.</p>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="w-7 h-7 flex items-center justify-center bg-[#103182] text-white rounded-full shrink-0">
+                        <i class="fa-solid fa-check text-sm"></i>
+                    </div>
+                    <p class="text-gray-700">Developed <span class="font-semibold">innovative solutions</span>
+                        addressing real-world challenges.</p>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="w-7 h-7 flex items-center justify-center bg-[#103182] text-white rounded-full shrink-0">
+                        <i class="fa-solid fa-check text-sm"></i>
+                    </div>
+                    <p class="text-gray-700">Guided <span class="font-semibold">undergraduate & graduate students</span>
+                        in impactful research projects.</p>
                 </div>
             </div>
 
-            <!-- Core Values -->
+        </div>
 
+        <!-- Achievements Image -->
+        <div class="flex justify-center">
+            <img src="./images/research achivement.jpg" alt="Research Achievements"
+                class="max-w-lg h-[500px] object-cover rounded-lg shadow-md">
+        </div>
+
+    </section>
+
+
+
+
+    <!-- CTA Section -->
+    <section class="py-20 relative"
+        style="background-image: url(./images/cta\ bg.avif); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+
+                <!-- Left Column -->
+                <div class=" flex-1 text-center lg:text-left text-white">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                        Shape Your Digital <br class="hidden md:block">Future Today
+                    </h2>
+                    <p class="text-lg md:text-xl mb-8 opacity-90 leading-relaxed max-w-xl">
+                        Explore trusted research, insights, and innovation. Take the first step to enhance your
+                        knowledge and shape your digital future with us.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button
+                            class="px-8 py-4 bg-white text-[#11327f] rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            Explore Free Resources
+                        </button>
+                        <button
+                            class="px-8 py-4 bg-transparent border-2 border-white text-white rounded-xl font-semibold hover:bg-white hover:text-[#11327f] transition-all duration-300">
+                            Join Our Membership
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column (Testimonial) -->
+                <div
+                    class="flex-1 relative max-w-md w-full rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-300">
+
+                    <!-- Content with glass effect -->
+                    <div class="bg-white/20 backdrop-blur-md p-8 text-gray-800 flex flex-col gap-6">
+                        <!-- Icon at Top -->
+                        <div class="text-4xl text-[#11327f]">
+                            <i class="fas fa-quote-right text-white"></i>
+                        </div>
+
+                        <!-- Testimonial Text -->
+                        <blockquote class="text-lg italic text-white leading-relaxed">
+                            "This platform transformed how I access and share research. The insights are top-notch and
+                            helped me innovate faster than ever!"
+                        </blockquote>
+
+                        <!-- Author Info -->
+                        <div class="flex items-center gap-4 mt-4">
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-r from-[#22d4ad] to-[#11327f] p-0.5">
+                                <img src="./images/team member 5.avif" alt="James Cooper"
+                                    class="w-full h-full rounded-full object-cover border-2 border-white">
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-white">James Cooper</h3>
+                                <p class="text-sm text-white">Chief Executive Officer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
     </section>
 
 
-    </style>
+    <!-- footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8 px-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Brand Column -->
+                <div class="lg:col-span-1">
+                    <img src="./images/ralogo.webp" alt="Logo" class="w-32 mix-blend-mix">
+
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Advancing knowledge through cutting-edge research and innovation. Join our community of
+                        researchers and professionals.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-linkedin-in text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-instagram text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Research Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6 relative inline-block">
+                        Research Areas
+                        <span class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"></span>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Data Science</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Artificial
+                                Intelligence</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Biotechnology</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Renewable Energy</a>
+                        </li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Neuroscience</a></li>
+                    </ul>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6 relative inline-block">
+                        Quick Links
+                        <span class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"></span>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Publications</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Research Grants</a>
+                        </li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Events &
+                                Conferences</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
 
 
+                <!-- Contact & Newsletter -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6 relative inline-block">
+                        Stay Updated
+                        <span class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"></span>
+                    </h4>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for the latest research updates.</p>
+                    <form class="mb-4">
+                        <div class="flex w-full max-w-md">
+                            <input type="email" placeholder="Your email address"
+                                class="px-4 py-3 w-full rounded-l-lg border border-white text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400" />
+                            <button type="submit"
+                                class="bg-blue-500 hover:bg-blue-600 text-white px-5 rounded-r-lg border border-white border-l-0  transition-colors flex items-center justify-center">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
 
+                    </form>
+                    <div class="flex items-start mt-6">
+                        <div class="text-blue-400 mr-3">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm">145 Research Park Drive, Innovation City, IC 12345</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                        © 2023 ResearchHub. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Terms of
+                            Service</a>
+                        <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 
 
