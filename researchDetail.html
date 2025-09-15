@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Font Awesome -->
     <link
@@ -184,75 +183,70 @@
     <div id="content" class="max-w-7xl mx-auto px-4 lg:px-8 py-8 md:py-12">
         <div class="flex flex-col lg:flex-row gap-6">
 
-            <!-- Left Column -  -->
-            <div class="lg:w-1/3">
-                <div class="bg-white rounded-xl shadow-lg p-5 md:p-6 lg:p-8 border border-gray-100 lg:sticky lg:top-28">
-                    <div class="flex flex-col items-center text-center mb-6">
-                        <!-- <div class="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mb-4">
-                            <i class="fas fa-file-alt text-primary text-3xl"></i>
-                        </div> -->
-                        <h1 class="text-2xl font-bold text-primary mb-2">Impact of Forensic Evidence on Verdicts</h1>
-                        <p class="text-gray-600">Published: October 15, 2023</p>
-                    </div>
-                    
-                    <div class="space-y-5">
-                        <div>
-                            <h3 class="text-lg font-semibold text-primary mb-2">Authors</h3>
-                            <div class="flex items-center mb-3">
-                                <div class="w-10 h-10 rounded-full bg-gray-200 mr-3">
-                                  <img src="./images/researcher1.jfif" class="rounded-full w-10 h-10" alt="">
-                                </div>
-                                <div>
-                                    <p class="font-medium">Dr. Sarah Johnson</p>
-                                    <p class="text-sm text-gray-600">Lead Researcher</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 rounded-full bg-gray-200 mr-3">
-                                  <img src="./images/researcher2.png" class="rounded-full w-10 h-10" alt="">
-                                </div>
-                                <div>
-                                    <p class="font-medium">Dr. Michael Chen</p>
-                                    <p class="text-sm text-gray-600">Co-Researcher</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <h3 class="text-lg font-semibold text-primary mb-2">Research Details</h3>
-                            <div class="space-y-2">
-                                <div class="flex justify-between">
-                                    <span class="text-gray-600">Category:</span>
-                                    <span class="font-medium">Law & Legal Studies</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-gray-600">Pages:</span>
-                                    <span class="font-medium">42</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-gray-600">DOI:</span>
-                                    <span class="font-medium">10.1234/forensic.2023</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-gray-600">Downloads:</span>
-                                    <span class="font-medium">1,243</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                      
-                        
-                        <div class="pt-4 border-t border-gray-200">
-                            <button class="w-full bg-primary text-white py-3 rounded-lg font-semibold mb-3 hover:bg-blue-800 transition">
-                                <i class="fas fa-download mr-2"></i> Download Full Paper
-                            </button>
-                            <button class="w-full border border-primary text-primary py-3 rounded-lg font-semibold hover:bg-blue-50 transition">
-                                <i class="fas fa-share-alt mr-2"></i> Share Research
-                            </button>
-                        </div>
-                    </div>
-                </div>
+          <!-- Left Column - Research Details -->
+        <div class="lg:w-1/3">
+          <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 lg:sticky lg:top-24">
+            <div class="flex flex-col items-center text-center mb-6">
+              <h1 class="text-2xl font-bold text-primary mb-2">Impact of Forensic Evidence on Verdicts</h1>
+              <p class="text-gray-600 text-sm">Published: October 15, 2023</p>
             </div>
+            
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-lg font-semibold text-primary mb-3">Authors</h3>
+                <div class="flex items-center mb-4">
+                  <div class="w-12 h-12 rounded-full bg-gray-200 mr-4 overflow-hidden">
+                    <img src="./images/researcher1.avif" class="w-full h-full object-cover" alt="Dr. Sarah Johnson">
+                  </div>
+                  <div>
+                    <p class="font-medium">Dr. Sarah Johnson</p>
+                    <p class="text-sm text-gray-600">Lead Researcher</p>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <div class="w-12 h-12 rounded-full bg-gray-200 mr-4 overflow-hidden">
+                    <img src="./images/researcher2.png" class="w-full h-full object-cover" alt="Dr. Michael Chen">
+                  </div>
+                  <div>
+                    <p class="font-medium">Dr. Michael Chen</p>
+                    <p class="text-sm text-gray-600">Co-Researcher</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <h3 class="text-lg font-semibold text-primary mb-3">Research Details</h3>
+                <div class="space-y-3">
+                  <div class="flex justify-between py-2 border-b border-gray-100">
+                    <span class="text-gray-600">Category:</span>
+                    <span class="font-medium">Law & Legal Studies</span>
+                  </div>
+                  <div class="flex justify-between py-2 border-b border-gray-100">
+                    <span class="text-gray-600">Pages:</span>
+                    <span class="font-medium">42</span>
+                  </div>
+                  <div class="flex justify-between py-2 border-b border-gray-100">
+                    <span class="text-gray-600">DOI:</span>
+                    <span class="font-medium">10.1234/forensic.2023</span>
+                  </div>
+                  <div class="flex justify-between py-2">
+                    <span class="text-gray-600">Downloads:</span>
+                    <span class="font-medium">1,243</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="pt-4 border-t border-gray-200">
+                <button class="w-full bg-primary text-white py-3 rounded-lg font-medium mb-3 hover:bg-blue-800 transition flex items-center justify-center">
+                  <i class="fas fa-download mr-2"></i> Download Full Paper
+                </button>
+                <button class="w-full border border-primary text-primary py-3 rounded-lg font-medium hover:bg-primary/5 transition flex items-center justify-center">
+                  <i class="fas fa-share-alt mr-2"></i> Share Research
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
 
             <!-- Right Column - Legal Text -->
             <div class="lg:w-2/3">
@@ -284,31 +278,31 @@
                     </div>
                     
                     <div class="mb-8">
-                        <h2 class="text-2xl font-bold text-primary mb-4">Methodology</h2>
-                        <p class="text-gray-700">
-                            Our study employed a mixed-methods approach, combining quantitative analysis of case outcomes with 
-                            qualitative assessment of judicial reasoning where available.
-                        </p>
-                        
-                        <h3 class="text-xl font-semibold text-primary mt-6 mb-3">Data Collection</h3>
-                        <p class="text-gray-700">
-                            We analyzed 500 criminal cases from federal and state courts between 2015-2022. Cases were selected based 
-                            on the following criteria:
-                        </p>
-                        <ul class="list-disc pl-5 text-gray-700 mt-2">
-                            <li>Felony criminal charges</li>
-                            <li>Jury trials (non-bench trials)</li>
-                            <li>Availability of complete trial transcripts</li>
-                            <li>Presentation of at least one type of forensic evidence</li>
-                        </ul>
-                        
-                        <h3 class="text-xl font-semibold text-primary mt-6 mb-3">Analysis Framework</h3>
-                        <p class="text-gray-700">
-                            Each case was coded for 35 variables including type of forensic evidence, quality of presentation, 
-                            witness credentials, cross-examination effectiveness, and final verdict. Statistical analysis was 
-                            performed using multiple regression to control for confounding variables.
-                        </p>
-                    </div>
+              <h2 class="text-2xl font-bold text-primary mb-4">Methodology</h2>
+              <p class="text-gray-700 leading-relaxed mb-4">
+                Our study employed a mixed-methods approach, combining quantitative analysis of case outcomes with 
+                qualitative assessment of judicial reasoning where available.
+              </p>
+              
+              <h3 class="text-xl font-semibold text-primary mt-6 mb-3">Data Collection</h3>
+              <p class="text-gray-700 leading-relaxed mb-3">
+                We analyzed 500 criminal cases from federal and state courts between 2015-2022. Cases were selected based 
+                on the following criteria:
+              </p>
+              <ul class="list-disc pl-5 flex flex-col text-gray-700 mb-4 space-y-2">
+                <span>Felony criminal charges</span>
+                <span>Jury trials (non-bench trials)</span>
+                <span>Availability of complete trial transcripts</span>
+                <span>Presentation of at least one type of forensic evidence</span>
+              </ul>
+              
+              <h3 class="text-xl font-semibold text-primary mt-6 mb-3">Analysis Framework</h3>
+              <p class="text-gray-700 leading-relaxed">
+                Each case was coded for 35 variables including type of forensic evidence, quality of presentation, 
+                witness credentials, cross-examination effectiveness, and final verdict. Statistical analysis was 
+                performed using multiple regression to control for confounding variables.
+              </p>
+            </div>
                     
                     <div class="mb-8">
                         <!-- <h2 class="text-2xl font-bold text-primary mb-4">Key Findings</h2> -->
@@ -344,15 +338,15 @@
                             </div>
                         </div> -->
                         
-                        <h3 class="text-xl font-semibold text-primary mt-6 mb-3">Statistical Significance</h3>
-                        <p class="text-gray-700">
+                        <h3 class="text-xl font-semibold text-primary mt-6 mb-4">Statistical Significance</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
                             Our analysis revealed several statistically significant relationships (p < 0.05):
                         </p>
-                        <ul class="list-disc pl-5 text-gray-700 mt-2">
-                            <li>DNA evidence increased conviction likelihood by 37% compared to cases without biological evidence</li>
-                            <li>Expert witness credentials significantly impacted evidence weight (p = 0.003)</li>
-                            <li>Visual presentation of evidence (charts, diagrams) increased juror comprehension by 42%</li>
-                        </ul>
+                         <div class="pl-5 text-gray-700 flex flex-col mb-6 space-y-2">
+                <span>DNA evidence increased conviction likelihood by 37% compared to cases without biological evidence</span>
+                <span>Expert witness credentials significantly impacted evidence weight (p = 0.003)</span>
+                <span>Visual presentation of evidence (charts, diagrams) increased juror comprehension by 42%</span>
+              </div>
                         
                         <div class="border-l-4 border-teal-500 pl-4 my-6 italic bg-secondary/5 py-2 rounded-md">
                             "The manner in which forensic evidence is presented proved nearly as important as the evidence itself 
@@ -362,14 +356,14 @@
                     
                     <div class="mb-8">
                         <h2 class="text-2xl font-bold text-primary mb-4">Discussion</h2>
-                        <p class="text-gray-700">
+                        <p class="text-gray-700 leading-relaxed mb-4">
                             The findings suggest that while forensic evidence is indeed powerful, its impact is mediated by multiple 
                             factors including presentation quality, expert credibility, and jurisdictional differences in evidence 
                             standards. These findings have important implications for legal practice, forensic science training, and 
                             judicial education.
                         </p>
                         
-                        <p class="text-gray-700">
+                        <p class="text-gray-700 leading-relaxed ">
                             Contrary to popular media portrayals, not all forensic evidence is equally persuasive. The perceived 
                             objectivity of scientific evidence varies considerably based on methodology, with techniques perceived 
                             as more "scientific" (e.g., DNA analysis) carrying more weight than those perceived as more subjective 
@@ -379,36 +373,36 @@
                     
                     <div class="mb-8">
                         <h2 class="text-2xl font-bold text-primary mb-4">Conclusion</h2>
-                        <p class="text-gray-700">
+                        <p class="text-gray-700 leading-relaxed mb-4">
                             This study provides empirical evidence that forensic science significantly influences judicial decisions, 
                             but the relationship is complex and multifactorial. The findings highlight the need for:
                         </p>
-                        <ol class="list-decimal pl-5 text-gray-700 mt-2 flex flex-col">
-                            <span>Standardized forensic evidence presentation protocols</span>
-                            <span>Enhanced training for legal professionals in evaluating scientific evidence</span>
-                            <span>Continued research on the intersection of science and law</span>
-                            <span>Development of evidence-based best practices for forensic testimony</span>
-                        </ol>
+                         <ol class="list-decimal pl-5 text-gray-700 space-y-2">
+                <li>Standardized forensic evidence presentation protocols</li>
+                <li>Enhanced training for legal professionals in evaluating scientific evidence</li>
+                <li>Continued research on the intersection of science and law</li>
+                <li>Development of evidence-based best practices for forensic testimony</li>
+              </ol>
                     </div>
                     
-                    <div class="mb-8">
-                        <h2 class="text-2xl font-bold text-primary mb-4">References</h2>
-                        <ol class="list-decimal pl-5 text-gray-700">
-                            <li class="mb-2">Smith, J. (2020). Forensic Science and Judicial Decision-Making. Journal of Legal Studies, 45(2), 123-145.</li>
-                            <li class="mb-2">Johnson, A., &amp; Chen, M. (2019). Quantitative Analysis of Evidence Impact. Law and Science Review, 12(3), 267-289.</li>
-                            <li class="mb-2">National Institute of Justice. (2021). Forensic Evidence in Criminal Courts: An Empirical Review. NJ Report, 305, 1-42.</li>
-                            <li class="mb-2">Williams, R. (2018). The CSI Effect: Media and Juror Expectations. Communication Law Journal, 22(1), 45-68.</li>
-                            <li class="mb-2">Federal Judicial Center. (2022). Scientific Evidence Manual for Judges, 5th Edition. Washington, DC: FJC Publications.</li>
-                        </ol>
-                    </div>
+                     <div class="mb-8">
+              <h2 class="text-2xl font-bold text-primary mb-4">References</h2>
+              <ol class="list-decimal pl-5 text-gray-700 space-y-3">
+                <li>Smith, J. (2020). Forensic Science and Judicial Decision-Making. <span class="italic">Journal of Legal Studies</span>, 45(2), 123-145.</li>
+                <li>Johnson, A., &amp; Chen, M. (2019). Quantitative Analysis of Evidence Impact. <span class="italic">Law and Science Review</span>, 12(3), 267-289.</li>
+                <li>National Institute of Justice. (2021). Forensic Evidence in Criminal Courts: An Empirical Review. <span class="italic">NJ Report</span>, 305, 1-42.</li>
+                <li>Williams, R. (2018). The CSI Effect: Media and Juror Expectations. <span class="italic">Communication Law Journal</span>, 22(1), 45-68.</li>
+                <li>Federal Judicial Center. (2022). Scientific Evidence Manual for Judges, 5th Edition. Washington, DC: FJC Publications.</li>
+              </ol>
+            </div>
                     
                     <div class="border-t border-gray-200 pt-6">
                         <h3 class="text-lg font-semibold text-primary mb-4">Cite This Research</h3>
                         <div class="bg-primary/5 p-4 rounded-lg">
-                            <p class="text-sm text-gray-700">
-                                Johnson, S., &amp; Chen, M. (2023). Impact of Forensic Evidence on Verdicts: A Comprehensive Analysis. 
-                                Journal of Forensic Legal Studies, 30(4), 215-256. https://doi.org/10.1234/forensic.2023
-                            </p>
+                           <p class="text-sm text-gray-700">
+                  Johnson, S., &amp; Chen, M. (2023). Impact of Forensic Evidence on Verdicts: A Comprehensive Analysis. 
+                  <span class="italic">Journal of Forensic Legal Studies</span>, 30(4), 215-256. https://doi.org/10.1234/forensic.2023
+                </p>
                         </div>
                     </div>
                 </div>
@@ -418,7 +412,7 @@
                     <h2 class="text-2xl font-bold text-primary mb-6">Related Research</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="bg-white rounded-xl shadow-md p-5 hover:shadow-lg transition">
-                            <span class="bg-blue-100 text-primary text-xs px-3 py-1 rounded-full">Law</span>
+                            <span class="bg-primary/10 text-primary text-xs px-3 py-1 rounded-full">Law</span>
                             <h3 class="text-lg font-semibold mt-3 mb-2">Digital Evidence Admissibility in Court</h3>
                             <p class="text-gray-600 text-sm mb-3">Dr. Emma Wilson • Aug 2023</p>
                             <p class="text-gray-700 text-sm">Examining the evolving standards for digital evidence in criminal proceedings.</p>
@@ -426,7 +420,7 @@
                         </div>
                         
                         <div class="bg-white rounded-xl shadow-md p-5 hover:shadow-lg transition">
-                            <span class="bg-blue-100 text-primary text-xs px-3 py-1 rounded-full">Psychology</span>
+                            <span class="bg-primary/10 text-primary text-xs px-3 py-1 rounded-full">Psychology</span>
                             <h3 class="text-lg font-semibold mt-3 mb-2">Juror Perception of Expert Testimony</h3>
                             <p class="text-gray-600 text-sm mb-3">Dr. Robert Kim • Jul 2023</p>
                             <p class="text-gray-700 text-sm">How credentials and presentation style affect credibility assessments.</p>
