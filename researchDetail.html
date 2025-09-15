@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 
     <!-- Font Awesome -->
     <link
@@ -51,79 +52,45 @@
 
       <!-- Desktop Nav -->
       <nav class="hidden lg:block">
-        <ul class="flex justify-center items-center gap-10">
-          <li
-            class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
-          >
-            Home
-          </li>
-          <li
-            class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
-          >
-            About
-          </li>
-          <li
-            class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
-          >
-            Team
-          </li>
-          <li class="relative group">
-            <!-- Trigger -->
-            <div
-              class="cursor-pointer py-2 px-4 rounded-lg transition-colors duration-200 flex items-center"
-            >
-              <span
-                class="text-gray-800 group-hover:text-[#444a96] text-lg font-semibold"
-                >Research Library</span
-              >
-              <i
-                class="fas fa-chevron-down ml-2 text-xs transition-transform duration-200 group-hover:rotate-180"
-              ></i>
-            </div>
+            <ul class="flex justify-center items-center gap-10">
+                <a href="./index.html">
+                    <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Home</li>
+                </a>
+                <a href="./about.html">
+                    <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">About</li>
+                </a>
+                <a href="./team.html"><li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Team</li></a>
+                <li class="relative group">
+                    <!-- Trigger -->
+                    <div class="cursor-pointer py-2 px-4 rounded-lg transition-colors duration-200 flex items-center">
+                        <span class="text-gray-800 group-hover:text-[#444a96] text-lg font-semibold">Research
+                            Library</span>
+                        <i
+                            class="fas fa-chevron-down ml-2 text-xs transition-transform duration-200 group-hover:rotate-180"></i>
+                    </div>
 
-            <!-- Dropdown -->
-            <div
-              class="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible transition-all duration-300 transform origin-top -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 z-50"
-            >
-              <div class="py-2">
-                <div
-                  class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150"
-                >
-                  <h2 class="text-gray-800 font-medium hover:text-white">
-                    Research Video
-                  </h2>
-                </div>
-                <div
-                  class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150"
-                >
-                  <h2 class="text-gray-800 font-medium hover:text-white">
-                    Free Resources
-                  </h2>
-                </div>
-                <div
-                  class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150"
-                >
-                  <h2 class="text-gray-800 font-medium hover:text-white">
-                    News
-                  </h2>
-                </div>
-                <div
-                  class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150"
-                >
-                  <h2 class="text-gray-800 font-medium hover:text-white">
-                    Research Work
-                  </h2>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li
-            class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
-          >
-            Contact
-          </li>
-        </ul>
-      </nav>
+                    <!-- Dropdown -->
+                    <div
+                        class="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible transition-all duration-300 transform origin-top -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 z-50">
+                        <div class="py-2">
+                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                                <a href="./research-videos.html" class="text-gray-800 font-medium hover:text-white">Research Video</a>
+                            </div>
+                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                                <h2 class="text-gray-800 font-medium hover:text-white">Free Resources</h2>
+                            </div>
+                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                                <h2 class="text-gray-800 font-medium hover:text-white">News</h2>
+                            </div>
+                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                                <a href="./research.html" class="text-gray-800 font-medium hover:text-white">Research Work</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Contact</li>
+            </ul>
+        </nav>
 
       <div class="flex items-center gap-4">
         <div class="group hidden sm:inline-block">

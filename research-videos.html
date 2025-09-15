@@ -1,0 +1,1271 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResearchVideos@</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- splide css -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#103182",
+                        secondary: "#4fc5c1",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+        .video-card {
+            transition: all 0.3s ease;
+        }
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .video-thumbnail {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .video-card:hover .video-thumbnail {
+            transform: scale(1.05);
+        }
+        .video-overlay {
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .video-card:hover .video-overlay {
+            opacity: 1;
+        }
+        .watch-now-btn {
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        .video-card:hover .watch-now-btn {
+            transform: translateY(0);
+        }
+        .splide__arrow svg {
+  fill: #103182; 
+}
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header
+      class="flex justify-between items-center px-6 sm:px-10 shadow-xl py-3 sticky top-0 bg-white z-40"
+    >
+      <!-- Logo -->
+      <div>
+        <img src="./images/LOGO.jpg" alt="Logo" class="w-[70px] sm:w-[80px]" />
+      </div>
+
+      <!-- Desktop Nav -->
+       <nav class="hidden lg:block">
+            <ul class="flex justify-center items-center gap-10">
+                <a href="./index.html">
+                    <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Home</li>
+                </a>
+                <a href="./about.html">
+                    <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">About</li>
+                </a>
+                <a href="./team.html"><li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Team</li></a>
+                <li class="relative group">
+                    <!-- Trigger -->
+                    <div class="cursor-pointer py-2 px-4 rounded-lg transition-colors duration-200 flex items-center">
+                        <span class="text-gray-800 group-hover:text-[#444a96] text-lg font-semibold">Research
+                            Library</span>
+                        <i
+                            class="fas fa-chevron-down ml-2 text-xs transition-transform duration-200 group-hover:rotate-180"></i>
+                    </div>
+
+                    <!-- Dropdown -->
+                    <div
+                        class="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible transition-all duration-300 transform origin-top -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 z-50">
+                        <div class="py-2">
+                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                                <a href="./research-videos.html" class="text-gray-800 font-medium hover:text-white">Research Video</a>
+                            </div>
+                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                                <h2 class="text-gray-800 font-medium hover:text-white">Free Resources</h2>
+                            </div>
+                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                                <h2 class="text-gray-800 font-medium hover:text-white">News</h2>
+                            </div>
+                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                                <a href="./research.html" class="text-gray-800 font-medium hover:text-white">Research Work</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Contact</li>
+            </ul>
+        </nav>
+      <div class="flex items-center gap-4">
+        <div class="group hidden sm:inline-block">
+          <button
+            class="flex items-center justify-center gap-2 rounded-md px-6 py-2 bg-[#11327f] shadow-md text-white transition-all duration-300"
+          >
+            Join Us
+            <img
+              src="./images/arrow.png"
+              alt=""
+              class="w-6 transform transition-transform duration-300 group-hover:translate-x-2"
+            />
+          </button>
+        </div>
+
+        <!-- Hamburger -->
+        <button
+          id="menu-btn"
+          class="lg:hidden flex flex-col gap-1.5 focus:outline-none"
+        >
+          <span class="w-6 h-0.5 bg-gray-800"></span>
+          <span class="w-6 h-0.5 bg-gray-800"></span>
+          <span class="w-6 h-0.5 bg-gray-800"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="fixed top-0 left-0 w-full bg-white shadow-lg rounded-b-2xl transform -translate-y-full transition-transform duration-500 ease-in-out lg:hidden z-40"
+    >
+      <ul class="flex flex-col gap-6 p-6 text-center">
+        <li
+          class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
+        >
+          Home
+        </li>
+        <li
+          class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
+        >
+          About
+        </li>
+        <li
+          class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
+        >
+          Team
+        </li>
+        <li
+          class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
+        >
+          Research Library
+        </li>
+        <li
+          class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
+        >
+          Contact
+        </li>
+        <button
+          class="mt-4 px-6 py-3 bg-[#11327f] text-white rounded-lg font-semibold shadow-md hover:shadow-xl transition"
+        >
+          Join Us
+        </button>
+      </ul>
+    </div>
+
+       <!-- Hero Section -->
+    <section
+      style="
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.4)
+          ),
+          url('./images/research-page-hero-image.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      "
+      class="text-white py-16"
+    >
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">Research Videos</h1>
+        <p class="text-xl max-w-3xl mx-auto">
+          Explore our collection of research videos, lectures, and presentations from leading experts across multiple disciplines
+        </p>
+
+        <!-- Search Bar -->
+        <div class="max-w-xl mx-auto mt-10">
+          <div class="relative">
+            <input
+              type="text"
+              placeholder="Search research videos, topics, or presenters..."
+              class="w-full py-4 px-6 rounded-lg text-gray-800 focus:outline-none focus:ring focus:ring-primary"
+            />
+            <button
+              class="absolute right-2 top-2 bg-blue-800 text-white p-2 rounded-md hover:bg-blue-700 transition"
+            >
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   <!-- Video Categories -->
+<section class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-8">Browse by Category</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <!-- Law & Legal Studies -->
+            <div class="bg-white rounded-lg shadow-md p-6 text-center cursor-pointer hover:shadow-lg transition">
+                <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-gavel text-primary text-2xl"></i>
+                </div>
+                <h3 class="font-semibold text-gray-800">Law & Legal Studies</h3>
+                <p class="text-sm text-gray-600 mt-1">42 videos</p>
+            </div>
+            
+            <!-- Medical Research -->
+            <div class="bg-white rounded-lg shadow-md p-6 text-center cursor-pointer hover:shadow-lg transition">
+                <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-heartbeat text-primary text-2xl"></i>
+                </div>
+                <h3 class="font-semibold text-gray-800">Medical Research</h3>
+                <p class="text-sm text-gray-600 mt-1">28 videos</p>
+            </div>
+            
+            <!-- Criminology -->
+            <div class="bg-white rounded-lg shadow-md p-6 text-center cursor-pointer hover:shadow-lg transition">
+                <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-fingerprint text-primary text-2xl"></i>
+                </div>
+                <h3 class="font-semibold text-gray-800">Criminology</h3>
+                <p class="text-sm text-gray-600 mt-1">35 videos</p>
+            </div>
+            
+            <!-- Environmental Studies -->
+            <div class="bg-white rounded-lg shadow-md p-6 text-center cursor-pointer hover:shadow-lg transition">
+                <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-leaf text-primary text-2xl"></i>
+                </div>
+                <h3 class="font-semibold text-gray-800">Environmental Studies</h3>
+                <p class="text-sm text-gray-600 mt-1">19 videos</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Latest Videos -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold text-primary">Latest Videos</h2>
+                <a href="#" class="text-primary hover:text-blue-800 font-medium flex items-center">
+                    View All
+                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                </a>
+            </div>
+            
+                 <!-- Splide Container -->
+    <div id="splide" class="splide">
+      <div class="splide__track">
+        <ul class="splide__list">
+          
+          <!-- Slide 1 -->
+          <li class="splide__slide">
+            <div class="video-card  bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative video-thumbnail">
+                        <div class="h-48 bg-gray-200 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            
+                    <img src="./images/research-page-hero-image.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">18:24</div>
+                            <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
+                                <button class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-end">
+                                    <i class="fas fa-play mr-2"></i> Watch Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex space-x-2 mb-3">
+                  <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">law</span>
+                </div>
+                        <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2">Forensic Evidence in Court Proceedings</h3>
+                        <p class="text-sm text-gray-600 mb-2">Dr. Sarah Johnson</p>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Uploaded: Oct 12, 2023</span>
+                            <span><i class="far fa-eye mr-1"></i> 1.2K</span>
+                        </div>
+                    </div>
+                </div>
+          </li>
+
+          <!-- Slide 2 -->
+         <li class="splide__slide">
+             <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative video-thumbnail">
+                        <div class="h-48 bg-gray-300 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <img src="./images/research-page-hero-image.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">32:15</div>
+                            <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
+                                <button class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
+                                    <i class="fas fa-play mr-2"></i> Watch Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex space-x-2 mb-3">
+                  <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">Medicine</span>
+                </div>
+                        <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2">Neurobiology of Criminal Behavior</h3>
+                        <p class="text-sm text-gray-600 mb-2">Prof. Michael Chen</p>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Uploaded: Oct 10, 2023</span>
+                            <span><i class="far fa-eye mr-1"></i> 987</span>
+                        </div>
+                    </div>
+                </div>
+          </li>
+
+          <!-- Slide 3 -->
+          <li class="splide__slide">
+            <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative video-thumbnail">
+                        <div class="h-48 bg-gray-400 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <img src="./images/research-page-hero-image.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">45:32</div>
+                            <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
+                                <button class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
+                                    <i class="fas fa-play mr-2"></i> Watch Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                          <div class="flex space-x-2 mb-3">
+                  <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">Environment</span>
+                </div>
+                        <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2">Environmental Policy and Public Health</h3>
+                        <p class="text-sm text-gray-600 mb-2">Dr. Emily Rodriguez</p>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Uploaded: Oct 8, 2023</span>
+                            <span><i class="far fa-eye mr-1"></i> 2.4K</span>
+                        </div>
+                    </div>
+                </div>
+          </li>
+
+          <!-- slide 4 -->
+          <li class="splide__slide">
+             <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative video-thumbnail">
+                        <div class="h-48 bg-gray-500 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <img src="./images/research-page-hero-image.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">28:47</div>
+                            <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
+                                <button class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
+                                    <i class="fas fa-play mr-2"></i> Watch Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                         <div class="flex space-x-2 mb-3">
+                  <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">criminology</span>
+                </div>
+                        <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2">Cybercrime Prevention Strategies</h3>
+                        <p class="text-sm text-gray-600 mb-2">Dr. Robert Kim</p>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Uploaded: Oct 5, 2023</span>
+                            <span><i class="far fa-eye mr-1"></i> 1.5K</span>
+                        </div>
+                    </div>
+                </div>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+           
+        </div>
+    </section>
+
+    <!-- Thematic Section: Law & Legal Studies -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-900">Law & Legal Studies</h2>
+                <a href="#" class="text-primary hover:text-blue-800 font-medium flex items-center">
+                    See All
+                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                </a>
+            </div>
+                 <!-- Splide Container -->
+    <div id="splide" class="splide">
+      <div class="splide__track">
+        <ul class="splide__list">
+          
+          <!-- Slide 1 -->
+          <li class="splide__slide">
+            <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative video-thumbnail">
+                        <div class="h-48 bg-gray-200 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            
+                    <img src="./images/research-page-hero-image.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">18:24</div>
+                            <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
+                                <button class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-end">
+                                    <i class="fas fa-play mr-2"></i> Watch Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex space-x-2 mb-3">
+                  <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">law</span>
+                </div>
+                        <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2">Forensic Evidence in Court Proceedings</h3>
+                        <p class="text-sm text-gray-600 mb-2">Dr. Sarah Johnson</p>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Uploaded: Oct 12, 2023</span>
+                            <span><i class="far fa-eye mr-1"></i> 1.2K</span>
+                        </div>
+                    </div>
+                </div>   
+          </li>
+
+          <!-- Slide 2 -->
+         <li class="splide__slide">
+            <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative video-thumbnail">
+                        <div class="h-48 bg-gray-200 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            
+                    <img src="./images/research-page-hero-image.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">18:24</div>
+                            <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
+                                <button class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-end">
+                                    <i class="fas fa-play mr-2"></i> Watch Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex space-x-2 mb-3">
+                  <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">law</span>
+                </div>
+                        <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2">Forensic Evidence in Court Proceedings</h3>
+                        <p class="text-sm text-gray-600 mb-2">Dr. Sarah Johnson</p>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Uploaded: Oct 12, 2023</span>
+                            <span><i class="far fa-eye mr-1"></i> 1.2K</span>
+                        </div>
+                    </div>
+                </div>    
+          </li>
+
+          <!-- Slide 3 -->
+          <li class="splide__slide">
+            <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative video-thumbnail">
+                        <div class="h-48 bg-gray-200 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            
+                    <img src="./images/research-page-hero-image.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">18:24</div>
+                            <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
+                                <button class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-end">
+                                    <i class="fas fa-play mr-2"></i> Watch Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex space-x-2 mb-3">
+                  <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">law</span>
+                </div>
+                        <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2">Forensic Evidence in Court Proceedings</h3>
+                        <p class="text-sm text-gray-600 mb-2">Dr. Sarah Johnson</p>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Uploaded: Oct 12, 2023</span>
+                            <span><i class="far fa-eye mr-1"></i> 1.2K</span>
+                        </div>
+                    </div>
+                </div>    
+          </li>
+
+          <!-- slide 4 -->
+          <li class="splide__slide">
+            <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative video-thumbnail">
+                        <div class="h-48 bg-gray-200 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            
+                    <img src="./images/research-page-hero-image.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">18:24</div>
+                            <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
+                                <button class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-end">
+                                    <i class="fas fa-play mr-2"></i> Watch Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex space-x-2 mb-3">
+                  <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">law</span>
+                </div>
+                        <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2">Forensic Evidence in Court Proceedings</h3>
+                        <p class="text-sm text-gray-600 mb-2">Dr. Sarah Johnson</p>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Uploaded: Oct 12, 2023</span>
+                            <span><i class="far fa-eye mr-1"></i> 1.2K</span>
+                        </div>
+                    </div>
+                </div>    
+          </li>
+
+        </ul>
+      </div>
+    </div>
+        </div>
+    </section>
+
+
+     <!-- Thematic Section: Medical Research -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-900">Medical Research</h2>
+                <a href="#" class="text-primary hover:text-blue-800 font-medium flex items-center">
+                    See All
+                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                </a>
+            </div>
+                 <!-- Splide Container -->
+    <div id="splide" class="splide">
+      <div class="splide__track">
+        <ul class="splide__list">
+          
+          <!-- Slide 1 -->
+          <li class="splide__slide">
+           
+
+                <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative video-thumbnail">
+                        <div class="h-48 bg-gray-300 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <img src="./images/research-page-hero-image.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">32:15</div>
+                            <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
+                                <button class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
+                                    <i class="fas fa-play mr-2"></i> Watch Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex space-x-2 mb-3">
+                  <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">Medicine</span>
+                </div>
+                        <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2">Neurobiology of Criminal Behavior</h3>
+                        <p class="text-sm text-gray-600 mb-2">Prof. Michael Chen</p>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Uploaded: Oct 10, 2023</span>
+                            <span><i class="far fa-eye mr-1"></i> 987</span>
+                        </div>
+                    </div>
+                </div>          </li>
+
+          <!-- Slide 2 -->
+         <li class="splide__slide">
+            
+                <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative video-thumbnail">
+                        <div class="h-48 bg-gray-300 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <img src="./images/research-page-hero-image.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">32:15</div>
+                            <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
+                                <button class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
+                                    <i class="fas fa-play mr-2"></i> Watch Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex space-x-2 mb-3">
+                  <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">Medicine</span>
+                </div>
+                        <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2">Neurobiology of Criminal Behavior</h3>
+                        <p class="text-sm text-gray-600 mb-2">Prof. Michael Chen</p>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Uploaded: Oct 10, 2023</span>
+                            <span><i class="far fa-eye mr-1"></i> 987</span>
+                        </div>
+                    </div>
+                </div>
+          </li>
+
+          <!-- Slide 3 -->
+          <li class="splide__slide">
+            
+                <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative video-thumbnail">
+                        <div class="h-48 bg-gray-300 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <img src="./images/research-page-hero-image.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">32:15</div>
+                            <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
+                                <button class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
+                                    <i class="fas fa-play mr-2"></i> Watch Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex space-x-2 mb-3">
+                  <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">Medicine</span>
+                </div>
+                        <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2">Neurobiology of Criminal Behavior</h3>
+                        <p class="text-sm text-gray-600 mb-2">Prof. Michael Chen</p>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Uploaded: Oct 10, 2023</span>
+                            <span><i class="far fa-eye mr-1"></i> 987</span>
+                        </div>
+                    </div>
+                </div>
+          </li>
+
+          <!-- slide 4 -->
+          <li class="splide__slide">
+            
+                <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative video-thumbnail">
+                        <div class="h-48 bg-gray-300 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <img src="./images/research-page-hero-image.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">32:15</div>
+                            <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
+                                <button class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
+                                    <i class="fas fa-play mr-2"></i> Watch Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex space-x-2 mb-3">
+                  <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">Medicine</span>
+                </div>
+                        <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2">Neurobiology of Criminal Behavior</h3>
+                        <p class="text-sm text-gray-600 mb-2">Prof. Michael Chen</p>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Uploaded: Oct 10, 2023</span>
+                            <span><i class="far fa-eye mr-1"></i> 987</span>
+                        </div>
+                    </div>
+                </div>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+        </div>
+    </section>
+
+     <!-- Thematic Section: Criminology -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-900">Criminology</h2>
+                <a href="#" class="text-primary hover:text-blue-800 font-medium flex items-center">
+                    See All
+                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                </a>
+            </div>
+                <!-- Splide Container -->
+    <div id="splide" class="splide">
+      <div class="splide__track">
+        <ul class="splide__list">
+          
+          <!-- Slide 1 -->
+          <li class="splide__slide">
+           <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative video-thumbnail">
+                        <div class="h-48 bg-gray-500 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <img src="./images/research-page-hero-image.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">28:47</div>
+                            <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
+                                <button class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
+                                    <i class="fas fa-play mr-2"></i> Watch Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                         <div class="flex space-x-2 mb-3">
+                  <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">criminology</span>
+                </div>
+                        <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2">Cybercrime Prevention Strategies</h3>
+                        <p class="text-sm text-gray-600 mb-2">Dr. Robert Kim</p>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Uploaded: Oct 5, 2023</span>
+                            <span><i class="far fa-eye mr-1"></i> 1.5K</span>
+                        </div>
+                    </div>
+                </div>
+          </li>
+
+          <!-- Slide 2 -->
+         <li class="splide__slide">
+            <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative video-thumbnail">
+                        <div class="h-48 bg-gray-500 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <img src="./images/research-page-hero-image.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">28:47</div>
+                            <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
+                                <button class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
+                                    <i class="fas fa-play mr-2"></i> Watch Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                         <div class="flex space-x-2 mb-3">
+                  <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">criminology</span>
+                </div>
+                        <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2">Cybercrime Prevention Strategies</h3>
+                        <p class="text-sm text-gray-600 mb-2">Dr. Robert Kim</p>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Uploaded: Oct 5, 2023</span>
+                            <span><i class="far fa-eye mr-1"></i> 1.5K</span>
+                        </div>
+                    </div>
+                </div>
+          </li>
+
+          <!-- Slide 3 -->
+          <li class="splide__slide">
+            <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative video-thumbnail">
+                        <div class="h-48 bg-gray-500 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <img src="./images/research-page-hero-image.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">28:47</div>
+                            <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
+                                <button class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
+                                    <i class="fas fa-play mr-2"></i> Watch Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                         <div class="flex space-x-2 mb-3">
+                  <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">criminology</span>
+                </div>
+                        <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2">Cybercrime Prevention Strategies</h3>
+                        <p class="text-sm text-gray-600 mb-2">Dr. Robert Kim</p>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Uploaded: Oct 5, 2023</span>
+                            <span><i class="far fa-eye mr-1"></i> 1.5K</span>
+                        </div>
+                    </div>
+                </div>
+          </li>
+
+          <!-- slide 4 -->
+          <li class="splide__slide">
+            <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative video-thumbnail">
+                        <div class="h-48 bg-gray-500 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <img src="./images/research-page-hero-image.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">28:47</div>
+                            <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
+                                <button class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
+                                    <i class="fas fa-play mr-2"></i> Watch Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                         <div class="flex space-x-2 mb-3">
+                  <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">criminology</span>
+                </div>
+                        <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2">Cybercrime Prevention Strategies</h3>
+                        <p class="text-sm text-gray-600 mb-2">Dr. Robert Kim</p>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Uploaded: Oct 5, 2023</span>
+                            <span><i class="far fa-eye mr-1"></i> 1.5K</span>
+                        </div>
+                    </div>
+                </div>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+        
+        </div>
+    </section>
+
+     <!-- Thematic Section: Environmental Studies -->
+<section class="py-12 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-2xl font-bold text-gray-900">Environmental Studies</h2>
+      <a href="#" class="text-primary hover:text-blue-800 font-medium flex items-center">
+        See All
+        <i class="fas fa-arrow-right ml-2 text-xs"></i>
+      </a>
+    </div>
+
+    <!-- Splide Container -->
+    <div id="splide" class="splide">
+      <div class="splide__track">
+        <ul class="splide__list">
+          
+          <!-- Slide 1 -->
+          <li class="splide__slide">
+            <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+              <div class="relative video-thumbnail">
+                <div class="h-48 bg-gray-400 relative overflow-hidden">
+                  <img src="./images/research-page-hero-image.jpg" 
+                       alt="Video thumbnail" 
+                       class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                  
+                  <!-- Duration -->
+                  <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                    45:32
+                  </div>
+
+                  <!-- Hover Overlay -->
+                  <div class="absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                    <button class="bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
+                      <i class="fas fa-play mr-2"></i> Watch Now
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="p-4">
+                <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">Environment</span>
+                <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2 mt-2">
+                  Environmental Policy and Public Health
+                </h3>
+                <p class="text-sm text-gray-600 mb-2">Dr. Emily Rodriguez</p>
+                <div class="flex justify-between items-center text-xs text-gray-500">
+                  <span>Uploaded: Oct 8, 2023</span>
+                  <span><i class="far fa-eye mr-1"></i> 2.4K</span>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- Slide 2 -->
+         <li class="splide__slide">
+            <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+              <div class="relative video-thumbnail">
+                <div class="h-48 bg-gray-400 relative overflow-hidden">
+                  <img src="./images/research-page-hero-image.jpg" 
+                       alt="Video thumbnail" 
+                       class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                  
+                  <!-- Duration -->
+                  <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                    45:32
+                  </div>
+
+                  <!-- Hover Overlay -->
+                  <div class="absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                    <button class="bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
+                      <i class="fas fa-play mr-2"></i> Watch Now
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="p-4">
+                <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">Environment</span>
+                <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2 mt-2">
+                  Environmental Policy and Public Health
+                </h3>
+                <p class="text-sm text-gray-600 mb-2">Dr. Emily Rodriguez</p>
+                <div class="flex justify-between items-center text-xs text-gray-500">
+                  <span>Uploaded: Oct 8, 2023</span>
+                  <span><i class="far fa-eye mr-1"></i> 2.4K</span>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- Slide 3 -->
+          <li class="splide__slide">
+            <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+              <div class="relative video-thumbnail">
+                <div class="h-48 bg-gray-400 relative overflow-hidden">
+                  <img src="./images/research-page-hero-image.jpg" 
+                       alt="Video thumbnail" 
+                       class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                  
+                  <!-- Duration -->
+                  <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                    45:32
+                  </div>
+
+                  <!-- Hover Overlay -->
+                  <div class="absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                    <button class="bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
+                      <i class="fas fa-play mr-2"></i> Watch Now
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="p-4">
+                <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">Environment</span>
+                <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2 mt-2">
+                  Environmental Policy and Public Health
+                </h3>
+                <p class="text-sm text-gray-600 mb-2">Dr. Emily Rodriguez</p>
+                <div class="flex justify-between items-center text-xs text-gray-500">
+                  <span>Uploaded: Oct 8, 2023</span>
+                  <span><i class="far fa-eye mr-1"></i> 2.4K</span>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- slide 4 -->
+          <li class="splide__slide">
+            <div class="video-card bg-white rounded-xl overflow-hidden shadow-md">
+              <div class="relative video-thumbnail">
+                <div class="h-48 bg-gray-400 relative overflow-hidden">
+                  <img src="./images/research-page-hero-image.jpg" 
+                       alt="Video thumbnail" 
+                       class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                  
+                  <!-- Duration -->
+                  <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                    45:32
+                  </div>
+
+                  <!-- Hover Overlay -->
+                  <div class="absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                    <button class="bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
+                      <i class="fas fa-play mr-2"></i> Watch Now
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="p-4">
+                <span class="bg-primary/20 text-primary text-xs px-3 py-1 rounded-full">Environment</span>
+                <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2 mt-2">
+                  Environmental Policy and Public Health
+                </h3>
+                <p class="text-sm text-gray-600 mb-2">Dr. Emily Rodriguez</p>
+                <div class="flex justify-between items-center text-xs text-gray-500">
+                  <span>Uploaded: Oct 8, 2023</span>
+                  <span><i class="far fa-eye mr-1"></i> 2.4K</span>
+                </div>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+        <!-- Newsletter Section -->
+    <section
+      style="
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.4)
+          ),
+          url('./images/research-page-hero-image.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      "
+      class="py-16 text-white"
+    >
+      <div class="max-w-5xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4">
+          Stay Updated with Latest Research Videos
+        </h2>
+        <p class="text-xl mb-8">
+          Subscribe to our newsletter for weekly video highlights and updates
+        </p>
+
+        <div class="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
+          <input
+            type="email"
+            placeholder="Your email address"
+            class="flex-grow py-3 px-4 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            class="bg-white text-blue-800 py-3 px-6 rounded-lg font-semibold hover:bg-gray-100 transition"
+          >
+            Subscribe
+          </button>
+        </div>
+
+        <p class="text-sm text-blue-200 mt-4">
+          We respect your privacy. Unsubscribe at any time.
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8 px-10">
+      <div class="max-w-7xl mx-auto px-4">
+        <!-- Main Footer Content -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <!-- Brand Column -->
+          <div class="lg:col-span-1">
+            <img
+              src="./images/ralogo.webp"
+              alt="Logo"
+              class="w-32 mix-blend-mix"
+            />
+
+            <p class="text-gray-400 mb-6 leading-relaxed">
+              Advancing knowledge through cutting-edge research and innovation.
+              Join our community of researchers and professionals.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-blue-400 transition-colors"
+              >
+                <i class="fab fa-twitter text-lg"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-blue-400 transition-colors"
+              >
+                <i class="fab fa-linkedin-in text-lg"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-blue-400 transition-colors"
+              >
+                <i class="fab fa-facebook-f text-lg"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-blue-400 transition-colors"
+              >
+                <i class="fab fa-instagram text-lg"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Research Links -->
+          <div>
+            <h4 class="text-lg font-semibold mb-6 relative inline-block">
+              Research Areas
+              <span
+                class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"
+              ></span>
+            </h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Data Science</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Artificial Intelligence</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Biotechnology</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Renewable Energy</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Neuroscience</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h4 class="text-lg font-semibold mb-6 relative inline-block">
+              Quick Links
+              <span
+                class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"
+              ></span>
+            </h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Publications</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Research Grants</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Events & Conferences</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Careers</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact & Newsletter -->
+          <div>
+            <h4 class="text-lg font-semibold mb-6 relative inline-block">
+              Stay Updated
+              <span
+                class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"
+              ></span>
+            </h4>
+            <p class="text-gray-400 mb-4">
+              Subscribe to our newsletter for the latest research updates.
+            </p>
+            <form class="mb-4">
+              <div class="flex w-full max-w-md">
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  class="px-4 py-3 w-full rounded-l-lg border border-white text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
+                />
+                <button
+                  type="submit"
+                  class="bg-blue-500 hover:bg-blue-600 text-white px-5 rounded-r-lg border border-white border-l-0 transition-colors flex items-center justify-center"
+                >
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </form>
+            <div class="flex items-start mt-6">
+              <div class="text-blue-400 mr-3">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <p class="text-gray-400 text-sm">
+                145 Research Park Drive, Innovation City, IC 12345
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div class="border-t border-gray-800 pt-8">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-500 text-sm mb-4 md:mb-0">
+              © 2023 ResearchHub. All rights reserved.
+            </p>
+            <div class="flex space-x-6">
+              <a
+                href="#"
+                class="text-gray-500 hover:text-white text-sm transition-colors"
+                >Privacy Policy</a
+              >
+              <a
+                href="#"
+                class="text-gray-500 hover:text-white text-sm transition-colors"
+                >Terms of Service</a
+              >
+              <a
+                href="#"
+                class="text-gray-500 hover:text-white text-sm transition-colors"
+                >Cookie Policy</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!--navbar -->
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("-translate-y-full");
+        mobileMenu.classList.toggle("translate-y-0");
+      });
+    </script>
+
+<!-- splide js -->
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+
+
+<!-- Splide Init -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.splide').forEach(function (slider) {
+      new Splide(slider, {
+        type: 'loop',
+        perPage: 3,
+        gap: '1rem',
+        breakpoints: {
+          1024: { perPage: 2 },
+          640: { perPage: 1 }
+        }
+      }).mount();
+    });
+  });
+</script>
+
+</body>
+</html>
+                
