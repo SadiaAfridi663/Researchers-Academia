@@ -41,138 +41,148 @@
     </style>
   </head>
   <body class="bg-gray-50">
-    <header
-      class="flex justify-between items-center px-6 sm:px-10 shadow-xl py-3 sticky top-0 bg-white z-40"
-    >
-      <!-- Logo -->
-      <div>
-        <img src="./images/LOGO.jpg" alt="Logo" class="w-[70px] sm:w-[80px]" />
-      </div>
+ <!-- Header -->
+<header class="flex justify-between items-center px-6 sm:px-10 shadow-xl py-3 sticky top-0 bg-white z-50">
+    <!-- Logo -->
+    <div>
+        <img src="./images/LOGO.jpg" alt="Logo" class="w-[70px] sm:w-[80px]">
+    </div>
 
-      <!-- Desktop Nav -->
-      <nav class="hidden lg:block">
-            <ul class="flex justify-center items-center gap-10">
-                <a href="./index.html">
-                    <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Home</li>
-                </a>
-                <a href="./about.html">
-                    <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">About</li>
-                </a>
-                <a href="./team.html"><li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Team</li></a>
-                <li class="relative group">
-                    <!-- Trigger -->
-                    <div class="cursor-pointer py-2 px-4 rounded-lg transition-colors duration-200 flex items-center">
-                        <span class="text-gray-800 group-hover:text-[#444a96] text-lg font-semibold">Research
-                            Library</span>
-                        <i
-                            class="fas fa-chevron-down ml-2 text-xs transition-transform duration-200 group-hover:rotate-180"></i>
-                    </div>
+    <!-- Desktop Nav -->
+    <nav class="hidden lg:block">
+        <ul class="flex justify-center items-center gap-10">
+            <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">
+                <a href="./index.html">Home</a>
+            </li>
+            <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">
+                <a href="./about.html">About</a>
+            </li>
+            <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">
+                <a href="./team.html">Team</a>
+            </li>
+            <li class="relative group">
+                <!-- Trigger -->
+                <div class="cursor-pointer py-2 px-4 rounded-lg transition-colors duration-200 flex items-center">
+                    <span class="text-gray-800 group-hover:text-[#444a96] text-lg font-semibold">Research Library</span>
+                    <i class="fas fa-chevron-down ml-2 text-xs transition-transform duration-200 group-hover:rotate-180"></i>
+                </div>
 
-                    <!-- Dropdown -->
-                    <div
-                        class="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible transition-all duration-300 transform origin-top -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 z-50">
-                        <div class="py-2">
-                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
-                                <a href="./research-videos.html" class="text-gray-800 font-medium hover:text-white">Research Video</a>
-                            </div>
-                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
-                                <h2 class="text-gray-800 font-medium hover:text-white">Free Resources</h2>
-                            </div>
-                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
-                                <h2 class="text-gray-800 font-medium hover:text-white">News</h2>
-                            </div>
-                            <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
-                                <a href="./research.html" class="text-gray-800 font-medium hover:text-white">Research Work</a>
-                            </div>
+                <!-- Dropdown -->
+                <div class="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible transition-all duration-300 transform origin-top -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 z-50">
+                    <div class="py-2">
+                        <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                            <a href="./research-videos.html" class="text-gray-800 font-medium hover:text-white">Research Videos</a>
+                        </div>
+                        <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                            <h2 class="text-gray-800 font-medium hover:text-white">Free Resources</h2>
+                        </div>
+                        <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                            <h2 class="text-gray-800 font-medium hover:text-white">News</h2>
+                        </div>
+                        <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                            <a href="./research.html" class="text-gray-800 font-medium hover:text-white">Research Work</a>
                         </div>
                     </div>
-                </li>
-                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">Contact</li>
-            </ul>
-        </nav>
+                </div>
+            </li>
+            <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">
+                <a href="./contact.html">Contact</a>
+            </li>
+        </ul>
+    </nav>
 
-      <div class="flex items-center gap-4">
+    <div class="flex items-center gap-4">
         <div class="group hidden sm:inline-block">
-          <button
-            class="flex items-center justify-center gap-2 rounded-md px-6 py-2 bg-[#11327f] shadow-md text-white transition-all duration-300"
-          >
-            Join Us
-            <img
-              src="./images/arrow.png"
-              alt=""
-              class="w-6 transform transition-transform duration-300 group-hover:translate-x-2"
-            />
-          </button>
+            <button class="flex items-center justify-center gap-2 rounded-md px-6 py-2 bg-[#11327f] shadow-md text-white transition-all duration-300">
+                Join Us
+                <img src="./images/arrow.png" alt="" class="w-6 transform transition-transform duration-300 group-hover:translate-x-2">
+            </button>
         </div>
 
-        <!-- Hamburger -->
-        <button
-          id="menu-btn"
-          class="lg:hidden flex flex-col gap-1.5 focus:outline-none"
-        >
-          <span class="w-6 h-0.5 bg-gray-800"></span>
-          <span class="w-6 h-0.5 bg-gray-800"></span>
-          <span class="w-6 h-0.5 bg-gray-800"></span>
+        <button id="menu-btn" class="lg:hidden flex flex-col justify-between w-8 h-6 relative z-50">
+            <span id="line1" class="w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center"></span>
+            <span id="line2" class="w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center"></span>
+            <span id="line3" class="w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center"></span>
         </button>
-      </div>
-    </header>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-black bg-opacity-70 hidden lg:hidden z-40"></div>
 
     <!-- Mobile Menu -->
-    <div
-      id="mobile-menu"
-      class="fixed top-0 left-0 w-full bg-white shadow-lg rounded-b-2xl transform -translate-y-full transition-transform duration-500 ease-in-out lg:hidden z-40"
-    >
-      <ul class="flex flex-col gap-6 p-6 text-center">
-        <li
-          class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
-        >
-          Home
-        </li>
-        <li
-          class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
-        >
-          About
-        </li>
-        <li
-          class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
-        >
-          Team
-        </li>
-        <li
-          class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
-        >
-          Research Library
-        </li>
-        <li
-          class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer"
-        >
-          Contact
-        </li>
-        <button
-          class="mt-4 px-6 py-3 bg-[#11327f] text-white rounded-lg font-semibold shadow-md hover:shadow-xl transition"
-        >
-          Join Us
-        </button>
-      </ul>
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full  bg-white shadow-lg transform -translate-y-full transition-transform duration-500 ease-in-out lg:hidden z-40 overflow-y-auto">
+        <div class="py-6 px-10 pt-16">
+          
+            <ul class="flex flex-col gap-4">
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer py-2">
+                    <a href="./index.html" class="block" onclick="closeMobileMenu()">Home</a>
+                </li>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer py-2">
+                    <a href="./about.html" class="block" onclick="closeMobileMenu()">About</a>
+                </li>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer py-2">
+                    <a href="./team.html" class="block" onclick="closeMobileMenu()">Team</a>
+                </li>
+                
+                <!-- Research Library with Submenu -->
+                <li class="text-gray-800 text-lg font-semibold py-2">
+                    <div class="flex items-center justify-between cursor-pointer" onclick="toggleSubmenu()">
+                        <span>Research Library</span>
+                        <i id="submenu-arrow" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </div>
+                    <ul id="research-submenu" class="pl-6 mt-2 overflow-hidden max-h-0 transition-all duration-300">
+                        <li class="py-2">
+                            <a href="./research-videos.html" class="text-gray-600 hover:text-[#444a96] block" onclick="closeMobileMenu()">Research Videos</a>
+                        </li>
+                        <li class="py-2">
+                            <a href="#" class="text-gray-600 hover:text-[#444a96] block" onclick="closeMobileMenu()">Free Resources</a>
+                        </li>
+                        <li class="py-2">
+                            <a href="#" class="text-gray-600 hover:text-[#444a96] block" onclick="closeMobileMenu()">News</a>
+                        </li>
+                        <li class="py-2">
+                            <a href="./research.html" class="text-gray-600 hover:text-[#444a96] block" onclick="closeMobileMenu()">Research Work</a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer py-2">
+                    <a href="./contact.html" class="block" onclick="closeMobileMenu()">Contact</a>
+                </li>
+                <li class="pt-4">
+                    <button class="w-full px-6 py-3 bg-[#11327f] text-white rounded-lg font-semibold shadow-md hover:shadow-xl transition">
+                        Join Us
+                    </button>
+                </li>
+            </ul>
+        </div>
     </div>
+</header>
+
 
     <!-- Breadcrumb -->
     <div class="max-w-7xl mx-auto px-4 lg:px-8 pt-6">
       <nav class="flex" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
           <li class="inline-flex items-center">
-            <a href="#" class="text-gray-700 hover:text-primary text-sm">Home</a>
+            <a href="#" class="text-gray-700 hover:text-primary text-sm"
+              >Home</a
+            >
           </li>
           <li>
             <div class="flex items-center">
               <i class="fas fa-chevron-right text-gray-400 text-xs mx-2"></i>
-              <a href="#" class="text-gray-700 hover:text-primary text-sm">Research Library</a>
+              <a href="#" class="text-gray-700 hover:text-primary text-sm"
+                >Research Library</a
+              >
             </div>
           </li>
           <li aria-current="page">
             <div class="flex items-center">
               <i class="fas fa-chevron-right text-gray-400 text-xs mx-2"></i>
-              <span class="text-primary font-medium text-sm">Research Details</span>
+              <span class="text-primary font-medium text-sm"
+                >Research Details</span
+              >
             </div>
           </li>
         </ol>
@@ -181,22 +191,31 @@
 
     <!-- Main Content -->
     <div id="content" class="max-w-7xl mx-auto px-4 lg:px-8 py-8 md:py-12">
-        <div class="flex flex-col lg:flex-row gap-6">
-
-          <!-- Left Column - Research Details -->
+      <div class="flex flex-col lg:flex-row gap-6">
+        <!-- Left Column - Research Details -->
         <div class="lg:w-1/3">
-          <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 lg:sticky lg:top-24">
+          <div
+            class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 lg:sticky lg:top-24"
+          >
             <div class="flex flex-col items-center text-center mb-6">
-              <h1 class="text-2xl font-bold text-primary mb-2">Impact of Forensic Evidence on Verdicts</h1>
+              <h1 class="text-2xl font-bold text-primary mb-2">
+                Impact of Forensic Evidence on Verdicts
+              </h1>
               <p class="text-gray-600 text-sm">Published: October 15, 2023</p>
             </div>
-            
+
             <div class="space-y-6">
               <div>
                 <h3 class="text-lg font-semibold text-primary mb-3">Authors</h3>
                 <div class="flex items-center mb-4">
-                  <div class="w-12 h-12 rounded-full bg-gray-200 mr-4 overflow-hidden">
-                    <img src="./images/researcher1.avif" class="w-full h-full object-cover" alt="Dr. Sarah Johnson">
+                  <div
+                    class="w-12 h-12 rounded-full bg-gray-200 mr-4 overflow-hidden"
+                  >
+                    <img
+                      src="./images/researcher1.avif"
+                      class="w-full h-full object-cover"
+                      alt="Dr. Sarah Johnson"
+                    />
                   </div>
                   <div>
                     <p class="font-medium">Dr. Sarah Johnson</p>
@@ -204,8 +223,14 @@
                   </div>
                 </div>
                 <div class="flex items-center">
-                  <div class="w-12 h-12 rounded-full bg-gray-200 mr-4 overflow-hidden">
-                    <img src="./images/researcher2.png" class="w-full h-full object-cover" alt="Dr. Michael Chen">
+                  <div
+                    class="w-12 h-12 rounded-full bg-gray-200 mr-4 overflow-hidden"
+                  >
+                    <img
+                      src="./images/researcher2.png"
+                      class="w-full h-full object-cover"
+                      alt="Dr. Michael Chen"
+                    />
                   </div>
                   <div>
                     <p class="font-medium">Dr. Michael Chen</p>
@@ -213,19 +238,27 @@
                   </div>
                 </div>
               </div>
-              
+
               <div>
-                <h3 class="text-lg font-semibold text-primary mb-3">Research Details</h3>
+                <h3 class="text-lg font-semibold text-primary mb-3">
+                  Research Details
+                </h3>
                 <div class="space-y-3">
-                  <div class="flex justify-between py-2 border-b border-gray-100">
+                  <div
+                    class="flex justify-between py-2 border-b border-gray-100"
+                  >
                     <span class="text-gray-600">Category:</span>
                     <span class="font-medium">Law & Legal Studies</span>
                   </div>
-                  <div class="flex justify-between py-2 border-b border-gray-100">
+                  <div
+                    class="flex justify-between py-2 border-b border-gray-100"
+                  >
                     <span class="text-gray-600">Pages:</span>
                     <span class="font-medium">42</span>
                   </div>
-                  <div class="flex justify-between py-2 border-b border-gray-100">
+                  <div
+                    class="flex justify-between py-2 border-b border-gray-100"
+                  >
                     <span class="text-gray-600">DOI:</span>
                     <span class="font-medium">10.1234/forensic.2023</span>
                   </div>
@@ -235,12 +268,16 @@
                   </div>
                 </div>
               </div>
-              
+
               <div class="pt-4 border-t border-gray-200">
-                <button class="w-full bg-primary text-white py-3 rounded-lg font-medium mb-3 hover:bg-blue-800 transition flex items-center justify-center">
+                <button
+                  class="w-full bg-primary text-white py-3 rounded-lg font-medium mb-3 hover:bg-blue-800 transition flex items-center justify-center"
+                >
                   <i class="fas fa-download mr-2"></i> Download Full Paper
                 </button>
-                <button class="w-full border border-primary text-primary py-3 rounded-lg font-medium hover:bg-primary/5 transition flex items-center justify-center">
+                <button
+                  class="w-full border border-primary text-primary py-3 rounded-lg font-medium hover:bg-primary/5 transition flex items-center justify-center"
+                >
                   <i class="fas fa-share-alt mr-2"></i> Share Research
                 </button>
               </div>
@@ -248,66 +285,86 @@
           </div>
         </div>
 
-            <!-- Right Column - Legal Text -->
-            <div class="lg:w-2/3">
-                <div class="bg-white rounded-xl shadow-md p-5 md:p-6 lg:p-8">
-                    <div class="mb-8">
-                        <h2 class="text-2xl font-bold text-primary mb-4">Abstract</h2>
-                        <p class="text-gray-700">
-                            This comprehensive analysis examines how forensic science influences judicial decisions in criminal cases. 
-                            The study evaluates 500 criminal cases from 2015-2022, analyzing the correlation between types of forensic 
-                            evidence presented and case outcomes. Our research demonstrates a statistically significant relationship 
-                            between specific forensic methodologies and conviction rates.
-                        </p>
-                    </div>
-                    
-                    <div class="mb-8">
-                        <h2 class="text-2xl font-bold text-primary mb-4">Introduction</h2>
-                        <p class="text-gray-700">
-                            Forensic evidence has become increasingly central to criminal investigations and prosecutions over the 
-                            past three decades. The proliferation of television shows focusing on forensic investigation has raised 
-                            public expectations about the role and capabilities of forensic science in solving crimes. However, the 
-                            actual impact of various types of forensic evidence on judicial decision-making remains inadequately studied.
-                        </p>
-                        
-                        <p class="text-gray-700">
-                            This research aims to address this gap by quantitatively analyzing how different forms of forensic evidence 
-                            influence verdicts in criminal cases across multiple jurisdictions. We examine not only whether forensic 
-                            evidence is presented but also the quality, type, and presentation method of such evidence.
-                        </p>
-                    </div>
-                    
-                    <div class="mb-8">
+        <!-- Right Column - Legal Text -->
+        <div class="lg:w-2/3">
+          <div class="bg-white rounded-xl shadow-md p-5 md:p-6 lg:p-8">
+            <div class="mb-8">
+              <h2 class="text-2xl font-bold text-primary mb-4">Abstract</h2>
+              <p class="text-gray-700">
+                This comprehensive analysis examines how forensic science
+                influences judicial decisions in criminal cases. The study
+                evaluates 500 criminal cases from 2015-2022, analyzing the
+                correlation between types of forensic evidence presented and
+                case outcomes. Our research demonstrates a statistically
+                significant relationship between specific forensic methodologies
+                and conviction rates.
+              </p>
+            </div>
+
+            <div class="mb-8">
+              <h2 class="text-2xl font-bold text-primary mb-4">Introduction</h2>
+              <p class="text-gray-700">
+                Forensic evidence has become increasingly central to criminal
+                investigations and prosecutions over the past three decades. The
+                proliferation of television shows focusing on forensic
+                investigation has raised public expectations about the role and
+                capabilities of forensic science in solving crimes. However, the
+                actual impact of various types of forensic evidence on judicial
+                decision-making remains inadequately studied.
+              </p>
+
+              <p class="text-gray-700">
+                This research aims to address this gap by quantitatively
+                analyzing how different forms of forensic evidence influence
+                verdicts in criminal cases across multiple jurisdictions. We
+                examine not only whether forensic evidence is presented but also
+                the quality, type, and presentation method of such evidence.
+              </p>
+            </div>
+
+            <div class="mb-8">
               <h2 class="text-2xl font-bold text-primary mb-4">Methodology</h2>
               <p class="text-gray-700 leading-relaxed mb-4">
-                Our study employed a mixed-methods approach, combining quantitative analysis of case outcomes with 
-                qualitative assessment of judicial reasoning where available.
+                Our study employed a mixed-methods approach, combining
+                quantitative analysis of case outcomes with qualitative
+                assessment of judicial reasoning where available.
               </p>
-              
-              <h3 class="text-xl font-semibold text-primary mt-6 mb-3">Data Collection</h3>
+
+              <h3 class="text-xl font-semibold text-primary mt-6 mb-3">
+                Data Collection
+              </h3>
               <p class="text-gray-700 leading-relaxed mb-3">
-                We analyzed 500 criminal cases from federal and state courts between 2015-2022. Cases were selected based 
-                on the following criteria:
+                We analyzed 500 criminal cases from federal and state courts
+                between 2015-2022. Cases were selected based on the following
+                criteria:
               </p>
-              <ul class="list-disc pl-5 flex flex-col text-gray-700 mb-4 space-y-2">
+              <ul
+                class="list-disc pl-5 flex flex-col text-gray-700 mb-4 space-y-2"
+              >
                 <span>Felony criminal charges</span>
                 <span>Jury trials (non-bench trials)</span>
                 <span>Availability of complete trial transcripts</span>
-                <span>Presentation of at least one type of forensic evidence</span>
+                <span
+                  >Presentation of at least one type of forensic evidence</span
+                >
               </ul>
-              
-              <h3 class="text-xl font-semibold text-primary mt-6 mb-3">Analysis Framework</h3>
+
+              <h3 class="text-xl font-semibold text-primary mt-6 mb-3">
+                Analysis Framework
+              </h3>
               <p class="text-gray-700 leading-relaxed">
-                Each case was coded for 35 variables including type of forensic evidence, quality of presentation, 
-                witness credentials, cross-examination effectiveness, and final verdict. Statistical analysis was 
-                performed using multiple regression to control for confounding variables.
+                Each case was coded for 35 variables including type of forensic
+                evidence, quality of presentation, witness credentials,
+                cross-examination effectiveness, and final verdict. Statistical
+                analysis was performed using multiple regression to control for
+                confounding variables.
               </p>
             </div>
-                    
-                    <div class="mb-8">
-                        <!-- <h2 class="text-2xl font-bold text-primary mb-4">Key Findings</h2> -->
-                        
-                        <!-- <div class="bg-gray-50 p-6 rounded-lg mb-6">
+
+            <div class="mb-8">
+              <!-- <h2 class="text-2xl font-bold text-primary mb-4">Key Findings</h2> -->
+
+              <!-- <div class="bg-gray-50 p-6 rounded-lg mb-6">
                             <h3 class="text-lg font-semibold text-primary mb-4 text-center">Conviction Rates by Evidence Type</h3>
                             <div class="h-64 flex items-end justify-center space-x-4">
                                 <div class="flex flex-col items-center">
@@ -337,99 +394,189 @@
                                 </div>
                             </div>
                         </div> -->
-                        
-                        <h3 class="text-xl font-semibold text-primary mt-6 mb-4">Statistical Significance</h3>
-                        <p class="text-gray-700 leading-relaxed mb-4">
-                            Our analysis revealed several statistically significant relationships (p < 0.05):
-                        </p>
-                         <div class="pl-5 text-gray-700 flex flex-col mb-6 space-y-2">
-                <span>DNA evidence increased conviction likelihood by 37% compared to cases without biological evidence</span>
-                <span>Expert witness credentials significantly impacted evidence weight (p = 0.003)</span>
-                <span>Visual presentation of evidence (charts, diagrams) increased juror comprehension by 42%</span>
+
+              <h3 class="text-xl font-semibold text-primary mt-6 mb-4">
+                Statistical Significance
+              </h3>
+              <p class="text-gray-700 leading-relaxed mb-4">
+                Our analysis revealed several statistically significant
+                relationships (p < 0.05):
+              </p>
+              <div class="pl-5 text-gray-700 flex flex-col mb-6 space-y-2">
+                <span
+                  >DNA evidence increased conviction likelihood by 37% compared
+                  to cases without biological evidence</span
+                >
+                <span
+                  >Expert witness credentials significantly impacted evidence
+                  weight (p = 0.003)</span
+                >
+                <span
+                  >Visual presentation of evidence (charts, diagrams) increased
+                  juror comprehension by 42%</span
+                >
               </div>
-                        
-                        <div class="border-l-4 border-teal-500 pl-4 my-6 italic bg-secondary/5 py-2 rounded-md">
-                            "The manner in which forensic evidence is presented proved nearly as important as the evidence itself 
-                            in determining case outcomes." - From judicial interviews conducted as part of this study.
-                        </div>
-                    </div>
-                    
-                    <div class="mb-8">
-                        <h2 class="text-2xl font-bold text-primary mb-4">Discussion</h2>
-                        <p class="text-gray-700 leading-relaxed mb-4">
-                            The findings suggest that while forensic evidence is indeed powerful, its impact is mediated by multiple 
-                            factors including presentation quality, expert credibility, and jurisdictional differences in evidence 
-                            standards. These findings have important implications for legal practice, forensic science training, and 
-                            judicial education.
-                        </p>
-                        
-                        <p class="text-gray-700 leading-relaxed ">
-                            Contrary to popular media portrayals, not all forensic evidence is equally persuasive. The perceived 
-                            objectivity of scientific evidence varies considerably based on methodology, with techniques perceived 
-                            as more "scientific" (e.g., DNA analysis) carrying more weight than those perceived as more subjective 
-                            (e.g., bite mark analysis).
-                        </p>
-                    </div>
-                    
-                    <div class="mb-8">
-                        <h2 class="text-2xl font-bold text-primary mb-4">Conclusion</h2>
-                        <p class="text-gray-700 leading-relaxed mb-4">
-                            This study provides empirical evidence that forensic science significantly influences judicial decisions, 
-                            but the relationship is complex and multifactorial. The findings highlight the need for:
-                        </p>
-                         <ol class="list-decimal pl-5 text-gray-700 space-y-2">
+
+              <div
+                class="border-l-4 border-teal-500 pl-4 my-6 italic bg-secondary/5 py-2 rounded-md"
+              >
+                "The manner in which forensic evidence is presented proved
+                nearly as important as the evidence itself in determining case
+                outcomes." - From judicial interviews conducted as part of this
+                study.
+              </div>
+            </div>
+
+            <div class="mb-8">
+              <h2 class="text-2xl font-bold text-primary mb-4">Discussion</h2>
+              <p class="text-gray-700 leading-relaxed mb-4">
+                The findings suggest that while forensic evidence is indeed
+                powerful, its impact is mediated by multiple factors including
+                presentation quality, expert credibility, and jurisdictional
+                differences in evidence standards. These findings have important
+                implications for legal practice, forensic science training, and
+                judicial education.
+              </p>
+
+              <p class="text-gray-700 leading-relaxed">
+                Contrary to popular media portrayals, not all forensic evidence
+                is equally persuasive. The perceived objectivity of scientific
+                evidence varies considerably based on methodology, with
+                techniques perceived as more "scientific" (e.g., DNA analysis)
+                carrying more weight than those perceived as more subjective
+                (e.g., bite mark analysis).
+              </p>
+            </div>
+
+            <div class="mb-8">
+              <h2 class="text-2xl font-bold text-primary mb-4">Conclusion</h2>
+              <p class="text-gray-700 leading-relaxed mb-4">
+                This study provides empirical evidence that forensic science
+                significantly influences judicial decisions, but the
+                relationship is complex and multifactorial. The findings
+                highlight the need for:
+              </p>
+              <ol class="list-decimal pl-5 text-gray-700 space-y-2">
                 <li>Standardized forensic evidence presentation protocols</li>
-                <li>Enhanced training for legal professionals in evaluating scientific evidence</li>
-                <li>Continued research on the intersection of science and law</li>
-                <li>Development of evidence-based best practices for forensic testimony</li>
+                <li>
+                  Enhanced training for legal professionals in evaluating
+                  scientific evidence
+                </li>
+                <li>
+                  Continued research on the intersection of science and law
+                </li>
+                <li>
+                  Development of evidence-based best practices for forensic
+                  testimony
+                </li>
               </ol>
-                    </div>
-                    
-                     <div class="mb-8">
+            </div>
+
+            <div class="mb-8">
               <h2 class="text-2xl font-bold text-primary mb-4">References</h2>
               <ol class="list-decimal pl-5 text-gray-700 space-y-3">
-                <li>Smith, J. (2020). Forensic Science and Judicial Decision-Making. <span class="italic">Journal of Legal Studies</span>, 45(2), 123-145.</li>
-                <li>Johnson, A., &amp; Chen, M. (2019). Quantitative Analysis of Evidence Impact. <span class="italic">Law and Science Review</span>, 12(3), 267-289.</li>
-                <li>National Institute of Justice. (2021). Forensic Evidence in Criminal Courts: An Empirical Review. <span class="italic">NJ Report</span>, 305, 1-42.</li>
-                <li>Williams, R. (2018). The CSI Effect: Media and Juror Expectations. <span class="italic">Communication Law Journal</span>, 22(1), 45-68.</li>
-                <li>Federal Judicial Center. (2022). Scientific Evidence Manual for Judges, 5th Edition. Washington, DC: FJC Publications.</li>
+                <li>
+                  Smith, J. (2020). Forensic Science and Judicial
+                  Decision-Making.
+                  <span class="italic">Journal of Legal Studies</span>, 45(2),
+                  123-145.
+                </li>
+                <li>
+                  Johnson, A., &amp; Chen, M. (2019). Quantitative Analysis of
+                  Evidence Impact.
+                  <span class="italic">Law and Science Review</span>, 12(3),
+                  267-289.
+                </li>
+                <li>
+                  National Institute of Justice. (2021). Forensic Evidence in
+                  Criminal Courts: An Empirical Review.
+                  <span class="italic">NJ Report</span>, 305, 1-42.
+                </li>
+                <li>
+                  Williams, R. (2018). The CSI Effect: Media and Juror
+                  Expectations.
+                  <span class="italic">Communication Law Journal</span>, 22(1),
+                  45-68.
+                </li>
+                <li>
+                  Federal Judicial Center. (2022). Scientific Evidence Manual
+                  for Judges, 5th Edition. Washington, DC: FJC Publications.
+                </li>
               </ol>
             </div>
-                    
-                    <div class="border-t border-gray-200 pt-6">
-                        <h3 class="text-lg font-semibold text-primary mb-4">Cite This Research</h3>
-                        <div class="bg-primary/5 p-4 rounded-lg">
-                           <p class="text-sm text-gray-700">
-                  Johnson, S., &amp; Chen, M. (2023). Impact of Forensic Evidence on Verdicts: A Comprehensive Analysis. 
-                  <span class="italic">Journal of Forensic Legal Studies</span>, 30(4), 215-256. https://doi.org/10.1234/forensic.2023
+
+            <div class="border-t border-gray-200 pt-6">
+              <h3 class="text-lg font-semibold text-primary mb-4">
+                Cite This Research
+              </h3>
+              <div class="bg-primary/5 p-4 rounded-lg">
+                <p class="text-sm text-gray-700">
+                  Johnson, S., &amp; Chen, M. (2023). Impact of Forensic
+                  Evidence on Verdicts: A Comprehensive Analysis.
+                  <span class="italic">Journal of Forensic Legal Studies</span>,
+                  30(4), 215-256. https://doi.org/10.1234/forensic.2023
                 </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Related Research -->
-                <div class="mt-8">
-                    <h2 class="text-2xl font-bold text-primary mb-6">Related Research</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white rounded-xl shadow-md p-5 hover:shadow-lg transition">
-                            <span class="bg-primary/10 text-primary text-xs px-3 py-1 rounded-full">Law</span>
-                            <h3 class="text-lg font-semibold mt-3 mb-2">Digital Evidence Admissibility in Court</h3>
-                            <p class="text-gray-600 text-sm mb-3">Dr. Emma Wilson • Aug 2023</p>
-                            <p class="text-gray-700 text-sm">Examining the evolving standards for digital evidence in criminal proceedings.</p>
-                            <a href="#" class="text-primary text-sm font-medium mt-3 inline-block">View Research →</a>
-                        </div>
-                        
-                        <div class="bg-white rounded-xl shadow-md p-5 hover:shadow-lg transition">
-                            <span class="bg-primary/10 text-primary text-xs px-3 py-1 rounded-full">Psychology</span>
-                            <h3 class="text-lg font-semibold mt-3 mb-2">Juror Perception of Expert Testimony</h3>
-                            <p class="text-gray-600 text-sm mb-3">Dr. Robert Kim • Jul 2023</p>
-                            <p class="text-gray-700 text-sm">How credentials and presentation style affect credibility assessments.</p>
-                            <a href="#" class="text-primary text-sm font-medium mt-3 inline-block">View Research →</a>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
+          </div>
+
+          <!-- Related Research -->
+          <div class="mt-8">
+            <h2 class="text-2xl font-bold text-primary mb-6">
+              Related Research
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div
+                class="bg-white rounded-xl shadow-md p-5 hover:shadow-lg transition"
+              >
+                <span
+                  class="bg-primary/10 text-primary text-xs px-3 py-1 rounded-full"
+                  >Law</span
+                >
+                <h3 class="text-lg font-semibold mt-3 mb-2">
+                  Digital Evidence Admissibility in Court
+                </h3>
+                <p class="text-gray-600 text-sm mb-3">
+                  Dr. Emma Wilson • Aug 2023
+                </p>
+                <p class="text-gray-700 text-sm">
+                  Examining the evolving standards for digital evidence in
+                  criminal proceedings.
+                </p>
+                <a
+                  href="#"
+                  class="text-primary text-sm font-medium mt-3 inline-block"
+                  >View Research →</a
+                >
+              </div>
+
+              <div
+                class="bg-white rounded-xl shadow-md p-5 hover:shadow-lg transition"
+              >
+                <span
+                  class="bg-primary/10 text-primary text-xs px-3 py-1 rounded-full"
+                  >Psychology</span
+                >
+                <h3 class="text-lg font-semibold mt-3 mb-2">
+                  Juror Perception of Expert Testimony
+                </h3>
+                <p class="text-gray-600 text-sm mb-3">
+                  Dr. Robert Kim • Jul 2023
+                </p>
+                <p class="text-gray-700 text-sm">
+                  How credentials and presentation style affect credibility
+                  assessments.
+                </p>
+                <a
+                  href="#"
+                  class="text-primary text-sm font-medium mt-3 inline-block"
+                  >View Research →</a
+                >
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Footer Section -->
@@ -635,16 +782,6 @@
         </div>
       </div>
     </footer>
-
-    <!--navbar -->
-    <script>
-      const menuBtn = document.getElementById("menu-btn");
-      const mobileMenu = document.getElementById("mobile-menu");
-
-      menuBtn.addEventListener("click", () => {
-        mobileMenu.classList.toggle("-translate-y-full");
-        mobileMenu.classList.toggle("translate-y-0");
-      });
-    </script>
+<script src="./script.js"></script>
   </body>
 </html>
