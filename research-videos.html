@@ -66,16 +66,26 @@
     }
 
     .splide__arrow svg {
-      fill: #103182;
+      fill: rgb(233, 230, 230);
       width: 15px;
       height: 15px;
 
     }
 
     .splide__arrow {
-      width: 25px;
-      height: 25px;
+      box-shadow: 2px 2px 3px rgb(233, 230, 230); 
+      width: 30px;
+      height: 30px;
+      background-color: #103182;
+      opacity: 1;
     }
+    .splide__arrow--prev {
+  left: -2.2rem; 
+}
+
+.splide__arrow--next {
+  right: -2.2rem; 
+}
   </style>
 </head>
 
@@ -478,6 +488,9 @@
                     </div>
                     <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
                       <a href="./videosDetail.html"
+                      class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-end" >
+                      <i class="fas fa-play mr-2"></i>
+                        Watch Now</a>
                     </div>
                   </div>
                 </div>
@@ -510,7 +523,10 @@
                       18:24
                     </div>
                     <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
-                                            class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-end" >
+                      <a href="./videosDetail.html"
+                      class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-end" >
+                      <i class="fas fa-play mr-2"></i>
+                        Watch Now</a>
                     </div>
                   </div>
                 </div>
@@ -543,7 +559,10 @@
                       18:24
                     </div>
                     <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
-                                            <i class="fas fa-play mr-2"></i>
+                      <a href="./videosDetail.html"
+                      class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-end" >
+                      <i class="fas fa-play mr-2"></i>
+                        Watch Now</a>
                     </div>
                   </div>
                 </div>
@@ -576,8 +595,10 @@
                       18:24
                     </div>
                     <div class="video-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
-                                              Watch Now</a>
-                    </div>
+                      <a href="./videosDetail.html"
+                      class="watch-now-btn bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-end" >
+                      <i class="fas fa-play mr-2"></i>
+                        Watch Now</a>
                   </div>
                 </div>
                 <div class="p-4">
@@ -1265,10 +1286,11 @@
         new Splide( slider, {
           type: "loop",
           perPage: 4,
+          perMove: 1,
           gap: "1rem",
           breakpoints: {
-            1024: { perPage: 2 },
-            640: { perPage: 1 },
+            1024: { perPage: 2 , perMove: 1,},
+            640: { perPage: 1, perMove: 1, },
           },
         } ).mount();
       } );
