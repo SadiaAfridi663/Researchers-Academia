@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Video Detail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: "#103182",
+                secondary: "#4fc5c1",
+              },
+            },
+          },
+        };
+      </script>
+    
+</head>
+<body class="bg-gray-50 font-sans">
+
+<!-- Header -->
+<header class="flex justify-between items-center px-6 sm:px-10 shadow-xl py-3 sticky top-0 bg-white z-50">
+    <!-- Logo -->
+    <div>
+        <img src="./images/LOGO.jpg" alt="Logo" class="w-[70px] sm:w-[80px]">
+    </div>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden lg:block">
+        <ul class="flex justify-center items-center gap-10">
+            <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">
+                <a href="./index.html">Home</a>
+            </li>
+            <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">
+                <a href="./about.html">About</a>
+            </li>
+            <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">
+                <a href="./team.html">Team</a>
+            </li>
+            <li class="relative group">
+                <!-- Trigger -->
+                <div class="cursor-pointer py-2 px-4 rounded-lg transition-colors duration-200 flex items-center">
+                    <span class="text-gray-800 group-hover:text-[#444a96] text-lg font-semibold">Research Library</span>
+                    <i class="fas fa-chevron-down ml-2 text-xs transition-transform duration-200 group-hover:rotate-180"></i>
+                </div>
+
+                <!-- Dropdown -->
+                <div class="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible transition-all duration-300 transform origin-top -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 z-50">
+                    <div class="py-2">
+                        <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                            <a href="./research-videos.html" class="text-gray-800 font-medium hover:text-white">Research Videos</a>
+                        </div>
+                        <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                            <h2 class="text-gray-800 font-medium hover:text-white">Free Resources</h2>
+                        </div>
+                        <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                            <h2 class="text-gray-800 font-medium hover:text-white">News</h2>
+                        </div>
+                        <div class="px-4 py-2 hover:bg-[#616ad6] cursor-pointer transition-colors duration-150">
+                            <a href="./research.html" class="text-gray-800 font-medium hover:text-white">Research Work</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer">
+                <a href="./contact.html">Contact</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="flex items-center gap-4">
+        <div class="group hidden sm:inline-block">
+            <button class="flex items-center justify-center gap-2 rounded-md px-6 py-2 bg-[#11327f] shadow-md text-white transition-all duration-300">
+                Join Us
+                <img src="./images/arrow.png" alt="" class="w-6 transform transition-transform duration-300 group-hover:translate-x-2">
+            </button>
+        </div>
+
+        <button id="menu-btn" class="lg:hidden flex flex-col justify-between w-8 h-6 relative z-50">
+            <span id="line1" class="w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center"></span>
+            <span id="line2" class="w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center"></span>
+            <span id="line3" class="w-6 h-0.5 bg-gray-800 transition-all duration-300 origin-center"></span>
+        </button>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-black bg-opacity-70 hidden lg:hidden z-40"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full  bg-white shadow-lg transform -translate-y-full transition-transform duration-500 ease-in-out lg:hidden z-40 overflow-y-auto">
+        <div class="py-6 px-10 pt-16">
+          
+            <ul class="flex flex-col gap-4">
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer py-2">
+                    <a href="./index.html" class="block" onclick="closeMobileMenu()">Home</a>
+                </li>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer py-2">
+                    <a href="./about.html" class="block" onclick="closeMobileMenu()">About</a>
+                </li>
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer py-2">
+                    <a href="./team.html" class="block" onclick="closeMobileMenu()">Team</a>
+                </li>
+                
+                <!-- Research Library with Submenu -->
+                <li class="text-gray-800 text-lg font-semibold py-2">
+                    <div class="flex items-center justify-between cursor-pointer" onclick="toggleSubmenu()">
+                        <span>Research Library</span>
+                        <i id="submenu-arrow" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </div>
+                    <ul id="research-submenu" class="pl-6 mt-2 overflow-hidden max-h-0 transition-all duration-300">
+                        <li class="py-2">
+                            <a href="./research-videos.html" class="text-gray-600 hover:text-[#444a96] block" onclick="closeMobileMenu()">Research Videos</a>
+                        </li>
+                        <li class="py-2">
+                            <a href="#" class="text-gray-600 hover:text-[#444a96] block" onclick="closeMobileMenu()">Free Resources</a>
+                        </li>
+                        <li class="py-2">
+                            <a href="#" class="text-gray-600 hover:text-[#444a96] block" onclick="closeMobileMenu()">News</a>
+                        </li>
+                        <li class="py-2">
+                            <a href="./research.html" class="text-gray-600 hover:text-[#444a96] block" onclick="closeMobileMenu()">Research Work</a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="text-gray-800 hover:text-[#444a96] text-lg font-semibold cursor-pointer py-2">
+                    <a href="./contact.html" class="block" onclick="closeMobileMenu()">Contact</a>
+                </li>
+                <li class="pt-4">
+                    <button class="w-full px-6 py-3 bg-[#11327f] text-white rounded-lg font-semibold shadow-md hover:shadow-xl transition">
+                        Join Us
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+    <main class="max-w-7xl mx-auto px-8 lg:px-10 py-8">
+        <!-- Hero Section -->
+        <section class="mb-8">
+            <!-- <h1 class="text-3xl font-bold text-gray-800 mb-2">Research Video Detail</h1> -->
+            <nav class="text-sm text-gray-500">
+                <ol class="list-none p-0 inline-flex">
+                    <li class="flex items-center">
+                        <a href="#" class="hover:text-blue-600">Home</a>
+                        <span class="mx-2">/</span>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="#" class="hover:text-blue-600">Research Library</a>
+                        <span class="mx-2">/</span>
+                    </li>
+                    <li class="text-gray-700">criminology</li>
+                </ol>
+            </nav>
+        </section>
+
+        <!-- Main Content - Two Column Layout -->
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Left Column (70%) -->
+            <div class="w-full lg:w-8/12">
+                <!-- Video Player -->
+                <div class="aspect-w-16 aspect-h-9 bg-black rounded-lg overflow-hidden mb-6">
+                    <!-- <iframe class="w-full h-96" src="https://www.youtube.com/embed/jNQXAC9IVRw" frameborder="0" allowfullscreen></iframe> -->
+                    <video src="./images/home video 1.mp4" 
+                    class="w-full h-96 object-cover" controls ></video>
+
+                </div>
+
+                <!-- Video Title and Metadata -->
+                <div class="flex items-center text-sm text-gray-500 gap-2 mb-2">
+                    <span>1,247 views</span>
+                    <span>March 15, 2023</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2 line-clamp-2">Recent Advances in Neural Network Architectures for Natural Language Processing</h2>
+
+                <!-- Video Description -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Description</h3>
+                    <div class="text-gray-700">
+                        <p class="mb-4">This presentation discusses recent breakthroughs in transformer-based architectures and their applications in multilingual NLP tasks. We explore how these models have evolved to handle more complex linguistic structures while reducing computational requirements.</p>
+                        <div id="more-content" class="hidden">
+                           <div class="mb-4">
+                            <p class="mb-4">The research team examined several novel approaches to attention mechanisms that allow for more efficient training while maintaining performance on benchmark datasets. Our findings suggest a promising direction for future work in low-resource language processing.</p>
+                            <p class="mb-4">Additional experiments were conducted on the XORQA and XStoryCloze datasets, demonstrating consistent improvements over previous state-of-the-art models. The team also introduced a new evaluation metric specifically designed for cross-lingual transfer tasks.</p>
+                            <p>We conclude with a discussion of ethical considerations and potential societal impacts of these technological advancements, highlighting the importance of responsible AI development in academic research.</p>
+                             
+                           </div>
+                            <!-- References -->
+                <div class="mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">References & Resources</h3>
+                    <ul class="list-disc list-inside text-gray-700 pl-4">
+                        <li class="mb-2"><a href="#" class="text-blue-600 hover:text-blue-800">Research Paper: "Efficient Transformers for Multilingual NLP" (PDF)</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-600 hover:text-blue-800">Dataset: MultiBERT Benchmark Collection</a></li>
+                        <li class="mb-2"><a href="#" class="text-blue-600 hover:text-blue-800">Supplementary Materials: Code Repository</a></li>
+                        <li><a href="#" class="text-blue-600 hover:text-blue-800">Conference Presentation Slides</a></li>
+                    </ul>
+                </div>
+                        </div>
+                        <button id="read-more-btn" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            Read more <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+               
+
+                <!-- Comments Section -->
+                <div>
+                    <!-- <h3 class="text-lg font-semibold text-gray-800 mb-4">Discussion</h3> -->
+                    
+                    <!-- Reactions -->
+                    <!-- <div class="mb-6">
+                        <h4 class="text-gray-700 mb-2">What do you think?</h4>
+                        <div class="flex space-x-4">
+                            <button class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition">
+                                <span class="text-xl">👍</span>
+                            </button>
+                            <button class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition">
+                                <span class="text-xl">❤️</span>
+                            </button>
+                            <button class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition">
+                                <span class="text-xl">😮</span>
+                            </button>
+                            <button class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition">
+                                <span class="text-xl">😡</span>
+                            </button>
+                            <button class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition">
+                                <span class="text-xl">😢</span>
+                            </button>
+                        </div>
+                    </div> -->
+                    
+                    <!-- Comment Form -->
+                    <div class="mb-8 bg-white p-4 rounded-lg shadow-sm">
+                        <h4 class="text-gray-700 mb-3">Add a comment</h4>
+                        <textarea class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" rows="3" placeholder="Share your thoughts..."></textarea>
+                        <div class="flex justify-end mt-3">
+                            <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">Post Comment</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Comments List -->
+                    <div class="space-y-6">
+                        <!-- Comment 1 -->
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h5 class="font-semibold text-gray-800">Michael Chen</h5>
+                                    <p class="text-sm text-gray-500">2 days ago</p>
+                                </div>
+                                <button class="text-blue-600 text-sm hover:text-blue-800">Reply</button>
+                            </div>
+                            <p class="text-gray-700">This research aligns with recent work from Google on sparse attention mechanisms. Have you compared your approach with their BigBird architecture?</p>
+                        </div>
+                        
+                        <!-- Comment 2 -->
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h5 class="font-semibold text-gray-800">Professor Williams</h5>
+                                    <p class="text-sm text-gray-500">5 days ago</p>
+                                </div>
+                                <button class="text-blue-600 text-sm hover:text-blue-800">Reply</button>
+                            </div>
+                            <p class="text-gray-700">Excellent presentation! I'm particularly interested in the ethical considerations section. Would you be willing to share the framework you used for impact assessment?</p>
+                        </div>
+                        
+                        <!-- Comment 3 -->
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h5 class="font-semibold text-gray-800">Lisa Rodriguez</h5>
+                                    <p class="text-sm text-gray-500">1 week ago</p>
+                                </div>
+                                <button class="text-blue-600 text-sm hover:text-blue-800">Reply</button>
+                            </div>
+                            <p class="text-gray-700">The results on low-resource languages are impressive. Have you considered testing your model on indigenous languages with very limited digital corpora?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column (30%) -->
+            <div class="w-full lg:w-4/12">
+                <div >
+                <!-- class="sticky top-24" -->
+                    <div class="lg:space-y-4 grid  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 gap-6 lg:gap-0  overflow-y-auto pr-2 mx-auto lg:mx-0">
+                        <!-- Related Video 1 -->
+                        <a href="#" class="flex flex-col lg:flex-row group overflow-hidden bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
+                            <div class="lg:w-2/5 relative overflow-hidden">  
+                                <video src="./images/hero video.mp4" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></video>
+                                <div class="absolute bottom-1 right-1 bg-black bg-opacity-70 text-white text-xs px-1 rounded">18:32</div>
+                            </div>
+                            <div class="lg:w-3/5 p-3">
+                                <h4 class="font-semibold text-gray-800 text-sm line-clamp-2 group-hover:text-blue-600">Ethical Considerations in AI Research</h4>
+                                <p class="text-xs text-gray-600 mt-1">Dr. Maria Gonzalez</p>
+                                <p class="text-xs text-gray-500">Feb 15, 2023</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Related Video 2 -->
+                        <a href="#" class="flex flex-col lg:flex-row group overflow-hidden bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
+                            <div class="lg:w-2/5 relative overflow-hidden">
+                                <video src="./images/hero video.mp4" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></video>
+                                <div class="absolute bottom-1 right-1 bg-black bg-opacity-70 text-white text-xs px-1 rounded">18:32</div>
+                            </div>
+                            <div class="lg:w-3/5 p-3">
+                                <h4 class="font-semibold text-gray-800 text-sm line-clamp-2 group-hover:text-blue-600">Ethical Considerations in AI Research</h4>
+                                <p class="text-xs text-gray-600 mt-1">Dr. Maria Gonzalez</p>
+                                <p class="text-xs text-gray-500">Feb 15, 2023</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Related Video 3 -->
+                        <a href="#" class="flex flex-col lg:flex-row group overflow-hidden bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
+                            <div class="lg:w-2/5 relative overflow-hidden">
+                                <video src="./images/hero video.mp4" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></video>
+                                <div class="absolute bottom-1 right-1 bg-black bg-opacity-70 text-white text-xs px-1 rounded">18:32</div>
+                            </div>
+                            <div class="lg:w-3/5 p-3">
+                                <h4 class="font-semibold text-gray-800 text-sm line-clamp-2 group-hover:text-blue-600">Ethical Considerations in AI Research</h4>
+                                <p class="text-xs text-gray-600 mt-1">Dr. Maria Gonzalez</p>
+                                <p class="text-xs text-gray-500">Feb 15, 2023</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Related Video 4 -->
+                        <a href="#" class="flex   flex-col lg:flex-row group overflow-hidden bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
+                            <div class="lg:w-2/5 relative overflow-hidden">
+                                <video src="./images/hero video.mp4" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></video>
+                                <div class="absolute bottom-1 right-1 bg-black bg-opacity-70 text-white text-xs px-1 rounded">18:32</div>
+                            </div>
+                            <div class="lg:w-3/5 p-3">
+                                <h4 class="font-semibold text-gray-800 text-sm line-clamp-2 group-hover:text-blue-600">Ethical Considerations in AI Research</h4>
+                                <p class="text-xs text-gray-600 mt-1">Dr. Maria Gonzalez</p>
+                                <p class="text-xs text-gray-500">Feb 15, 2023</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Related Video 5 -->
+                        <a href="#" class="flex flex-col lg:flex-row group overflow-hidden bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
+                            <div class="lg:w-2/5 relative overflow-hidden">
+                                <video src="./images/hero video.mp4" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></video>
+                                <div class="absolute bottom-1 right-1 bg-black bg-opacity-70 text-white text-xs px-1 rounded">18:32</div>
+                            </div>
+                            <div class="lg:w-3/5 p-3">
+                                <h4 class="font-semibold text-gray-800 text-sm line-clamp-2 group-hover:text-blue-600">Ethical Considerations in AI Research</h4>
+                                <p class="text-xs text-gray-600 mt-1">Dr. Maria Gonzalez</p>
+                                <p class="text-xs text-gray-500">Feb 15, 2023</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                   
+                </div>
+            </div>
+        </div>
+    </main>
+
+ <!-- footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8 px-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Brand Column -->
+                <div class="lg:col-span-1">
+                    <img src="./images/ralogo.webp" alt="Logo" class="w-32 mix-blend-mix">
+
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Advancing knowledge through cutting-edge research and innovation. Join our community of
+                        researchers and professionals.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-linkedin-in text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-instagram text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Research Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6 relative inline-block">
+                        Research Areas
+                        <span class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"></span>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Data Science</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Artificial
+                                Intelligence</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Biotechnology</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Renewable Energy</a>
+                        </li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Neuroscience</a></li>
+                    </ul>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6 relative inline-block">
+                        Quick Links
+                        <span class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"></span>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Publications</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Research Grants</a>
+                        </li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Events &
+                                Conferences</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+
+
+                <!-- Contact & Newsletter -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6 relative inline-block">
+                        Stay Updated
+                        <span class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"></span>
+                    </h4>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for the latest research updates.</p>
+                    <form class="mb-4">
+                        <div class="flex w-full max-w-md">
+                            <input type="email" placeholder="Your email address"
+                                class="px-4 py-3 w-full rounded-l-lg border border-white text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400" />
+                            <button type="submit"
+                                class="bg-blue-500 hover:bg-blue-600 text-white px-5 rounded-r-lg border border-white border-l-0  transition-colors flex items-center justify-center">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+
+                    </form>
+                    <div class="flex items-start mt-6">
+                        <div class="text-blue-400 mr-3">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm">145 Research Park Drive, Innovation City, IC 12345</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                        © 2023 ResearchHub. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Terms of
+                            Service</a>
+                        <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+    <script src="./script.js"></script>
+
+
+    <script>
+        // Read more/less functionality
+        document.getElementById('read-more-btn').addEventListener('click', function() {
+            const moreContent = document.getElementById('more-content');
+            const button = document.getElementById('read-more-btn');
+            
+            if (moreContent.classList.contains('hidden')) {
+                moreContent.classList.remove('hidden');
+                button.innerHTML = 'Read less <i class="fas fa-chevron-up ml-1 text-xs"></i>';
+            } else {
+                moreContent.classList.add('hidden');
+                button.innerHTML = 'Read more <i class="fas fa-chevron-down ml-1 text-xs"></i>';
+            }
+        });
+
+        // Toggle switch styling
+        // document.getElementById('autoplay-toggle').addEventListener('change', function() {
+        //     const toggle = this;
+        //     if (toggle.checked) {
+        //         toggle.parentElement.querySelector('.block').classList.add('bg-blue-600');
+        //         toggle.parentElement.querySelector('.block').classList.remove('bg-gray-300');
+        //         toggle.parentElement.querySelector('.dot').classList.add('translate-x-5');
+        //     } else {
+        //         toggle.parentElement.querySelector('.block').classList.remove('bg-blue-600');
+        //         toggle.parentElement.querySelector('.block').classList.add('bg-gray-300');
+        //         toggle.parentElement.querySelector('.dot').classList.remove('translate-x-5');
+        //     }
+        // });
+
+        // Initialize the toggle switch
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const toggle = document.getElementById('autoplay-toggle');
+        //     if (toggle.checked) {
+        //         toggle.parentElement.querySelector('.block').classList.add('bg-blue-600');
+        //         toggle.parentElement.querySelector('.dot').classList.add('translate-x-5');
+        //     }
+        // });
+   
+   </script>
+</body>
+</html>
