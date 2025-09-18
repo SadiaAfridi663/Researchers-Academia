@@ -2,23 +2,23 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <!-- Google Fonts: Outfit -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
 
-    <title>Blog_detail</title>
+    <title>Blog Detail</title>
 </head>
 
-<body>
-
-     <!-- Header -->
+<body class="font-[Outfit] bg-gray-50 text-gray-800">
+      <!-- Header -->
     <header class="flex justify-between items-center px-6 sm:px-10 shadow-xl py-3 sticky top-0 bg-white z-50">
         <!-- Logo -->
         <div>
@@ -151,10 +151,423 @@
     </header>
     <!-- header end -->
 
-    <!-- hero section -->
-    <div>
-        <h2>Our Blog Detail</h2>
-    </div>
+    <!-- Hero Section -->
+    <section class="w-full h-[220px] bg-[#103182] flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[#103182] to-[#2a4db3] opacity-90"></div>
+        <h1 class="text-4xl md:text-5xl font-bold text-white tracking-wide relative z-10">Research Blog Detail</h1>
+    </section>
+
+    <!-- Blog Detail Wrapper -->
+    <main class="max-w-6xl mx-auto px-4 md:px-8 py-12 grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Left (Blog Content) -->
+        <article class="lg:col-span-2 space-y-8">
+            <header class="space-y-4">
+                <div class="flex items-center space-x-2 text-sm text-gray-500">
+                    <a href="#" class="hover:text-[#103182]">Home</a>
+                    <span>/</span>
+                    <a href="#" class="hover:text-[#103182]">Blog</a>
+                    <span>/</span>
+                    <span>Article</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+                    The Role of Artificial Intelligence in Modern Research
+                </h2>
+                <p class="text-sm text-gray-500 font-medium">
+                    By <span class="font-semibold text-gray-700">Dr. Sarah Ahmed</span> ·
+                    <span class="text-[#103182]">April 20, 2025</span> ·
+                    <span><i class="far fa-clock mr-1"></i>7 min read</span>
+                </p>
+            </header>
+
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80"
+                    alt="AI research concept"
+                    class="rounded-2xl shadow-lg w-full h-[300px] md:h-[400px] object-cover" />
+                <div class="absolute bottom-4 left-4 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-lg">
+                    <p class="text-sm text-gray-700">Source: Unsplash</p>
+                </div>
+            </div>
+
+            <section class="space-y-6">
+                <h3 class="text-2xl font-semibold text-[#103182]">Welcome To Our Research Blog!</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    Artificial Intelligence (AI) is transforming the way research is conducted across multiple
+                    disciplines.
+                    From data analysis to predictive modeling, AI provides tools that help researchers accelerate
+                    discoveries and gain deeper insights.
+                </p>
+            </section>
+
+            <!-- Blog Body -->
+            <section class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 flex items-center">
+                        <span
+                            class="bg-[#103182] text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">1</span>
+                        <span>Data Analysis</span>
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        AI enables researchers to analyze massive datasets efficiently. Machine learning algorithms can
+                        identify
+                        hidden patterns, trends, and correlations that would be impossible to detect manually.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 flex items-center">
+                        <span
+                            class="bg-[#103182] text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">2</span>
+                        <span>Automation of Experiments</span>
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Automated systems powered by AI reduce human error and allow researchers to conduct repetitive
+                        experiments
+                        faster and more accurately, saving valuable time in the lab.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 flex items-center">
+                        <span
+                            class="bg-[#103182] text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">3</span>
+                        <span>Predictive Modeling</span>
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        AI-driven predictive models can forecast outcomes in areas such as climate change, disease
+                        progression, and
+                        even social sciences. These insights help policymakers and scientists make informed decisions.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 flex items-center">
+                        <span
+                            class="bg-[#103182] text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">4</span>
+                        <span>Interdisciplinary Impact</span>
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        AI is not limited to computer science—it plays a crucial role in medicine, physics, biology, and
+                        even education.
+                        Collaborative research that integrates AI leads to groundbreaking innovations.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Tags and Social Sharing -->
+            <div
+                class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-8 border-t border-gray-200">
+                <div>
+                    <span class="font-medium mr-2">Tags:</span>
+                    <a href="#"
+                        class="inline-block bg-gray-100 hover:bg-[#103182] hover:text-white text-gray-700 px-3 py-1 rounded-full text-sm mr-2 transition-colors">Artificial
+                        Intelligence</a>
+                    <a href="#"
+                        class="inline-block bg-gray-100 hover:bg-[#103182] hover:text-white text-gray-700 px-3 py-1 rounded-full text-sm mr-2 transition-colors">Research</a>
+                    <a href="#"
+                        class="inline-block bg-gray-100 hover:bg-[#103182] hover:text-white text-gray-700 px-3 py-1 rounded-full text-sm transition-colors">Technology</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="font-medium">Share:</span>
+                    <a href="#" class="text-gray-500 hover:text-[#103182]"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-[#103182]"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-[#103182]"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-[#103182]"><i class="fab fa-researchgate"></i></a>
+                </div>
+            </div>
+
+            <!-- Related Posts -->
+            <div class="pt-12">
+                <h3 class="text-2xl font-bold text-[#103182] border-b-2 border-[#103182] pb-2 mb-6">Related Posts</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:scale-[1.02]">
+                        <img src="./images/news slide 5.avif" alt="Big data in research"
+                            class="w-full h-48 object-cover" />
+                        <div class="p-4">
+                            <p class="text-sm text-gray-500">April 15, 2025</p>
+                            <h4 class="font-semibold mt-2 hover:text-[#103182]">Big Data Analytics in Academic Research
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:scale-[1.02]">
+                        <img src="./images/news image 3.avif" alt="Future of education"
+                            class="w-full h-48 object-cover" />
+                        <div class="p-4">
+                            <p class="text-sm text-gray-500">March 28, 2025</p>
+                            <h4 class="font-semibold mt-2 hover:text-[#103182]">The Future of Education with AI Tools
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Right (Sidebar) -->
+        <aside class="space-y-12 mt-46">
+
+            <!-- Author Box -->
+            <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                <img src="./images/leader 3.avif" alt="Author"
+                    class="w-20 h-20 rounded-full mx-auto mb-4 object-cover" />
+                <h3 class="text-lg font-semibold">Dr. Sarah Ahmed</h3>
+                <p class="text-gray-500 text-sm">AI Researcher & Author</p>
+                <p class="text-gray-600 text-sm mt-3">Dr. Sarah specializes in applying machine learning techniques to
+                    interdisciplinary research, bridging gaps between technology and academia.</p>
+
+                <div class="flex justify-center gap-4 mt-4 text-[#103182] text-lg">
+                    <a href="#" class="hover:text-[#0c2569]"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-[#0c2569]"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-[#0c2569]"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="hover:text-[#0c2569]"><i class="fab fa-researchgate"></i></a>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div>
+                <h3 class="text-2xl font-bold text-[#103182] border-b-2 border-[#103182] pb-2 mb-4">
+                    Categories
+                </h3>
+                <ul class="space-y-3 text-gray-700 font-medium">
+                    <li class="pb-2 border-b border-gray-100">
+                        <a href="#" class="hover:text-[#103182] flex justify-between items-center">
+                            <span>Artificial Intelligence</span>
+                            <span class="bg-gray-100 text-gray-500 text-xs px-2 py-1 rounded-full">24</span>
+                        </a>
+                    </li>
+                    <li class="pb-2 border-b border-gray-100">
+                        <a href="#" class="hover:text-[#103182] flex justify-between items-center">
+                            <span>Data Science</span>
+                            <span class="bg-gray-100 text-gray-500 text-xs px-2 py-1 rounded-full">18</span>
+                        </a>
+                    </li>
+                    <li class="pb-2 border-b border-gray-100">
+                        <a href="#" class="hover:text-[#103182] flex justify-between items-center">
+                            <span>Education</span>
+                            <span class="bg-gray-100 text-gray-500 text-xs px-2 py-1 rounded-full">15</span>
+                        </a>
+                    </li>
+                    <li class="pb-2 border-b border-gray-100">
+                        <a href="#" class="hover:text-[#103182] flex justify-between items-center">
+                            <span>Innovation</span>
+                            <span class="bg-gray-100 text-gray-500 text-xs px-2 py-1 rounded-full">9</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Popular Posts -->
+            <div>
+                <h3 class="text-2xl font-bold text-[#103182] border-b-2 border-[#103182] pb-2 mb-4">
+                    Popular Posts
+                </h3>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <img src="./images/blog 3.avif" alt="Research lab" class="w-16 h-16 object-cover rounded-lg" />
+                        <div>
+                            <a href="#" class="font-medium hover:text-[#103182]">Top 10 AI Applications in Academic
+                                Research</a>
+                            <p class="text-sm text-gray-500">April 12, 2025</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <img src="./images/news slide 5.avif" alt="Students working"
+                            class="w-16 h-16 object-cover rounded-lg" />
+                        <div>
+                            <a href="#" class="font-medium hover:text-[#103182]">How Technology is Shaping Higher
+                                Education</a>
+                            <p class="text-sm text-gray-500">March 30, 2025</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <img src="./images/team page member 1.avif" class="w-16 h-16 object-cover rounded-lg" />
+                        <div>
+                            <a href="#" class="font-medium hover:text-[#103182]">AI and Healthcare Research: A New
+                                Era</a>
+                            <p class="text-sm text-gray-500">March 18, 2025</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+    </main>
+
+
+    <!-- CTA Section -->
+    <section class="py-20 relative"
+        style="background-image: url(./images/cta\ bg.avif); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+
+                <!-- Left Column -->
+                <div class=" flex-1 text-center lg:text-left text-white">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                        Shape Your Digital <br class="hidden md:block">Future Today
+                    </h2>
+                    <p class="text-lg md:text-xl mb-8 opacity-90 leading-relaxed max-w-xl">
+                        Explore trusted research, insights, and innovation. Take the first step to enhance your
+                        knowledge and shape your digital future with us.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button
+                            class="px-8 py-4 bg-white text-[#11327f] rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            Explore Free Resources
+                        </button>
+                        <button
+                            class="px-8 py-4 bg-transparent border-2 border-white text-white rounded-xl font-semibold hover:bg-white hover:text-[#11327f] transition-all duration-300">
+                            Join Our Membership
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column (Testimonial) -->
+                <div
+                    class="flex-1 relative max-w-md w-full rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-300">
+
+                    <!-- Content with glass effect -->
+                    <div class="bg-white/20 backdrop-blur-md p-8 text-gray-800 flex flex-col gap-6">
+                        <!-- Icon at Top -->
+                        <div class="text-4xl text-[#11327f]">
+                            <i class="fas fa-quote-right text-white"></i>
+                        </div>
+
+                        <!-- Testimonial Text -->
+                        <blockquote class="text-lg italic text-white leading-relaxed">
+                            "This platform transformed how I access and share research. The insights are top-notch and
+                            helped me innovate faster than ever!"
+                        </blockquote>
+
+                        <!-- Author Info -->
+                        <div class="flex items-center gap-4 mt-4">
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-r from-[#22d4ad] to-[#11327f] p-0.5">
+                                <img src="./images/team member 5.avif" alt="James Cooper"
+                                    class="w-full h-full rounded-full object-cover border-2 border-white">
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-white">James Cooper</h3>
+                                <p class="text-sm text-white">Chief Executive Officer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8 px-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Brand Column -->
+                <div class="lg:col-span-1">
+                    <img src="./images/ralogo.webp" alt="Logo" class="w-32 mix-blend-mix">
+
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Advancing knowledge through cutting-edge research and innovation. Join our community of
+                        researchers and professionals.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-linkedin-in text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-instagram text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Research Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6 relative inline-block">
+                        Research Areas
+                        <span class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"></span>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Data Science</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Artificial
+                                Intelligence</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Biotechnology</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Renewable Energy</a>
+                        </li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Neuroscience</a></li>
+                    </ul>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6 relative inline-block">
+                        Quick Links
+                        <span class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"></span>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Publications</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Research Grants</a>
+                        </li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Events &
+                                Conferences</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+
+
+                <!-- Contact & Newsletter -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6 relative inline-block">
+                        Stay Updated
+                        <span class="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-400"></span>
+                    </h4>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for the latest research updates.</p>
+                    <form class="mb-4">
+                        <div class="flex w-full max-w-md">
+                            <input type="email" placeholder="Your email address"
+                                class="px-4 py-3 w-full rounded-l-lg border border-white text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400" />
+                            <button type="submit"
+                                class="bg-blue-500 hover:bg-blue-600 text-white px-5 rounded-r-lg border border-white border-l-0  transition-colors flex items-center justify-center">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+
+                    </form>
+                    <div class="flex items-start mt-6">
+                        <div class="text-blue-400 mr-3">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm">145 Research Park Drive, Innovation City, IC 12345</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                        © 2023 ResearchHub. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Terms of
+                            Service</a>
+                        <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="./script.js"></script>
 
 </body>
 
