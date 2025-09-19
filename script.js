@@ -36,7 +36,7 @@
         // Hamburger animation
         line1.classList.remove('rotate-45', 'translate-y-2');
         line2.classList.remove('opacity-0');
-        line3.classList.remove('-rotate-45', '-translate-y-2');
+        line3.classList.remove('-rotate-45', '-translate-y-3');
         
         // Close submenu if open
         const submenu = document.getElementById('research-submenu');
