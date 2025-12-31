@@ -1,5 +1,13 @@
 <?php
+session_start();
 include('db_connection/connection.php');
+
+// Check for login error
+$login_error = '';
+if (isset($_SESSION['login_error'])) {
+    $login_error = $_SESSION['login_error'];
+    unset($_SESSION['login_error']); // Clear the error after displaying
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,12 +46,12 @@ include('db_connection/connection.php');
     <!-- header end -->
 
     <!-- hero section -->
-    <section class='relative bg-gradient-to-r from-[#22d4ad] to-[#11327f] text-white'>
+    <section class='relative bg-gradient-to-r from-[#22d4ad] to-[#11327f] text-gray'>
         <div class='max-w-7xl mx-auto px-6 lg:px-12 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
 
             <!-- Left Content -->
             <div class='space-y-6 text-center lg:text-left'>
-                <h1 class='text-4xl md:text-5xl font-extrabold leading-tight'>
+                <h1 class='text-4xl md:text-5xl font-extrabold text-[#11327f] leading-tight'>
                     Join Our Research Community
                 </h1>
                 <p class='text-lg md:text-xl opacity-90 max-w-xl mx-auto lg:mx-0'>
@@ -54,12 +62,12 @@ include('db_connection/connection.php');
                 <!-- Buttons -->
                 <div class='flex flex-col sm:flex-row gap-4 justify-center lg:justify-start'>
                     <a href='#form'
-                        class='px-8 py-4 bg-white text-[#11327f] rounded-full font-semibold shadow-md hover:shadow-xl hover:bg-gray-100 transition-all duration-300'>
+                        class='px-8 py-2 flex items-center bg-[#11327f] text-white rounded-lg font-semibold shadow-md hover:shadow-xl hover:bg-white hover:text-[#11327f] border-[#11327f] border-2 transition-all duration-300'>
                         Join Us
                     </a>
 
                     <a href='#learn-more'
-                        class='px-8 py-4 border-2 border-white rounded-full font-semibold hover:bg-white hover:text-[#11327f] transition-all duration-300'>
+                        class='px-8 py-2  rounded-lg border-[#11327f] border-2 text-[#11327f]  font-semibold hover:bg-[#11327f] hover:text-white transition-all duration-300'>
                         Learn More
                     </a>
                 </div>
@@ -204,12 +212,13 @@ include('db_connection/connection.php');
                 <!-- Step 1 -->
                 <div
                     class='flex-1 relative bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2'>
-                    <div class='absolute -top-8 left-1/2 transform -translate-x-1/2'>
+                    <div class="absolute -top-8 inset-x-0 flex justify-center">
                         <div
-                            class='w-16 h-16 bg-[#103182] text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg'>
+                            class="w-16 h-16 bg-[#103182] text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
                             1
                         </div>
                     </div>
+
                     <div class='mt-8 text-center'>
                         <div
                             class='w-14 h-14 bg-[#103182] rounded-lg flex items-center justify-center mx-auto mb-4 text-blue-600'>
@@ -231,7 +240,7 @@ include('db_connection/connection.php');
                 <!-- Step 2  -->
                 <div
                     class='flex-1 relative bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2'>
-                    <div class='absolute -top-8 left-1/2 transform -translate-x-1/2'>
+                    <div class="absolute -top-8 inset-x-0 flex justify-center">
                         <div
                             class='w-16 h-16 bg-[#103182] text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg'>
                             2
@@ -257,7 +266,7 @@ include('db_connection/connection.php');
                 <!-- Step 3 -->
                 <div
                     class='flex-1 relative bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2'>
-                    <div class='absolute -top-8 left-1/2 transform -translate-x-1/2'>
+                    <div class="absolute -top-8 inset-x-0 flex justify-center">
                         <div
                             class='w-16 h-16 bg-[#103182] text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg'>
                             3
@@ -295,11 +304,11 @@ include('db_connection/connection.php');
                 <div class='flex justify-center p-6 border-b border-gray-200'>
                     <div class='bg-gray-100 rounded-full p-1 flex space-x-1'>
                         <button id='signUpBtn'
-                            class='px-6 py-2 rounded-full font-medium transition-all duration-300 bg-[#103182] text-white'>
+                            class='px-6 py-2 rounded-full font-medium transition-all duration-300 <?php echo (empty($login_error)) ? 'bg-[#103182] text-white' : 'text-gray-700'; ?>'>
                             Sign Up
                         </button>
                         <button id='signInBtn'
-                            class='px-6 py-2 rounded-full font-medium text-gray-700 hover:text-[#103182] transition-all duration-300'>
+                            class='px-6 py-2 rounded-full font-medium transition-all duration-300 <?php echo (!empty($login_error)) ? 'bg-[#103182] text-white' : 'text-gray-700'; ?>'>
                             Sign In
                         </button>
                     </div>
@@ -309,7 +318,7 @@ include('db_connection/connection.php');
                     <!-- Left Column - Content (Changes based on state) -->
                     <div id='contentLeft' class='bg-[#103182] p-10 text-white transition-all duration-500'>
                         <!-- Sign Up Content (Default) -->
-                        <div id='signUpContent'>
+                        <div id='signUpContent' class='<?php echo (!empty($login_error)) ? 'hidden' : ''; ?>'>
                             <h2 class='text-3xl font-bold mb-4'>Join Our Research Community Today</h2>
                             <p class='text-blue-100 mb-6'>Become part of a network of fitness professionals and
                                 researchers dedicated to advancing health science.</p>
@@ -351,7 +360,7 @@ include('db_connection/connection.php');
                         </div>
 
                         <!-- Sign In Content (Hidden by default) -->
-                        <div id='signInContent' class='hidden'>
+                        <div id='signInContent' class='<?php echo (empty($login_error)) ? 'hidden' : ''; ?>'>
                             <h2 class='text-3xl font-bold mb-4'>Welcome Back Researcher!</h2>
                             <p class='text-blue-100 mb-6'>Continue your research journey and access exclusive content.
                             </p>
@@ -402,10 +411,24 @@ include('db_connection/connection.php');
                         if (isset($_GET['error'])) {
                             echo '<div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">' . htmlspecialchars($_GET['error']) . '</div>';
                         }
+                        
+                        // Display login error if exists
+                        if (!empty($login_error)) {
+                            echo '<div class="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-exclamation-circle text-red-500 mr-3"></i>
+                                        <div>
+                                            <p class="text-red-700 font-medium">Login Failed</p>
+                                            <p class="text-red-600 text-sm mt-1">' . htmlspecialchars($login_error) . '</p>
+                                        </div>
+                                    </div>
+                                  </div>';
+                        }
                         ?>
 
-                        <!-- Sign Up Form (Default) -->
-                        <form id='signUpForm' action='./PHP/signup_form_process.php' method='POST' class='space-y-6'>
+                        <!-- Sign Up Form (Default - hidden if login error exists) -->
+                        <form id='signUpForm' action='./PHP/signup_form_process.php' method='POST'
+                            class='space-y-6 <?php echo (!empty($login_error)) ? 'hidden' : ''; ?>'>
                             <div>
                                 <h3 class='text-2xl font-semibold text-gray-900 mb-2'>Create Your Account</h3>
                                 <p class='text-gray-600 mb-6'>Get started in just a few moments</p>
@@ -511,8 +534,9 @@ include('db_connection/connection.php');
                             </button>
                         </form>
 
-                        <!-- Sign In Form (Hidden by default) -->
-                        <form id='signInForm' action='./PHP/login_process.php' method='POST' class='space-y-6 hidden'>
+                        <!-- Sign In Form (Visible if login error exists) -->
+                        <form id='signInForm' action='./PHP/login_process.php' method='POST'
+                            class='space-y-6 <?php echo (empty($login_error)) ? 'hidden' : ''; ?>'>
                             <div>
                                 <h3 class='text-2xl font-semibold text-gray-900 mb-2'>Sign In to Your Account</h3>
                                 <p class='text-gray-600 mb-6'>Access your research dashboard</p>
@@ -523,7 +547,8 @@ include('db_connection/connection.php');
                                     Username</label>
                                 <input type='text' id='signinEmail' name='email' required
                                     class='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#103182] focus:border-[#103182] transition duration-200'
-                                    placeholder='researcher@example.com'>
+                                    placeholder='researcher@example.com'
+                                    value='<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>'>
                             </div>
 
                             <div>
@@ -588,7 +613,7 @@ include('db_connection/connection.php');
 
     <script>
     // State management
-    let isSignUp = true;
+    let isSignUp = <?php echo (empty($login_error)) ? 'true' : 'false'; ?>;
 
     // DOM Elements
     const signUpBtn = document.getElementById('signUpBtn');
@@ -713,6 +738,14 @@ include('db_connection/connection.php');
         signUpForm.classList.remove('hidden');
         signInForm.classList.add('hidden');
 
+        // Focus on first name field
+        setTimeout(() => {
+            const firstNameField = document.getElementById('firstName');
+            if (firstNameField) {
+                firstNameField.focus();
+            }
+        }, 100);
+
         // Add slide animation
         contentLeft.style.animation = 'slideInLeft 0.5s ease';
         formContainer.style.animation = 'slideInRight 0.5s ease';
@@ -733,12 +766,20 @@ include('db_connection/connection.php');
         signUpBtn.classList.add('text-gray-700');
 
         // Update left content with animation
-        signInContent.classList.remove('hidden');
         signUpContent.classList.add('hidden');
+        signInContent.classList.remove('hidden');
 
         // Update forms with animation
-        signInForm.classList.remove('hidden');
         signUpForm.classList.add('hidden');
+        signInForm.classList.remove('hidden');
+
+        // Focus on email field
+        setTimeout(() => {
+            const emailField = document.getElementById('signinEmail');
+            if (emailField) {
+                emailField.focus();
+            }
+        }, 100);
 
         // Add slide animation
         contentLeft.style.animation = 'slideInLeft 0.5s ease';
@@ -803,34 +844,59 @@ include('db_connection/connection.php');
     // Add CSS animations
     const style = document.createElement('style');
     style.textContent = `
-            @keyframes slideInLeft {
-                from {
-                    opacity: 0;
-                    transform: translateX(-20px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
             }
-            
-            @keyframes slideInRight {
-                from {
-                    opacity: 0;
-                    transform: translateX(20px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
+            to {
+                opacity: 1;
+                transform: translateX(0);
             }
-        `;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes shakeError {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+    `;
     document.head.appendChild(style);
 
-    // Initialize password validation on load
-    if (passwordInput) {
-        validatePassword();
-    }
+    // Initialize form based on login error
+    document.addEventListener('DOMContentLoaded', function() {
+        <?php if (!empty($login_error)): ?>
+        // If there's a login error, ensure sign in form is shown
+        setTimeout(() => {
+            showSignIn();
+
+            // Add shake animation to error message
+            const errorDiv = formContainer.querySelector('.bg-red-50');
+            if (errorDiv) {
+                errorDiv.style.animation = 'shakeError 0.5s ease-in-out';
+                setTimeout(() => {
+                    errorDiv.style.animation = '';
+                }, 500);
+            }
+        }, 100);
+        <?php endif; ?>
+
+        // Initialize password validation on load
+        if (passwordInput) {
+            validatePassword();
+        }
+    });
     </script>
 
     <style>

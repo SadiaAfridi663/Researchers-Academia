@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if(!isset($_SESSION['super_admin_id'])){
+    header('location:superadminlogin.php');
+    exit;
+}
+
 include '../db_connection/connection.php';
 ?>
 
@@ -36,7 +43,7 @@ include '../db_connection/connection.php';
 </head>
 
 <body class="bg-gray-50 min-h-screen flex">
-    <?php session_start(); ?>
+
     <!-- Sidebar -->
     <?php include '../include/dashboardsidebar.php' ?>
 
@@ -80,7 +87,8 @@ include '../db_connection/connection.php';
             <?php unset($_SESSION['error']); endif; ?>
 
             <!-- Form Content -->
-            <form id="uploadForm" class="p-6 md:p-8 space-y-8" method="POST" action="uploadvideo_process.php" enctype="multipart/form-data">
+            <form id="uploadForm" class="p-6 md:p-8 space-y-8" method="POST" action="uploadvideo_process.php"
+                enctype="multipart/form-data">
 
                 <!-- Video Title -->
                 <div class="space-y-3">

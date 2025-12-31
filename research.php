@@ -257,7 +257,7 @@ if($category_id > 0){
                             </p>
 
                             <!-- Footer -->
-                            <div class="flex justify-between items-center">
+                            <div class="flex justify-start items-center">
                                 <div class="flex items-center space-x-3">
                                     <!-- <a href="researchDetail.php?id=<?php echo $video['id']; ?>"
                                         class="text-primary font-medium flex items-center text-sm hover:text-blue-800 transition">

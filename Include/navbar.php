@@ -8,11 +8,9 @@ if ( session_status() === PHP_SESSION_NONE ) {
 $isLoggedIn = isset( $_SESSION[ 'super_admin_id' ] ) || isset( $_SESSION[ 'user_id' ] );
 $userName = isset( $_SESSION[ 'super_admin_name' ] ) ? $_SESSION[ 'super_admin_name' ] : ( isset( $_SESSION[ 'username' ] ) ? $_SESSION[ 'username' ] : '' );
 
-
 function isFreeResource( $categoryName ) {
     return strtolower( trim( $categoryName ) ) === 'free resources' || strtolower( trim( $categoryName ) ) === 'free resource';
 }
-
 
 function getCategoryLink( $categoryId, $categoryName, $categorySlug, $isLoggedIn ) {
     if ( isFreeResource( $categoryName ) ) {
@@ -126,9 +124,10 @@ if ( !$categoriesResult ) {
         <div class='flex items-center gap-4'>
             <?php if ( $isLoggedIn ): ?>
             <!-- User Profile Dropdown ( Desktop ) -->
-            <div class='hidden sm:block group'>
+            <div class='hidden sm:block relative group'>
+                <!-- Dropdown Button -->
                 <button
-                    class='flex items-center justify-center gap-2 rounded-md px-6 py-2 bg-gradient-to-r from-[#11327f] to-[#0a1f50] shadow-md text-white hover:shadow-lg transition-all duration-300'>
+                    class='flex items-center justify-center gap-2 rounded-md px-6 py-2 bg-gradient-to-r from-[#11327f] to-[#0a1f50] shadow-md text-white hover:shadow-lg transition-all duration-300 relative z-10'>
                     <i class='fas fa-user-circle text-lg'></i>
                     <span class='font-semibold'><?php echo htmlspecialchars( substr( $userName, 0, 10 ) );
     ?></span>
@@ -137,16 +136,23 @@ if ( !$categoriesResult ) {
 
                 <!-- Dropdown Menu -->
                 <div
-                    class='absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top -translate-y-2 group-hover:translate-y-0 z-50'>
-                    <div class='py-2'>
-                        <div class='px-4 py-2 border-b border-gray-100'>
-                            <p class='text-sm font-semibold text-gray-800'>Welcome back!</p>
-                            <p class='text-xs text-gray-500'><?php echo htmlspecialchars( $userName );
-    ?></p>
-                        </div>
+                    class='absolute top-full right-0 mt-2 w-[190px] bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right scale-95 group-hover:scale-100 z-50'>
+                    <!-- User Info -->
+                    <div
+                        class='px-4 py-3 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-gray-50 rounded-t-lg'>
+                        <p class='text-sm font-semibold text-gray-800'>Welcome back!</p>
+                        <p class='text-xs text-gray-500 truncate' title="<?php echo htmlspecialchars($userName); ?>">
+                            <?php echo htmlspecialchars( $userName );
+    ?>
+                        </p>
+                    </div>
+
+                    <div class='rounded-lg overflow-hidden'>
+                        <!-- Logout -->
                         <a href='./PHP/logout.php'
-                            class='block px-4 py-3 text-gray-800 hover:bg-red-50 hover:text-red-600 transition-colors duration-200'>
-                            <i class='fas fa-sign-out-alt mr-2'></i>Logout
+                            class='flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors duration-200'>
+                            <i class='fas fa-sign-out-alt mr-3 text-gray-400 group-hover:text-red-500'></i>
+                            <span>Logout</span>
                         </a>
                     </div>
                 </div>

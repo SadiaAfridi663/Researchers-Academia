@@ -1,6 +1,12 @@
 <?php
 
 session_start();
+
+if(!isset($_SESSION['super_admin_id'])){
+    header('location:superadminlogin.php');
+    exit;
+}
+
 include '../db_connection/connection.php';
 
 $result = mysqli_query($conn, "SELECT * FROM add_categories ORDER BY id DESC");

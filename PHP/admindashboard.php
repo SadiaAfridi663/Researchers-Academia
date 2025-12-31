@@ -10,6 +10,38 @@ if(!isset($_SESSION['super_admin_id'])){
 
 ?>
 
+<?php
+include '../db_connection/connection.php';
+
+/* TOTAL VIDEOS */
+$videoQuery = "SELECT COUNT(id) AS total_videos FROM research_videos";
+$videoResult = mysqli_query($conn, $videoQuery);
+$totalVideos = mysqli_fetch_assoc($videoResult)['total_videos'];
+
+/* TOTAL CATEGORIES */
+$catQuery = "SELECT COUNT(id) AS total_categories FROM add_categories";
+$catResult = mysqli_query($conn, $catQuery);
+$totalCategories = mysqli_fetch_assoc($catResult)['total_categories'];
+
+/* TOTAL SUB CATEGORIES */
+$subCatQuery = "SELECT COUNT(id) AS total_sub_categories FROM sub_categories";
+$subCatResult = mysqli_query($conn, $subCatQuery);
+$totalSubCategories = mysqli_fetch_assoc($subCatResult)['total_sub_categories'];
+
+/* TOTAL VIEWS */
+// $viewsQuery = "SELECT SUM(views) AS total_views FROM videos";
+// $viewsResult = mysqli_query($conn, $viewsQuery);
+// $totalViews = mysqli_fetch_assoc($viewsResult)['total_views'] ?? 0;
+
+/* THIS MONTH PUBLISHED */
+$monthQuery = "SELECT COUNT(id) AS month_videos 
+               FROM research_videos 
+               WHERE MONTH(created_at) = MONTH(CURRENT_DATE())
+               AND YEAR(created_at) = YEAR(CURRENT_DATE())";
+$monthResult = mysqli_query($conn, $monthQuery);
+$thisMonthVideos = mysqli_fetch_assoc($monthResult)['month_videos'];
+?>
+
 
 
 <!DOCTYPE html>
@@ -154,52 +186,61 @@ if(!isset($_SESSION['super_admin_id'])){
 
 
             <!-- Stats Cards -->
+            <!-- Stats Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+
                 <div class="stat-card text-white rounded-xl p-6 shadow-lg">
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-sm opacity-90">Total Videos</p>
-                            <p class="text-3xl font-bold mt-2">147</p>
+                            <p class="text-3xl font-bold mt-2"><?php echo $totalVideos; ?></p>
                         </div>
                         <i class="fas fa-play-circle text-3xl opacity-80"></i>
                     </div>
-                    <p class="text-sm mt-4 opacity-90"><i class="fas fa-arrow-up mr-1"></i> 12% from last month</p>
+                    <p class="text-sm mt-4 opacity-90">
+                        <i class="fas fa-arrow-up mr-1"></i> Latest uploads tracked
+                    </p>
                 </div>
 
                 <div class="stat-card-secondary text-white rounded-xl p-6 shadow-lg">
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-sm opacity-90">Research Categories</p>
-                            <p class="text-3xl font-bold mt-2">8</p>
+                            <p class="text-3xl font-bold mt-2"><?php echo $totalCategories; ?></p>
                         </div>
                         <i class="fas fa-tags text-3xl opacity-80"></i>
                     </div>
-                    <p class="text-sm mt-4 opacity-90">All research fields covered</p>
+                    <p class="text-sm mt-4 opacity-90">All research fields organized</p>
                 </div>
 
+                <!-- Sub Categories Card -->
                 <div class="bg-white rounded-xl p-6 shadow-lg">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-gray-500 text-sm">Total Views</p>
-                            <p class="text-3xl font-bold mt-2 text-primary">24.5K</p>
+                            <p class="text-gray-500 text-sm">Sub Categories</p>
+                            <p class="text-3xl font-bold mt-2 text-primary"><?php echo $totalSubCategories; ?></p>
                         </div>
-                        <i class="fas fa-eye text-3xl text-secondary"></i>
+                        <i class="fas fa-layer-group text-3xl text-secondary"></i>
                     </div>
-                    <p class="text-sm mt-4 text-gray-500"><i class="fas fa-arrow-up mr-1 text-green-500"></i> 23% from
-                        last month</p>
+                    <p class="text-sm mt-4 text-gray-500">
+                        Total available sub fields
+                    </p>
                 </div>
 
                 <div class="bg-white rounded-xl p-6 shadow-lg">
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-gray-500 text-sm">Published This Month</p>
-                            <p class="text-3xl font-bold mt-2 text-primary">18</p>
+                            <p class="text-3xl font-bold mt-2 text-primary"><?php echo $thisMonthVideos; ?></p>
                         </div>
                         <i class="fas fa-calendar-alt text-3xl text-secondary"></i>
                     </div>
-                    <p class="text-sm mt-4 text-gray-500">On track for monthly target</p>
+                    <p class="text-sm mt-4 text-gray-500">New content this month</p>
                 </div>
+
             </div>
+
+
 
             <!-- Main Content Area -->
             <div class="grid grid-cols-1 gap-8">

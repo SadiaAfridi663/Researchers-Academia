@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+// Check if user is logged in as admin
+if(!isset($_SESSION['super_admin_id'])){
+    header('location:superadminlogin.php');
+    exit;
+}
+
 include '../db_connection/connection.php';
 
 $query = "SELECT rd.*, c.name as category_name, sc.name as sub_category_name

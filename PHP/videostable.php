@@ -2,6 +2,12 @@
 // Start session for messages
 session_start();
 
+// Check if user is logged in as admin
+if(!isset($_SESSION['super_admin_id'])){
+    header('location:superadminlogin.php');
+    exit;
+}
+
 // Include database connection
 include '../db_connection/connection.php';
 
