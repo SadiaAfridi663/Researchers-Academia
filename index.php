@@ -1,3 +1,25 @@
+<?php 
+include 'db_connection/connection.php'; 
+
+$video_query = "SELECT * FROM research_videos ORDER BY created_at DESC LIMIT 3";
+$video_result = mysqli_query($conn, $video_query);
+
+$research_query = "SELECT rv.*, c.name as category_name, IFNULL(rd.downloads, 0) as downloads 
+                  FROM research_videos rv 
+                  LEFT JOIN add_categories c ON rv.category_id = c.id
+                  LEFT JOIN research_detail rd ON rv.id = rd.id
+                  ORDER BY IFNULL(rd.downloads, 0) DESC, rv.created_at DESC LIMIT 3";
+$research_result = mysqli_query($conn, $research_query);
+
+$about_video_query = "SELECT * FROM research_videos ORDER BY views DESC LIMIT 1";
+$about_video_result = mysqli_query($conn, $about_video_query);
+$about_video = mysqli_fetch_assoc($about_video_result);
+
+// Fetch Team Members for Homepage (Limit 4, only type='team_member')
+include 'db_connection/team_config.php';
+$team_homepage_query = "SELECT * FROM team_members WHERE status = 1 AND type = 'team_member' ORDER BY created_at ASC LIMIT 4";
+$team_homepage_res = mysqli_query($conn, $team_homepage_query);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,37 +39,37 @@
     <title>Home</title>
 
     <style>
-        /* Apply Outfit as the default font */
-        body {
-            font-family: 'Outfit', sans-serif;
-        }
+    /* Apply Outfit as the default font */
+    body {
+        font-family: 'Outfit', sans-serif;
+    }
 
 
-        /* Default lines */
-        #menu-btn span {
-            background-color: #333;
-            /* dark for white bg */
-        }
+    /* Default lines */
+    #menu-btn span {
+        background-color: #333;
+        /* dark for white bg */
+    }
 
-        /* Open (Cross) state */
-        #menu-btn.open #line1 {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
+    /* Open (Cross) state */
+    #menu-btn.open #line1 {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
 
-        #menu-btn.open #line2 {
-            opacity: 0;
-        }
+    #menu-btn.open #line2 {
+        opacity: 0;
+    }
 
-        #menu-btn.open #line3 {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
+    #menu-btn.open #line3 {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
     </style>
 </head>
 
 <body class="">
-    
-        <!-- header -->
-    <?php include 'include/navbar.php'; ?>
+
+    <!-- header -->
+    <?php include('Include/navbar.php'); ?>
 
 
     <!-- HERO SECTION -->
@@ -63,16 +85,17 @@
         <div class="absolute inset-0 bg-black/70"></div>
         <div class="relative z-10 flex items-center justify-center min-h-[80vh] text-center text-white">
             <div class="max-w-5xl mx-auto px-4">
-                
+
                 <div
                     class="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mt-12  text-sm font-medium">
                     Trusted by Researchers Worldwide
                 </div>
 
-                    <h2 class=" text-4xl md:text-6xl lg:text-5xl font-bold leading-tight lg:mt-6"><span class="text-[#11327f]">Researcher</span> Academia</h2>
-               
+                <h2 class=" text-4xl md:text-6xl lg:text-5xl font-bold leading-tight lg:mt-6"><span
+                        class="">Researcher</span> Academia</h2>
+
                 <h1 class="text-4xl md:text-6xl lg:text-5xl font-bold leading-tight lg:mt-2">
-                    Discover Insights & <span class="text-[#11327f]">Advance Research</span>
+                    Discover Insights & <span class="">Advance Research</span>
 
                 </h1>
 
@@ -196,39 +219,115 @@
                 <img src="./images/about image.avif" alt="About Us"
                     class="w-full md:w-[70%] lg:w-[65%] rounded-lg shadow-lg object-cover">
 
-                <!-- Video -->
-                <!-- Small & Medium Screens: Normal flow -->
-                <div class="w-full mt-6 lg:hidden flex justify-center">
-                    <iframe
-                        class="w-full max-w-sm sm:max-w-md h-[200px] sm:h-[250px] md:h-[300px] rounded-lg shadow-xl border-4 border-white"
-                        src="https://www.youtube.com/embed/mV0bUQpz468" title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
-                </div>
+                <?php 
+                // Determine the embed URL safely using the same logic as Recent Showcase
+                $about_embed = "https://www.youtube.com/embed/mV0bUQpz468"; // Professional fallback
+                if ($about_video) {
+                    $about_url = $about_video['video_url'];
+                    if (strpos($about_url, 'youtube.com') !== false || strpos($about_url, 'youtu.be') !== false) {
+                        if (preg_match('/(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $about_url, $matches)) {
+                            $about_embed = 'https://www.youtube.com/embed/' . $matches[1] . '?autoplay=1&mute=1&loop=1&playlist=' . $matches[1] . '&controls=0&modestbranding=1';
+                        }
+                    } elseif (strpos($about_url, 'vimeo.com') !== false) {
+                        if (preg_match('/vimeo\.com\/(\d+)/', $about_url, $matches)) {
+                            $about_embed = 'https://player.vimeo.com/video/' . $matches[1] . '?autoplay=1&muted=1&loop=1&background=1';
+                        }
+                    } elseif (preg_match('/\.(mp4|webm|ogg|mov|avi)$/i', $about_url)) {
+                        $about_embed = htmlspecialchars($about_url);
+                    }
+                }
+                
+                // If it's a direct mp4 file, use a <video> tag, otherwise use <iframe>
+                $is_direct_video = preg_match('/\.(mp4|webm|ogg|mov|avi)$/i', $about_embed);
+                ?>
 
-                <!-- Large Screens: Absolute overlay -->
-                <iframe
-                    class="hidden lg:block absolute top-[70px] right-[-10px] w-[280px] md:w-[450px] lg:w-[500px] h-[250px] md:h-[300px] aspect-video rounded-lg shadow-xl border-4 border-white"
-                    src="https://www.youtube.com/embed/mV0bUQpz468" title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+                <!-- Video element -->
+                <?php if ($is_direct_video): ?>
+                    <!-- Small & Medium Screens -->
+                    <div class="w-full mt-6 lg:hidden flex justify-center">
+                        <video src="<?php echo $about_embed; ?>" autoplay muted loop playsinline class="w-full max-w-sm sm:max-w-md h-[200px] sm:h-[250px] md:h-[300px] rounded-lg shadow-xl border-4 border-white object-cover"></video>
+                    </div>
+                    <!-- Large Screens -->
+                    <video src="<?php echo $about_embed; ?>" autoplay muted loop playsinline class="hidden lg:block absolute top-[70px] right-[-10px] w-[280px] md:w-[450px] lg:w-[500px] h-[250px] md:h-[300px] aspect-video rounded-lg shadow-xl border-4 border-white object-cover"></video>
+                <?php else: ?>
+                    <!-- Small & Medium Screens -->
+                    <div class="w-full mt-6 lg:hidden flex justify-center">
+                        <iframe class="w-full max-w-sm sm:max-w-md h-[200px] sm:h-[250px] md:h-[300px] rounded-lg shadow-xl border-4 border-white"
+                            src="<?php echo $about_embed; ?>" title="Video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                    </div>
+                    <!-- Large Screens -->
+                    <iframe class="hidden lg:block absolute top-[70px] right-[-10px] w-[280px] md:w-[450px] lg:w-[500px] h-[250px] md:h-[300px] aspect-video rounded-lg shadow-xl border-4 border-white"
+                        src="<?php echo $about_embed; ?>" title="Video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    </iframe>
+                <?php endif; ?>
             </div>
         </div>
     </div>
 
 
 
-    <!-- video presentation -->
+    <!-- Recent Research Showcase -->
     <div class="max-w-7xl mx-auto my-10 lg:px-0 px-4">
         <div class="text-center mb-8">
-            <h2 class="text-3xl font-bold text-[#11327f]">Research Showcase</h2>
+            <h2 class="text-3xl font-bold text-[#11327f]">Recent Research Showcase</h2>
             <p class="text-gray-600 mt-2">Explore featured research videos that highlight innovation, awareness, and
                 impactful ideas.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <?php 
+            if(mysqli_num_rows($video_result) > 0):
+                while($video = mysqli_fetch_assoc($video_result)):
+                    $video_url = $video['video_url'];
+                    $thumbnail = !empty($video['thumbnail']) ? './images/thumbnails/' . $video['thumbnail'] : '';
+            ?>
+            <!-- Dynamic Card -->
+            <div class="relative group rounded-lg overflow-hidden shadow-lg">
+                <?php
+                // Check if it's a YouTube URL
+                if (strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false) {
+                    $video_id = '';
+                    if (preg_match('/(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $video_url, $matches)) {
+                        $video_id = $matches[1];
+                    }
+                    if ($video_id) {
+                        echo '<iframe src="https://www.youtube.com/embed/' . $video_id . '?autoplay=1&mute=1&loop=1&playlist=' . $video_id . '&controls=0&modestbranding=1" class="w-full h-[250px] object-cover rounded-lg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+                    }
+                } 
+                // Check if it's a Vimeo URL
+                elseif (strpos($video_url, 'vimeo.com') !== false) {
+                    $video_id = '';
+                    if (preg_match('/vimeo\.com\/(\d+)/', $video_url, $matches)) {
+                        $video_id = $matches[1];
+                    }
+                    if ($video_id) {
+                        echo '<iframe src="https://player.vimeo.com/video/' . $video_id . '?autoplay=1&muted=1&loop=1&background=1" class="w-full h-[250px] object-cover rounded-lg" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+                    }
+                }
+                // Check if it's a direct video file
+                elseif (preg_match('/\.(mp4|webm|ogg|mov|avi)$/i', $video_url)) {
+                    echo '<video src="' . htmlspecialchars($video_url) . '" autoplay muted loop playsinline class="w-full h-[250px] object-cover rounded-lg"></video>';
+                }
+                // Fallback to thumbnail or placeholder
+                else {
+                    $fallback_img = !empty($thumbnail) ? $thumbnail : './images/about image.avif';
+                    echo '<img src="' . $fallback_img . '" class="w-full h-[250px] object-cover rounded-lg" alt="Video Placeholder">';
+                }
+                ?>
+
+                <a href="researchDetail.php?id=<?php echo $video['id']; ?>"
+                    class="absolute bottom-0 left-0 w-full bg-[#11327f]/90 text-white text-center py-3 font-semibold flex items-center justify-center gap-2 translate-y-full group-hover:translate-y-0 transition-all duration-500 cursor-pointer">
+                    <i class="fas fa-video"></i> Go to Video
+                </a>
+            </div>
+            <?php 
+                endwhile;
+            else:
+                // Show static content as fallback if no data in database
+            ?>
             <!-- Card 1 -->
             <div class="relative group rounded-lg overflow-hidden shadow-lg">
                 <video src="./images/home video 1.mp4" autoplay muted loop playsinline
@@ -262,6 +361,7 @@
                     <i class="fas fa-book-open"></i> Watch Insights
                 </div>
             </div>
+            <?php endif; ?>
         </div>
 
     </div>
@@ -280,7 +380,66 @@
 
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Research Card 1 -->
+                <?php 
+                if(mysqli_num_rows($research_result) > 0):
+                    $fallback_images = ["./images/feature 2.avif", "./images/feature 3.avif"];
+                    $idx = 0;
+                    while($research = mysqli_fetch_assoc($research_result)):
+                        $img_path = !empty($research['thumbnail']) ? "./images/thumbnails/" . $research['thumbnail'] : $fallback_images[$idx % 2];
+                        $idx++;
+                        
+                        $authors = [];
+                        if(!empty($research['research_leader'])) $authors[] = $research['research_leader'];
+                        if(!empty($research['co_leader'])) $authors[] = $research['co_leader'];
+                        $author_text = !empty($authors) ? implode(", ", $authors) : "Research Academy";
+                ?>
+                <!-- Research Card -->
+                <div
+                    class="research-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="<?php echo $img_path; ?>" alt="<?php echo htmlspecialchars($research['title']); ?>"
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-[#11327f] text-white text-xs font-medium px-2.5 py-0.5 rounded">
+                                <?php echo htmlspecialchars($research['category_name'] ?? 'Research'); ?>
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 line-clamp-2"><?php echo htmlspecialchars($research['title']); ?></h3>
+                        <p class="text-gray-600 mb-4 text-sm"><?php echo htmlspecialchars($author_text); ?></p>
+                        <p class="text-gray-700 mb-5 line-clamp-3">
+                            <?php echo htmlspecialchars(substr($research['description'] ?? '', 0, 150)) . (strlen($research['description'] ?? '') > 150 ? '...' : ''); ?>
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <a href="researchDetail.php?id=<?php echo $research['id']; ?>"
+                                class="text-[#11327f] font-medium hover:text-blue-800 transition-colors flex items-center gap-1">
+                                Read More
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+
+                            <div class="flex flex-wrap items-center text-gray-500 text-xs gap-3">
+                                <div class="flex items-center">
+                                    <i class="far fa-eye mr-1"></i>
+                                    <span><?php echo number_format($research['views'] ?? 0); ?></span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-download mr-1"></i>
+                                    <span><?php echo number_format($research['downloads'] ?? 0); ?></span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-calendar-alt mr-1"></i>
+                                    <span><?php echo date('M Y', strtotime($research['created_at'])); ?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php 
+                    endwhile;
+                else: 
+                ?>
+                <!-- Research Card 1 (Fallback) -->
                 <div
                     class="research-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
                     <div class="h-48 overflow-hidden">
@@ -304,15 +463,25 @@
                                 <i class="fas fa-arrow-right"></i>
                             </a>
 
-                            <div class="flex items-center text-gray-500 text-sm">
-                                <i class="far fa-calendar-alt mr-1"></i>
-                                <span>Oct 2023</span>
+                            <div class="flex flex-wrap items-center text-gray-500 text-xs gap-3">
+                                <div class="flex items-center">
+                                    <i class="far fa-eye mr-1"></i>
+                                    <span>24.5k</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-download mr-1"></i>
+                                    <span>12.3k</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-calendar-alt mr-1"></i>
+                                    <span>Oct 2023</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Research Card 2 -->
+                <!-- Research Card 2 (Fallback) -->
                 <div
                     class="research-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
                     <div class="h-48 overflow-hidden">
@@ -336,15 +505,25 @@
                                 <i class="fas fa-arrow-right"></i>
                             </a>
 
-                            <div class="flex items-center text-gray-500 text-sm">
-                                <i class="far fa-calendar-alt mr-1"></i>
-                                <span>Sep 2023</span>
+                            <div class="flex flex-wrap items-center text-gray-500 text-xs gap-3">
+                                <div class="flex items-center">
+                                    <i class="far fa-eye mr-1"></i>
+                                    <span>18.2k</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-download mr-1"></i>
+                                    <span>8.5k</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-calendar-alt mr-1"></i>
+                                    <span>Sep 2023</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Research Card 3 -->
+                <!-- Research Card 3 (Fallback) -->
                 <div
                     class="research-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
                     <div class="h-48 overflow-hidden">
@@ -368,18 +547,29 @@
                                 <i class="fas fa-arrow-right"></i>
                             </a>
 
-                            <div class="flex items-center text-gray-500 text-sm">
-                                <i class="far fa-calendar-alt mr-1"></i>
-                                <span>Aug 2023</span>
+                            <div class="flex flex-wrap items-center text-gray-500 text-xs gap-3">
+                                <div class="flex items-center">
+                                    <i class="far fa-eye mr-1"></i>
+                                    <span>32.1k</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-download mr-1"></i>
+                                    <span>15.7k</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-calendar-alt mr-1"></i>
+                                    <span>Aug 2023</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
 
             <!-- button -->
             <div class="text-center mt-12">
-                <a href="#"
+                <a href="research.php"
                     class="group inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[#11327f] hover:bg-[#11327f]/90 transition-colors duration-300">
                     View All Research
                     <i
@@ -395,7 +585,8 @@
         style="background-image: url('./images/map.avif'); background-size: cover; background-position: center;">
         <!-- Overlay -->
         <div class="absolute inset-0 bg-white/80 w-full "></div>
-        <div class="relative max-w-7xl flex flex-col justify-center   mx-auto w-full lg:h-[600px]  shadow-xl overflow-hidden">
+        <div
+            class="relative max-w-7xl flex flex-col justify-center   mx-auto w-full lg:h-[600px]  shadow-xl overflow-hidden">
 
 
 
@@ -406,7 +597,8 @@
                 </h2>
             </div>
 
-            <div class="relative z-10 mt-56 mb-12 lg:mb-0 flex flex-col md:flex-row justify-center items-center gap-14 md:gap-12  px-6">
+            <div
+                class="relative z-10 mt-56 mb-12 lg:mb-0 flex flex-col md:flex-row justify-center items-center gap-14 md:gap-12  px-6">
                 <!-- Card 1 -->
                 <!-- <div
                     class="relative max-w-sm w-full md:w-[400px] text-center shadow-xl bg-white rounded-xl pt-16 pb-8 px-6 transition-all duration-300 hover:-translate-y-2">
@@ -649,91 +841,52 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Executive Director -->
-                <div
-                    class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 text-center p-6">
+                <?php 
+                if(mysqli_num_rows($team_homepage_res) > 0):
+                    while($tm = mysqli_fetch_assoc($team_homepage_res)):
+                        $st = $tm['sub_type'] ?? '';
+                        $roleLabel = getSubTypeLabel($st);
+                        $img = !empty($tm['image']) ? $tm['image'] : './images/team member 1.avif';
+                ?>
+                <!-- Dynamic Member Card -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 text-center p-6">
                     <div class="relative inline-block">
-                        <img src="./images/team member 2.avif" alt="Dr. Josep Smith"
+                        <img src="./<?php echo $img; ?>" alt="<?php echo htmlspecialchars($tm['name']); ?>"
                             class="rounded-full w-40 h-40 object-cover object-top mx-auto border-4 border-[#11327f]">
-                        <div
-                            class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-[#11327f] text-white text-xs font-semibold px-3 py-1 rounded-full">
-                            Executive Director
+                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-[#11327f] text-white text-[10px] font-semibold px-3 py-1 rounded-full whitespace-nowrap">
+                            <?php echo htmlspecialchars($roleLabel); ?>
                         </div>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mt-6">Dr. Josep Smith</h3>
-                    <p class="text-gray-600 mt-2">Leading our vision with expertise and dedication</p>
+                    <h3 class="text-xl font-bold text-gray-800 mt-6"><?php echo htmlspecialchars($tm['name']); ?></h3>
+                    <p class="text-gray-600 mt-2 text-sm line-clamp-2"><?php echo htmlspecialchars($tm['description'] ?: 'Dedicated to research excellence'); ?></p>
                     <div class="mt-4 flex justify-center space-x-3">
-                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
+                        <?php if($tm['linkedin']): ?>
+                        <a href="<?php echo htmlspecialchars($tm['linkedin']); ?>" class="text-gray-400 hover:text-[#11327f] transition-colors">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
-                            <i class="far fa-envelope"></i>
+                        <?php endif; ?>
+                        <?php if($tm['github']): ?>
+                        <a href="<?php echo htmlspecialchars($tm['github']); ?>" class="text-gray-400 hover:text-[#11327f] transition-colors">
+                            <i class="fab fa-github"></i>
                         </a>
+                        <?php endif; ?>
                     </div>
                 </div>
-
-                <!-- Team Leader -->
-                <div
-                    class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 text-center p-6">
-                    <img src="./images/team member 3.avif" alt="Jacob Fitzgraid"
-                        class="rounded-full w-32 h-32 object-cover object-top mx-auto border-4 border-white shadow-md">
-                    <h3 class="text-lg font-semibold text-[#11327f] mt-4">TEAM LEADER</h3>
-                    <h2 class="text-xl font-bold text-gray-800">Jacob Fitzgraid</h2>
-                    <p class="text-gray-600 mt-2 text-sm">Guiding our projects to success efficiently</p>
-                    <div class="mt-4 flex justify-center space-x-3">
-                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
-                            <i class="far fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Design -->
-                <div
-                    class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 text-center p-6">
-                    <img src="./images/team member 1.avif" alt="Hayati Jacob"
-                        class="rounded-full w-32 h-32 object-cover object-top mx-auto border-4 border-white shadow-md">
-                    <h3 class="text-lg font-semibold text-[#11327f] mt-4">DESIGN</h3>
-                    <h2 class="text-xl font-bold text-gray-800">Hayati Jacob</h2>
-                    <p class="text-gray-600 mt-2 text-sm">Creating visually compelling experiences</p>
-                    <div class="mt-4 flex justify-center space-x-3">
-                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
-                            <i class="far fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Programmer -->
-                <div
-                    class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 text-center p-6">
-                    <img src="./images/team member 4.avif" alt="Herry Sent"
-                        class="rounded-full w-32 h-32 object-cover object-top mx-auto border-4 border-white shadow-md">
-                    <h3 class="text-lg font-semibold text-[#11327f] mt-4">DEVELOPER</h3>
-                    <h2 class="text-xl font-bold text-gray-800">Herry Sent</h2>
-                    <p class="text-gray-600 mt-2 text-sm">Building innovative technical solutions</p>
-                    <div class="mt-4 flex justify-center space-x-3">
-                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-[#11327f] transition-colors">
-                            <i class="far fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
+                <?php 
+                    endwhile;
+                else: 
+                ?>
+                <p class="text-center col-span-4 text-gray-400 italic">Our team members are being featured soon.</p>
+                <?php endif; ?>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-      <?php include 'include/CTAsection.php'?>
+    <?php include('Include/CTAsection.php');?>
 
-        <!-- Footer -->
-        <?php include 'include/footer.php';?>
+    <!-- Footer -->
+    <?php include('Include/Footer.php');?>
 
 
 

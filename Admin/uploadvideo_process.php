@@ -1,8 +1,5 @@
 <?php
-/**
-* Upload Video Process Handler
-* Handles form submission for uploading research videos with validation and security
-*/
+
 session_start();
 include '../db_connection/connection.php';
 
@@ -17,50 +14,46 @@ if ( $_SERVER[ 'REQUEST_METHOD' ] === 'POST' && isset( $_POST[ 'submit' ] ) ) {
     $sub_category_id = isset( $_POST[ 'sub_category' ] ) ? intval( $_POST[ 'sub_category' ] ) : 0;
     $research_leader = isset( $_POST[ 'research_leader' ] ) ? trim( $_POST[ 'research_leader' ] ) : null;
     $co_leader = isset( $_POST[ 'co_leader' ] ) ? trim( $_POST[ 'co_leader' ] ) : null;
-    // Handle thumbnail upload
-    $thumbnail = null;
-    if ( !isset( $_FILES[ 'thumbnail' ] ) || $_FILES[ 'thumbnail' ][ 'error' ] !== UPLOAD_ERR_OK ) {
-        $_SESSION[ 'error' ] = 'Thumbnail image is required.';
-        header( 'Location: uploadvideoform.php' );
-        exit;
+    // Handle optional thumbnail upload ( only process if a file was provided )
+    $thumbnail = '';
+    if ( isset( $_FILES[ 'thumbnail' ] ) && $_FILES[ 'thumbnail' ][ 'error' ] === UPLOAD_ERR_OK ) {
+        $file = $_FILES[ 'thumbnail' ];
+        // Basic validation
+        $allowed = [ 'image/jpeg', 'image/png', 'image/webp', 'image/gif' ];
+        if ( $file[ 'size' ] > 2 * 1024 * 1024 ) {
+            $_SESSION[ 'error' ] = 'Thumbnail must be less than 2MB.';
+            header( 'Location: uploadvideoform.php' );
+            exit;
+        }
+
+        $finfo = finfo_open( FILEINFO_MIME_TYPE );
+        $mime = finfo_file( $finfo, $file[ 'tmp_name' ] );
+        finfo_close( $finfo );
+
+        if ( !in_array( $mime, $allowed ) ) {
+            $_SESSION[ 'error' ] = 'Invalid thumbnail format. Allowed: jpg, png, webp, gif.';
+            header( 'Location: uploadvideoform.php' );
+            exit;
+        }
+
+        // Create upload dir if not exists
+        $uploadDir = __DIR__ . '/../images/thumbnails/';
+        if ( !is_dir( $uploadDir ) ) {
+            mkdir( $uploadDir, 0755, true );
+        }
+
+        $ext = pathinfo( $file[ 'name' ], PATHINFO_EXTENSION );
+        $safeName = time() . '_' . bin2hex( random_bytes( 6 ) ) . '.' . $ext;
+        $targetPath = $uploadDir . $safeName;
+
+        if ( !move_uploaded_file( $file[ 'tmp_name' ], $targetPath ) ) {
+            $_SESSION[ 'error' ] = 'Failed to save thumbnail image.';
+            header( 'Location: uploadvideoform.php' );
+            exit;
+        }
+
+        $thumbnail = $safeName;
     }
-
-    $file = $_FILES[ 'thumbnail' ];
-    // Basic validation
-    $allowed = [ 'image/jpeg', 'image/png', 'image/webp', 'image/gif' ];
-    if ( $file[ 'size' ] > 2 * 1024 * 1024 ) {
-        $_SESSION[ 'error' ] = 'Thumbnail must be less than 2MB.';
-        header( 'Location: uploadvideoform.php' );
-        exit;
-    }
-
-    $finfo = finfo_open( FILEINFO_MIME_TYPE );
-    $mime = finfo_file( $finfo, $file[ 'tmp_name' ] );
-    finfo_close( $finfo );
-
-    if ( !in_array( $mime, $allowed ) ) {
-        $_SESSION[ 'error' ] = 'Invalid thumbnail format. Allowed: jpg, png, webp, gif.';
-        header( 'Location: uploadvideoform.php' );
-        exit;
-    }
-
-    // Create upload dir if not exists
-    $uploadDir = __DIR__ . '/../images/thumbnails/';
-    if ( !is_dir( $uploadDir ) ) {
-        mkdir( $uploadDir, 0755, true );
-    }
-
-    $ext = pathinfo( $file[ 'name' ], PATHINFO_EXTENSION );
-    $safeName = time() . '_' . bin2hex( random_bytes( 6 ) ) . '.' . $ext;
-    $targetPath = $uploadDir . $safeName;
-
-    if ( !move_uploaded_file( $file[ 'tmp_name' ], $targetPath ) ) {
-        $_SESSION[ 'error' ] = 'Failed to save thumbnail image.';
-        header( 'Location: uploadvideoform.php' );
-        exit;
-    }
-
-    $thumbnail = $safeName;
 
     // Validate required fields
     if ( empty( $title ) ) {

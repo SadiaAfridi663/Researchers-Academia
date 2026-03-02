@@ -8,6 +8,19 @@ if (isset($_SESSION['login_error'])) {
     $login_error = $_SESSION['login_error'];
     unset($_SESSION['login_error']); // Clear the error after displaying
 }
+
+// Signup errors (set by Admin/signup_form_process.php)
+$signup_error = '';
+if (isset($_SESSION['error'])) {
+    $signup_error = $_SESSION['error'];
+    unset($_SESSION['error']);
+}
+
+$signup_success = '';
+if (isset($_SESSION['signup_success'])) {
+    $signup_success = $_SESSION['signup_success'];
+    unset($_SESSION['signup_success']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +54,7 @@ if (isset($_SESSION['login_error'])) {
 <body>
 
     <!-- header -->
-    <?php include 'include/navbar.php'; ?>
+    <?php include 'Include/navbar.php'; ?>
 
     <!-- header end -->
 
@@ -427,7 +440,32 @@ if (isset($_SESSION['login_error'])) {
                         ?>
 
                         <!-- Sign Up Form (Default - hidden if login error exists) -->
-                        <form id='signUpForm' action='./PHP/signup_form_process.php' method='POST'
+                        <?php if (!empty($signup_success)): ?>
+                        <div class="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-600 mr-3"></i>
+                                <div>
+                                    <p class="text-green-700 font-medium">Signup Successful</p>
+                                    <p class="text-green-600 text-sm mt-1">
+                                        <?php echo htmlspecialchars($signup_success); ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endif; ?>
+
+                        <?php if (!empty($signup_error)): ?>
+                        <div class="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                            <div class="flex items-center">
+                                <i class="fas fa-exclamation-circle text-red-500 mr-3"></i>
+                                <div>
+                                    <p class="text-red-700 font-medium">Signup Failed</p>
+                                    <p class="text-red-600 text-sm mt-1"><?php echo htmlspecialchars($signup_error); ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endif; ?>
+                        <form id='signUpForm' action='./Admin/signup_form_process.php' method='POST'
                             class='space-y-6 <?php echo (!empty($login_error)) ? 'hidden' : ''; ?>'>
                             <div>
                                 <h3 class='text-2xl font-semibold text-gray-900 mb-2'>Create Your Account</h3>
@@ -535,7 +573,7 @@ if (isset($_SESSION['login_error'])) {
                         </form>
 
                         <!-- Sign In Form (Visible if login error exists) -->
-                        <form id='signInForm' action='./PHP/login_process.php' method='POST'
+                        <form id='signInForm' action='./Admin/login_process.php' method='POST'
                             class='space-y-6 <?php echo (empty($login_error)) ? 'hidden' : ''; ?>'>
                             <div>
                                 <h3 class='text-2xl font-semibold text-gray-900 mb-2'>Sign In to Your Account</h3>
@@ -606,10 +644,10 @@ if (isset($_SESSION['login_error'])) {
     <!-- join form end -->
 
     <!-- CTA Section -->
-    <?php include 'include/CTAsection.php'; ?>
+    <?php include 'Include/CTAsection.php'; ?>
 
     <!-- Footer -->
-    <?php include 'include/footer.php'; ?>
+    <?php include 'Include/Footer.php'; ?>
 
     <script>
     // State management

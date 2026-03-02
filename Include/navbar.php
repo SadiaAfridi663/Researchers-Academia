@@ -1,12 +1,21 @@
 <?php
-include './db_connection/connection.php';
-
+include 'db_connection/connection.php';
 if ( session_status() === PHP_SESSION_NONE ) {
     session_start();
 }
 
+// Determine login state
 $isLoggedIn = isset( $_SESSION[ 'super_admin_id' ] ) || isset( $_SESSION[ 'user_id' ] );
-$userName = isset( $_SESSION[ 'super_admin_name' ] ) ? $_SESSION[ 'super_admin_name' ] : ( isset( $_SESSION[ 'username' ] ) ? $_SESSION[ 'username' ] : '' );
+
+// Determine display name: prefer super admin name, then full user name, then username
+$userName = '';
+if ( isset( $_SESSION[ 'super_admin_name' ] ) && !empty( $_SESSION[ 'super_admin_name' ] ) ) {
+    $userName = $_SESSION[ 'super_admin_name' ];
+} elseif ( isset( $_SESSION[ 'user_name' ] ) && !empty( $_SESSION[ 'user_name' ] ) ) {
+    $userName = $_SESSION[ 'user_name' ];
+} elseif ( isset( $_SESSION[ 'username' ] ) && !empty( $_SESSION[ 'username' ] ) ) {
+    $userName = $_SESSION[ 'username' ];
+}
 
 function isFreeResource( $categoryName ) {
     return strtolower( trim( $categoryName ) ) === 'free resources' || strtolower( trim( $categoryName ) ) === 'free resource';
@@ -149,7 +158,7 @@ if ( !$categoriesResult ) {
 
                     <div class='rounded-lg overflow-hidden'>
                         <!-- Logout -->
-                        <a href='./PHP/logout.php'
+                        <a href='./logout.php'
                             class='flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors duration-200'>
                             <i class='fas fa-sign-out-alt mr-3 text-gray-400 group-hover:text-red-500'></i>
                             <span>Logout</span>
@@ -246,7 +255,7 @@ if ( !$categoriesResult ) {
                                 <p class='text-xs text-gray-600'><?php echo htmlspecialchars( $userName );
         ?></p>
                             </div>
-                            <a href='./PHP/logout.php'
+                            <a href='./logout.php'
                                 class='w-full px-6 py-3 bg-red-600 text-white rounded-lg font-semibold shadow-md hover:bg-red-700 transition block text-center'>
                                 <i class='fas fa-sign-out-alt mr-2'></i>Logout
                             </a>
@@ -267,64 +276,63 @@ if ( !$categoriesResult ) {
 
     <script>
     // Function to handle login requirement
-
     function requireLogin() {
         alert('This resource requires login. Please sign up or log in to access it.');
         window.location.href = './join_us.php';
     }
 
-    // Mobile menu functionality
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileOverlay = document.getElementById('mobile-overlay');
-    const line1 = document.getElementById('line1');
-    const line2 = document.getElementById('line2');
-    const line3 = document.getElementById('line3');
+    // Wrap in IIFE to avoid re-declaring const variables that script.js also uses
+    (function() {
+        var _menuBtn = document.getElementById('menu-btn');
+        var _mobileMenu = document.getElementById('mobile-menu');
+        var _mobileOverlay = document.getElementById('mobile-overlay');
+        var _line1 = document.getElementById('line1');
+        var _line2 = document.getElementById('line2');
+        var _line3 = document.getElementById('line3');
 
-    if (menuBtn) {
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('-translate-y-full');
-            mobileOverlay.classList.toggle('hidden');
-
-            // Hamburger animation
-            line1.classList.toggle('rotate-45');
-            line1.classList.toggle('translate-y-2');
-            line2.classList.toggle('opacity-0');
-            line3.classList.toggle('-rotate-45');
-            line3.classList.toggle('-translate-y-2');
-        });
-    }
-
-    if (mobileOverlay) {
-        mobileOverlay.addEventListener('click', () => {
-            mobileMenu.classList.add('-translate-y-full');
-            mobileOverlay.classList.add('hidden');
-            line1.classList.remove('rotate-45', 'translate-y-2');
-            line2.classList.remove('opacity-0');
-            line3.classList.remove('-rotate-45', '-translate-y-2');
-        });
-    }
-
-    function closeMobileMenu() {
-        mobileMenu.classList.add('-translate-y-full');
-        mobileOverlay.classList.add('hidden');
-        line1.classList.remove('rotate-45', 'translate-y-2');
-        line2.classList.remove('opacity-0');
-        line3.classList.remove('-rotate-45', '-translate-y-2');
-    }
-
-    function toggleSubmenu() {
-        const submenu = document.getElementById('research-submenu');
-        const arrow = document.getElementById('submenu-arrow');
-
-        if (submenu.style.maxHeight === '0px' || submenu.style.maxHeight === '') {
-            submenu.style.maxHeight = submenu.scrollHeight + 'px';
-            arrow.classList.add('rotate-180');
-        } else {
-            submenu.style.maxHeight = '0';
-            arrow.classList.remove('rotate-180');
+        function _openMenu() {
+            if (_mobileMenu) _mobileMenu.classList.remove('-translate-y-full');
+            if (_mobileOverlay) _mobileOverlay.classList.remove('hidden');
+            if (_line1) { _line1.classList.add('rotate-45'); _line1.classList.add('translate-y-2'); }
+            if (_line2) _line2.classList.add('opacity-0');
+            if (_line3) { _line3.classList.add('-rotate-45'); _line3.classList.add('-translate-y-2'); }
         }
-    }
+
+        function _closeMenu() {
+            if (_mobileMenu) _mobileMenu.classList.add('-translate-y-full');
+            if (_mobileOverlay) _mobileOverlay.classList.add('hidden');
+            if (_line1) { _line1.classList.remove('rotate-45'); _line1.classList.remove('translate-y-2'); }
+            if (_line2) _line2.classList.remove('opacity-0');
+            if (_line3) { _line3.classList.remove('-rotate-45'); _line3.classList.remove('-translate-y-2'); }
+        }
+
+        if (_menuBtn) {
+            _menuBtn.addEventListener('click', function() {
+                var isOpen = _mobileMenu && !_mobileMenu.classList.contains('-translate-y-full');
+                if (isOpen) { _closeMenu(); } else { _openMenu(); }
+            });
+        }
+
+        if (_mobileOverlay) {
+            _mobileOverlay.addEventListener('click', _closeMenu);
+        }
+
+        // Expose globally needed functions
+        window.closeMobileMenu = _closeMenu;
+
+        window.toggleSubmenu = function() {
+            var submenu = document.getElementById('research-submenu');
+            var arrow = document.getElementById('submenu-arrow');
+            if (!submenu || !arrow) return;
+            if (submenu.style.maxHeight === '0px' || submenu.style.maxHeight === '') {
+                submenu.style.maxHeight = submenu.scrollHeight + 'px';
+                arrow.classList.add('rotate-180');
+            } else {
+                submenu.style.maxHeight = '0';
+                arrow.classList.remove('rotate-180');
+            }
+        };
+    })();
     </script>
 
 </body>

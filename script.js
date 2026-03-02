@@ -1,64 +1,5 @@
-// Mobile menu toggle
-const menuBtn = document.getElementById('menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-const mobileOverlay = document.getElementById('mobile-overlay');
-const line1 = document.getElementById('line1');
-const line2 = document.getElementById('line2');
-const line3 = document.getElementById('line3');
-const body = document.body;
-
-function toggleMobileMenu() {
-  const isOpen = !mobileMenu.classList.contains('-translate-y-full');
-
-  if (isOpen) {
-    closeMobileMenu();
-  } else {
-    openMobileMenu();
-  }
-}
-
-function openMobileMenu() {
-  mobileMenu.classList.remove('-translate-y-full');
-  mobileOverlay.classList.remove('hidden');
-  body.classList.add('overflow-hidden');
-
-  // Hamburger animation
-  line1.classList.add('rotate-45', 'translate-y-2');
-  line2.classList.add('opacity-0');
-  line3.classList.add('-rotate-45', '-translate-y-3');
-}
-
-function closeMobileMenu() {
-  mobileMenu.classList.add('-translate-y-full');
-  mobileOverlay.classList.add('hidden');
-  body.classList.remove('overflow-hidden');
-
-  // Hamburger animation
-  line1.classList.remove('rotate-45', 'translate-y-2');
-  line2.classList.remove('opacity-0');
-  line3.classList.remove('-rotate-45', '-translate-y-3');
-
-  // Close submenu if open
-  const submenu = document.getElementById('research-submenu');
-  const arrow = document.getElementById('submenu-arrow');
-  submenu.classList.add('max-h-0');
-  submenu.classList.remove('max-h-40');
-  arrow.classList.remove('rotate-180');
-}
-
-menuBtn.addEventListener('click', toggleMobileMenu);
-mobileOverlay.addEventListener('click', closeMobileMenu);
-
-// Research submenu toggle
-function toggleSubmenu() {
-  const submenu = document.getElementById('research-submenu');
-  const arrow = document.getElementById('submenu-arrow');
-
-  submenu.classList.toggle('max-h-0');
-  submenu.classList.toggle('max-h-40');
-  arrow.classList.toggle('rotate-180');
-}
-
+// Mobile menu and submenu logic is handled in Include/navbar.php now.
+// Do not redeclare const menuBtn, mobileMenu etc. otherwise it throws a SyntaxError and breaks the entire file.
 
 // team page hero slider start here
 const slides = document.querySelectorAll(".team-slide");
@@ -97,11 +38,12 @@ function nextSlide() {
   arrangeSlides();
 }
 
-arrangeSlides();
-setInterval(nextSlide, 2000);
-
-// handle resize dynamically
-window.addEventListener("resize", arrangeSlides);
+if (slides.length > 0) {
+  arrangeSlides();
+  setInterval(nextSlide, 2000);
+  // handle resize dynamically
+  window.addEventListener("resize", arrangeSlides);
+}
 // team page hero slider end here
 
 

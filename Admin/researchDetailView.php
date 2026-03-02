@@ -97,8 +97,7 @@ mysqli_stmt_execute( $updateStmt );
 <body class='bg-gradient-to-br from-gray-50 to-blue-50'>
 
     <!-- Navigation -->
-    <?php include '../include/navbar.php';
-?>
+    <?php include '../Include/navbar.php'; ?>
 
     <!-- Breadcrumb -->
     <div class='bg-white border-b border-gray-200'>
@@ -299,8 +298,7 @@ echo $detail[ 'published_date' ] ? date( 'M d, Y', strtotime( $detail[ 'publishe
     </main>
 
     <!-- Footer -->
-    <?php include '../include/Footer.php';
-?>
+    <?php include '../Include/Footer.php'; ?>
 
     <script>
     function confirmDelete(detailId) {

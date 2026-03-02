@@ -3,7 +3,7 @@ session_start();
 
 // Check if user is logged in as admin
 if(!isset($_SESSION['super_admin_id'])){
-    header('location:superadminlogin.php');
+    header('location:index.php');
     exit;
 }
 
@@ -90,7 +90,7 @@ if (!$result) {
 
     <div class="flex">
         <!-- Sidebar Navigation -->
-        <?php include '../include/dashboardsidebar.php'; ?>
+        <?php include 'dashboardsidebar.php'; ?>
 
         <!-- Main Content -->
         <main class="flex-1 p-6 md:p-8">
@@ -120,7 +120,8 @@ if (!$result) {
                         </h1>
                         <p class="text-gray-600">Manage all research detail documents</p>
                     </div>
-                    <div class="mt-4 md:mt-0">
+                    <div class="mt-4 md:mt-0 flex items-center gap-3">
+                        <?php include 'notification_bar.php'; ?>
                         <a href="uploadresearchdetailform.php"
                             class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg">
                             <i class="fas fa-plus mr-2"></i> Add Research Detail

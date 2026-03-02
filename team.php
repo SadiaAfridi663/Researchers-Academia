@@ -1,5 +1,16 @@
-<!DOCTYPE html>
 <html lang="en">
+<?php 
+include 'db_connection/connection.php';
+include 'db_connection/team_config.php';
+
+// Fetch Active Leaders
+$leaders_query = "SELECT * FROM team_members WHERE type = 'leader' AND status = 1 ORDER BY created_at ASC";
+$leaders_res = mysqli_query($conn, $leaders_query);
+
+// Fetch Active Team Members
+$members_query = "SELECT * FROM team_members WHERE type = 'team_member' AND status = 1 ORDER BY created_at ASC";
+$members_res = mysqli_query($conn, $members_query);
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -17,35 +28,35 @@
     <title>Team</title>
 
     <style>
-        /* Apply Outfit as the default font */
-        body {
-            font-family: 'Outfit', sans-serif;
-        }
+    /* Apply Outfit as the default font */
+    body {
+        font-family: 'Outfit', sans-serif;
+    }
 
-        /* Default lines */
-        #menu-btn span {
-            background-color: #333;
-            /* dark for white bg */
-        }
+    /* Default lines */
+    #menu-btn span {
+        background-color: #333;
+        /* dark for white bg */
+    }
 
-        /* Open (Cross) state */
-        #menu-btn.open #line1 {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
+    /* Open (Cross) state */
+    #menu-btn.open #line1 {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
 
-        #menu-btn.open #line2 {
-            opacity: 0;
-        }
+    #menu-btn.open #line2 {
+        opacity: 0;
+    }
 
-        #menu-btn.open #line3 {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
+    #menu-btn.open #line3 {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
     </style>
 </head>
 
 <body>
     <!-- header -->
-    <?php include 'include/navbar.php'; ?>
+    <?php include 'Include/navbar.php'; ?>
 
 
     <!-- hero section -->
@@ -124,218 +135,79 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- Founder 1 -->
+                <?php 
+                if(mysqli_num_rows($leaders_res) > 0):
+                    while($leader = mysqli_fetch_assoc($leaders_res)):
+                        $st = $leader['sub_type'] ?? '';
+                        $roleLabel = getSubTypeLabel($st);
+                        $img = !empty($leader['image']) ? $leader['image'] : './images/leader 1.avif';
+                ?>
+                <!-- Dynamic Leader Card -->
                 <div class="relative bg-white rounded-2xl shadow-xl overflow-hidden group">
                     <div class="flex flex-col md:flex-row h-full">
-
                         <!-- Image Section -->
                         <div class="md:w-2/5 relative">
                             <div class="w-full h-full">
-                                <img src="./images/leader 1.avif" alt="Robert Johnson"
+                                <img src="./<?php echo $img; ?>" alt="<?php echo htmlspecialchars($leader['name']); ?>"
                                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                             </div>
-                            <div
-                                class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                                <h3 class="text-2xl font-bold text-white">Robert Johnson</h3>
-                                <p class="text-blue-200 font-medium">Founder & CEO</p>
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+                                <h3 class="text-2xl font-bold text-white"><?php echo htmlspecialchars($leader['name']); ?></h3>
+                                <p class="text-blue-200 font-medium"><?php echo htmlspecialchars($roleLabel); ?></p>
                             </div>
                         </div>
 
                         <!-- Content Section -->
                         <div class="md:w-3/5 p-8">
                             <div class="flex space-x-4 mb-6">
-                                <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <?php if($leader['twitter']): ?>
+                                <a href="<?php echo htmlspecialchars($leader['twitter']); ?>" class="text-gray-400 hover:text-blue-600 transition-colors">
                                     <i class="fab fa-twitter w-5 h-5"></i>
                                 </a>
-                                <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <?php endif; ?>
+                                <?php if($leader['linkedin']): ?>
+                                <a href="<?php echo htmlspecialchars($leader['linkedin']); ?>" class="text-gray-400 hover:text-blue-600 transition-colors">
                                     <i class="fab fa-linkedin-in text-xl"></i>
                                 </a>
-                                <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <?php endif; ?>
+                                <?php if($leader['github']): ?>
+                                <a href="<?php echo htmlspecialchars($leader['github']); ?>" class="text-gray-400 hover:text-blue-600 transition-colors">
                                     <i class="fab fa-github text-xl"></i>
                                 </a>
+                                <?php endif; ?>
                             </div>
 
                             <p class="text-gray-700 mb-6 leading-relaxed">
-                                With over 15 years of industry experience, Robert founded our company with a vision to
-                                revolutionize the digital landscape. His strategic leadership has guided our growth from
-                                a startup to a market leader.
+                                <?php echo htmlspecialchars($leader['description'] ?: 'Visionary leader driving innovation and excellence in our research initiatives.'); ?>
                             </p>
 
+                            <?php if($leader['quote']): ?>
                             <div class="border-l-4 border-blue-500 pl-4 mb-6">
-                                <p class="text-gray-600 italic">
-                                    "Innovation is not about saying yes to everything. It's about saying no to all but
-                                    the most crucial features."
-                                </p>
+                                <p class="text-gray-600 italic">"<?php echo htmlspecialchars($leader['quote']); ?>"</p>
                             </div>
+                            <?php endif; ?>
 
                             <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-[#103182] text-white text-sm rounded-full">Strategic
-                                    Vision</span>
-                                <span class="px-3 py-1 bg-[#103182] text-white text-sm rounded-full">Leadership</span>
-                                <span class="px-3 py-1 bg-[#103182] text-white text-sm rounded-full">Innovation</span>
+                                <?php if($leader['skill_1']): ?>
+                                <span class="px-3 py-1 bg-[#103182] text-white text-sm rounded-full"><?php echo htmlspecialchars($leader['skill_1']); ?></span>
+                                <?php endif; ?>
+                                <?php if($leader['skill_2']): ?>
+                                <span class="px-3 py-1 bg-[#103182] text-white text-sm rounded-full"><?php echo htmlspecialchars($leader['skill_2']); ?></span>
+                                <?php endif; ?>
+                                <?php if($leader['skill_3']): ?>
+                                <span class="px-3 py-1 bg-[#103182] text-white text-sm rounded-full"><?php echo htmlspecialchars($leader['skill_3']); ?></span>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-                <!-- Founder 2 -->
-                <div class="relative bg-white rounded-2xl shadow-xl overflow-hidden group">
-                    <div class="flex flex-col md:flex-row">
-                        <div class="md:w-2/5 relative">
-                            <div class="h-80 md:h-full overflow-hidden">
-                                <img src="./images/leader 2.avif" alt="Sarah Williams"
-                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                            </div>
-                            <div
-                                class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                                <h3 class="text-2xl font-bold text-white">Sarah Williams</h3>
-                                <p class="text-blue-200 font-medium">Co-Founder & CTO</p>
-                            </div>
-                        </div>
-
-                        <div class="md:w-3/5 p-8">
-                            <div class="flex space-x-4 mb-6">
-                                <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                    <i class="fab fa-twitter w-5 h-5"></i>
-                                </a>
-
-                                <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                    <i class="fab fa-linkedin-in text-xl"></i>
-                                </a>
-
-                                <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                    <i class="fab fa-github text-xl"></i>
-                                </a>
-                            </div>
-
-                            <p class="text-gray-700 mb-6 leading-relaxed">
-                                Sarah brings technical excellence and innovation to our leadership team. With a PhD in
-                                Computer Science and numerous patents to her name, she drives our technological vision
-                                and R&D initiatives.
-                            </p>
-
-                            <div class="border-l-4 border-blue-500 pl-4 mb-6">
-                                <p class="text-gray-600 italic">"Technology should serve humanity, not the other way
-                                    around. We build tools that empower people to achieve more."</p>
-                            </div>
-
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-[#103182] text-white text-sm rounded-full">Technical
-                                    Innovation</span>
-                                <span class="px-3 py-1 bg-[#103182] text-white text-sm rounded-full">Research &
-                                    Development</span>
-                                <span class="px-3 py-1 bg-[#103182] text-white text-sm rounded-full">Product
-                                    Strategy</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Senior Leader 1 -->
-                <div class="relative bg-white rounded-2xl shadow-xl overflow-hidden group">
-                    <div class="flex flex-col md:flex-row h-full">
-                        <div class="md:w-2/5 relative">
-                            <div class="h-80 md:h-full overflow-hidden">
-                                <img src="./images/leader 3.avif" alt="Michael Chen"
-                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                            </div>
-                            <div
-                                class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                                <h3 class="text-2xl font-bold text-white">Michael Chen</h3>
-                                <p class="text-blue-200 font-medium">Chief Operations Officer</p>
-                            </div>
-                        </div>
-
-                        <div class="md:w-3/5 p-8">
-                            <div class="flex space-x-4 mb-6">
-                                <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                    <i class="fab fa-twitter w-5 h-5"></i>
-                                </a>
-
-                                <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                    <i class="fab fa-linkedin-in text-xl"></i>
-                                </a>
-
-                                <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                    <i class="fab fa-github text-xl"></i>
-                                </a>
-                            </div>
-
-                            <p class="text-gray-700 mb-6 leading-relaxed">
-                                Michael oversees our global operations with a focus on efficiency and scalability. His
-                                expertise in process optimization has been instrumental in our international expansion
-                                and operational excellence.
-                            </p>
-
-                            <div class="border-l-4 border-blue-500 pl-4 mb-6">
-                                <p class="text-gray-600 italic">"Excellence is not a skill, it's an attitude. We pursue
-                                    operational perfection in everything we do."</p>
-                            </div>
-
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-[#103182] text-white text-sm rounded-full">Operations</span>
-                                <span class="px-3 py-1 bg-[#103182] text-white text-sm rounded-full">Global
-                                    Expansion</span>
-                                <span class="px-3 py-1 bg-[#103182] text-white text-sm rounded-full">Process
-                                    Optimization</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Senior Leader 2 -->
-                <div class="relative bg-white rounded-2xl shadow-xl overflow-hidden group">
-                    <div class="flex flex-col md:flex-row">
-                        <div class="md:w-2/5 relative">
-                            <div class="h-80 md:h-full overflow-hidden">
-                                <img src="./images/leader 4.avif" alt="Jessica Martinez"
-                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                            </div>
-                            <div
-                                class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                                <h3 class="text-2xl font-bold text-white">Jessica Martinez</h3>
-                                <p class="text-blue-200 font-medium">Chief Marketing Officer</p>
-                            </div>
-                        </div>
-
-                        <div class="md:w-3/5 p-8">
-                            <div class="flex space-x-4 mb-6">
-                                <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                    <i class="fab fa-twitter w-5 h-5"></i>
-                                </a>
-
-                                <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                    <i class="fab fa-linkedin-in text-xl"></i>
-                                </a>
-
-                                <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                    <i class="fab fa-github text-xl"></i>
-                                </a>
-                            </div>
-
-                            <p class="text-gray-700 mb-6 leading-relaxed">
-                                Jessica leads our global marketing strategy with a data-driven approach. Her innovative
-                                campaigns have significantly increased our brand recognition and market share across all
-                                regions.
-                            </p>
-
-                            <div class="border-l-4 border-blue-500 pl-4 mb-6">
-                                <p class="text-gray-600 italic">"Great marketing doesn't feel like marketing. It feels
-                                    like a genuine conversation with someone who understands your needs."</p>
-                            </div>
-
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-[#103182] text-white text-sm rounded-full">Brand
-                                    Strategy</span>
-                                <span class="px-3 py-1 bg-[#103182] text-white text-sm rounded-full">Digital
-                                    Marketing</span>
-                                <span class="px-3 py-1 bg-[#103182] text-white text-sm rounded-full">Growth
-                                    Hacking</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php 
+                    endwhile;
+                else: 
+                ?>
+                <!-- Fallback Static Leaders (Removed for brevity but implied if DB empty) -->
+                <p class="text-center col-span-2 text-gray-500 italic">Leadership information is being updated...</p>
+                <?php endif; ?>
             </div>
         </div>
     </section>
@@ -354,222 +226,88 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Team Member 1 -->
-                <div
-                    class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                <?php 
+                if(mysqli_num_rows($members_res) > 0):
+                    while($m = mysqli_fetch_assoc($members_res)):
+                        $st = $m['sub_type'] ?? '';
+                        $roleLabel = getSubTypeLabel($st);
+                        $img = !empty($m['image']) ? $m['image'] : './images/team page member 1.avif';
+                ?>
+                <!-- Dynamic Team Member Card -->
+                <div class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
                     <div class="h-72 overflow-hidden">
-                        <img src="./images/team page member 1.avif" alt="Sarah Johnson"
+                        <img src="./<?php echo $img; ?>" alt="<?php echo htmlspecialchars($m['name']); ?>"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
 
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800">Sarah Johnson</h3>
-                        <p class="text-blue-600 font-medium">Creative Director</p>
-                        <p class="mt-3 text-gray-600">Leads our creative vision with 10+ years of experience in branding
-                            and visual design.</p>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold text-gray-800"><?php echo htmlspecialchars($m['name']); ?></h3>
+                        <p class="text-blue-600 font-medium"><?php echo htmlspecialchars($roleLabel); ?></p>
+                        <div class="mt-4 flex flex-wrap justify-center gap-2">
+                            <?php if($m['skill_1']): ?>
+                            <span class="px-2 py-0.5 bg-[#103182]/10 text-[#103182] text-[10px] font-bold rounded-full uppercase tracking-wider"><?php echo htmlspecialchars($m['skill_1']); ?></span>
+                            <?php endif; ?>
+                            <?php if($m['skill_2']): ?>
+                            <span class="px-2 py-0.5 bg-[#103182]/10 text-[#103182] text-[10px] font-bold rounded-full uppercase tracking-wider"><?php echo htmlspecialchars($m['skill_2']); ?></span>
+                            <?php endif; ?>
+                            <?php if($m['skill_3']): ?>
+                            <span class="px-2 py-0.5 bg-[#103182]/10 text-[#103182] text-[10px] font-bold rounded-full uppercase tracking-wider"><?php echo htmlspecialchars($m['skill_3']); ?></span>
+                            <?php endif; ?>
+                        </div>
 
-                        <div class="mt-5 flex space-x-3">
-
-                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                <i class="fab fa-twitter w-5 h-5"></i>
+                        <div class="mt-5 flex justify-center space-x-3 text-sm border-t border-gray-100 pt-4">
+                            <?php if($m['twitter']): ?>
+                            <a href="<?php echo htmlspecialchars($m['twitter']); ?>" class="text-gray-400 hover:text-[#103182] transition-colors">
+                                <i class="fab fa-twitter"></i>
                             </a>
-
-                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                <i class="fab fa-linkedin-in text-xl"></i>
+                            <?php endif; ?>
+                            <?php if($m['linkedin']): ?>
+                            <a href="<?php echo htmlspecialchars($m['linkedin']); ?>" class="text-gray-400 hover:text-[#103182] transition-colors">
+                                <i class="fab fa-linkedin-in text-base"></i>
                             </a>
-
-                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                <i class="fab fa-github text-xl"></i>
+                            <?php endif; ?>
+                            <?php if($m['github']): ?>
+                            <a href="<?php echo htmlspecialchars($m['github']); ?>" class="text-gray-400 hover:text-[#103182] transition-colors">
+                                <i class="fab fa-github text-base"></i>
                             </a>
+                            <?php endif; ?>
                         </div>
                     </div>
 
                     <!-- Hover overlay -->
-                    <div
-                        class="absolute inset-0 bg-[#103182] bg-opacity-90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-white">
-                        <h3 class="text-xl font-semibold">Sarah Johnson</h3>
-                        <p class="text-blue-200 font-medium">Creative Director</p>
-                        <p class="mt-3 text-center">Leads our creative vision with 10+ years of experience in branding
-                            and visual design across multiple industries.</p>
+                    <div class="absolute inset-0 bg-[#103182] bg-opacity-90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-white text-center">
+                        <h3 class="text-xl font-semibold"><?php echo htmlspecialchars($m['name']); ?></h3>
+                        <p class="text-blue-200 font-medium"><?php echo htmlspecialchars($roleLabel); ?></p>
+                        <p class="mt-3 text-sm">
+                            <?php echo htmlspecialchars($m['description'] ?: 'Committed researcher advancing our collective knowledge base.'); ?>
+                        </p>
                         <div class="mt-5 flex space-x-4">
-                            <a href="#"
-                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
-                                <i class="fab fa-twitter w-5 h-5"></i>
+                            <?php if($m['twitter']): ?>
+                            <a href="<?php echo htmlspecialchars($m['twitter']); ?>" class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-twitter w-4 h-4"></i>
                             </a>
-                            <a href="#"
-                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
-                                <i class="fab fa-linkedin-in text-xl"></i>
+                            <?php endif; ?>
+                            <?php if($m['linkedin']): ?>
+                            <a href="<?php echo htmlspecialchars($m['linkedin']); ?>" class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-linkedin-in text-sm"></i>
                             </a>
-                            <a href="#"
-                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
-                                <i class="fab fa-github text-xl"></i>
+                            <?php endif; ?>
+                            <?php if($m['github']): ?>
+                            <a href="<?php echo htmlspecialchars($m['github']); ?>" class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-github text-sm"></i>
                             </a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
-
-                <!-- Team Member 2 -->
-                <div
-                    class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                    <div class="h-72 overflow-hidden">
-                        <img src="./images/team page member 2.avif" alt="Michael Chen"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                    </div>
-
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800">Michael Chen</h3>
-                        <p class="text-blue-600 font-medium">Lead Developer</p>
-                        <p class="mt-3 text-gray-600">Full-stack developer specializing in React, Node.js, and cloud
-                            architecture solutions.</p>
-
-                        <div class="mt-5 flex space-x-3">
-
-                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                <i class="fab fa-twitter w-5 h-5"></i>
-                            </a>
-
-                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                <i class="fab fa-linkedin-in text-xl"></i>
-                            </a>
-
-                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                <i class="fab fa-github text-xl"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Hover overlay -->
-                    <div
-                        class="absolute inset-0 bg-[#103182] bg-opacity-90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-white">
-                        <h3 class="text-xl font-semibold">Michael Chen</h3>
-                        <p class="text-blue-200 font-medium">Lead Developer</p>
-                        <p class="mt-3 text-center">Full-stack developer with expertise in React, Node.js, and cloud
-                            architecture. Passionate about creating scalable solutions.</p>
-                        <div class="mt-5 flex space-x-4">
-                            <a href="#"
-                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
-                                <i class="fab fa-twitter w-5 h-5"></i>
-                            </a>
-                            <a href="#"
-                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
-                                <i class="fab fa-linkedin-in text-xl"></i>
-                            </a>
-                            <a href="#"
-                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
-                                <i class="fab fa-github text-xl"></i>
-                            </a>
-                        </div>
-                    </div>
+                <?php 
+                    endwhile;
+                else: 
+                ?>
+                <div class="col-span-4 text-center py-10">
+                    <p class="text-gray-500 italic text-lg">Our research team is growing! Stay tuned for updates.</p>
                 </div>
-
-                <!-- Team Member 3 -->
-                <div
-                    class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                    <div class="h-72 overflow-hidden">
-                        <img src="./images/team member 5.avif" alt="Emma Rodriguez"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                    </div>
-
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800">Emma Rodriguez</h3>
-                        <p class="text-blue-600 font-medium">Marketing Strategist</p>
-                        <p class="mt-3 text-gray-600">Develops data-driven marketing campaigns that drive growth and
-                            engagement.</p>
-
-                        <div class="mt-5 flex space-x-3">
-
-                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                <i class="fab fa-twitter w-5 h-5"></i>
-                            </a>
-
-                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                <i class="fab fa-linkedin-in text-xl"></i>
-                            </a>
-
-                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                <i class="fab fa-github text-xl"></i>
-                            </a>
-
-                        </div>
-                    </div>
-
-                    <!-- Hover overlay -->
-                    <div
-                        class="absolute inset-0 bg-[#103182] bg-opacity-90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-white">
-                        <h3 class="text-xl font-semibold">Emma Rodriguez</h3>
-                        <p class="text-blue-200 font-medium">Marketing Strategist</p>
-                        <p class="mt-3 text-center">Specializes in data-driven marketing campaigns with expertise in
-                            SEO, content strategy, and social media marketing.</p>
-                        <div class="mt-5 flex space-x-4">
-                            <a href="#"
-                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
-                                <i class="fab fa-twitter w-5 h-5"></i>
-                            </a>
-                            <a href="#"
-                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
-                                <i class="fab fa-linkedin-in text-xl"></i>
-                            </a>
-                            <a href="#"
-                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
-                                <i class="fab fa-github text-xl"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Member 4 -->
-                <div
-                    class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                    <div class="h-72 overflow-hidden">
-                        <img src="./images/team page member 4.avif" alt="David Wilson"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                    </div>
-
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800">David Wilson</h3>
-                        <p class="text-blue-600 font-medium">Project Manager</p>
-                        <p class="mt-3 text-gray-600">Ensures projects are delivered on time, within scope, and
-                            exceeding expectations.</p>
-
-                        <div class="mt-5 flex space-x-3">
-
-                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                <i class="fab fa-twitter w-5 h-5"></i>
-                            </a>
-
-                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                <i class="fab fa-linkedin-in text-xl"></i>
-                            </a>
-
-                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
-                                <i class="fab fa-github text-xl"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Hover overlay -->
-                    <div
-                        class="absolute inset-0 bg-[#103182] bg-opacity-90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-white">
-                        <h3 class="text-xl font-semibold">David Wilson</h3>
-                        <p class="text-blue-200 font-medium">Project Manager</p>
-                        <p class="mt-3 text-center">Experienced in Agile methodologies with a track record of delivering
-                            complex projects on time and within budget.</p>
-                        <div class="mt-5 flex space-x-4">
-                            <a href="#"
-                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
-                                <i class="fab fa-twitter w-5 h-5"></i>
-                            </a>
-                            <a href="#"
-                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
-                                <i class="fab fa-linkedin-in text-xl"></i>
-                            </a>
-                            <a href="#"
-                                class="bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
-                                <i class="fab fa-github text-xl"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <?php endif; ?>
             </div>
         </div>
     </section>
@@ -577,12 +315,12 @@
 
 
 
-   
-    <!-- CTA Section -->
-      <?php include 'include/CTAsection.php'?>
 
-        <!-- Footer -->
-        <?php include 'include/footer.php';?>
+    <!-- CTA Section -->
+    <?php include 'Include/CTAsection.php'?>
+
+    <!-- Footer -->
+    <?php include 'Include/Footer.php';?>
 
 
 

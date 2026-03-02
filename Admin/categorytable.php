@@ -3,7 +3,7 @@
 session_start();
 
 if(!isset($_SESSION['super_admin_id'])){
-    header('location:superadminlogin.php');
+    header('location:index.php');
     exit;
 }
 
@@ -75,7 +75,7 @@ if (!$result) {
 
     <div class="flex">
         <!-- Sidebar -->
-        <?php include '../include/dashboardsidebar.php'; ?>
+        <?php include 'dashboardsidebar.php'; ?>
 
         <!-- Main Content -->
         <main class="flex-1 p-6 md:p-8">
@@ -103,7 +103,8 @@ if (!$result) {
                         </h1>
                         <p class="text-gray-600">Manage all research video categories</p>
                     </div>
-                    <div class="mt-4 md:mt-0">
+                    <div class="mt-4 md:mt-0 flex items-center gap-3">
+                        <?php include 'notification_bar.php'; ?>
                         <a href="addcategoryform.php"
                             class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg">
                             <i class="fas fa-plus mr-2"></i> Add New Category
@@ -111,80 +112,7 @@ if (!$result) {
                     </div>
                 </div>
 
-                <!-- Stats Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div
-                        class="bg-white rounded-2xl card-shadow p-6 border border-gray-100 hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-gray-500 text-sm font-medium uppercase tracking-wider">Total Categories
-                                </p>
-                                <p class="text-3xl font-bold text-gray-900 mt-3">
-                                    <?php echo mysqli_num_rows($result); ?>
-                                </p>
-                                <div class="flex items-center mt-4">
-                                    <span class="text-primary text-sm font-medium">
-                                        <i class="fas fa-database mr-1"></i> All Research Fields
-                                    </span>
-                                    <span class="text-gray-400 text-sm ml-3">System-wide</span>
-                                </div>
-                            </div>
-                            <div class="w-14 h-14 rounded-xl bg-primary flex items-center justify-center">
-                                <i class="fas fa-layer-group text-primary text-white text-2xl"></i>
-                            </div>
-                        </div>
-                        <div class="mt-4 pt-4 border-t border-gray-100">
-                            <div class="flex items-center text-gray-600 text-sm">
-                                <i class="fas fa-chart-pie text-primary mr-2"></i>
-                                Organized research classification
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Latest Category Card -->
-                    <div
-                        class="bg-white rounded-2xl card-shadow p-6 border border-gray-100 hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-between">
-                            <div class="flex-1 min-w-0">
-                                <p class="text-gray-500 text-sm font-medium uppercase tracking-wider">Latest Added</p>
-                                <p class="text-lg font-semibold text-gray-900 mt-3 truncate">
-                                    <?php 
-                    $latestResult = mysqli_query($conn, "SELECT id, name, created_at FROM add_categories ORDER BY created_at DESC LIMIT 1");
-                    $latestRow = mysqli_fetch_assoc($latestResult);
-                    if ($latestRow):
-                    ?>
-                                    <span
-                                        class="text-xl font-bold text-gray-900 block mb-1"><?= htmlspecialchars($latestRow['name']) ?></span>
-                                    <span class="text-sm text-gray-500 font-normal">
-                                        <i class="far fa-calendar-alt mr-1"></i>
-                                        <?php echo date('M d, Y', strtotime($latestRow['created_at'])); ?>
-                                    </span>
-                                    <?php else: ?>
-                                    <span class="text-gray-400 italic">No categories yet</span>
-                                    <?php endif; ?>
-                                </p>
-                            </div>
-                            <div
-                                class="w-14 h-14 rounded-xl bg-primary  flex items-center justify-center ml-4 flex-shrink-0">
-                                <i class="fas fa-plus-circle text-white text-2xl"></i>
-                            </div>
-                        </div>
-                        <div class="mt-4 pt-4 border-t border-gray-100">
-                            <div class="flex items-center justify-between">
-                                <div class="text-gray-600 text-sm flex items-center">
-                                    <i class="fas fa-clock text-primary mr-2"></i>
-                                    Most recently created
-                                </div>
-                                <?php if($latestRow): ?>
-                                <a href="edit.php?id=<?= $latestRow['id'] ?>"
-                                    class="text-primary text-sm font-medium hover:text-blue-700 transition-colors">
-                                    <i class="fas fa-edit mr-1"></i> Edit
-                                </a>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- Categories Table -->

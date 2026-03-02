@@ -3,7 +3,7 @@
 session_start();
 
 if ( !isset( $_SESSION[ 'super_admin_id' ] ) ) {
-    header( 'location:superadminlogin.php' );
+    header( 'location:index.php' );
     exit;
 }
 
@@ -80,7 +80,7 @@ if ( isset( $_GET[ 'id' ] ) ) {
 <body class = 'bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen'>
 
 <div class = 'flex'>
-<?php include '../include/dashboardsidebar.php';
+<?php include 'dashboardsidebar.php';
 ?>
 
 <main class = 'flex-1 p-6 md:p-8'>
@@ -95,18 +95,17 @@ if ( isset( $_GET[ 'id' ] ) ) {
 <p class = 'text-gray-600'>Create and manage research video categories</p>
 </div>
 
-<div class = 'flex items-center space-x-3'>
-<a href = 'addsubcategoryfrom.php'
-
-class = 'flex items-center px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition duration-300'>
-<i class = 'fas fa-plus mr-2'></i>Add sub Category
-</a>
-<a href = 'categorytable.php'
-
-class = 'flex items-center px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition duration-300'>
-<i class = 'fas fa-list mr-2'></i>View Categories
-</a>
-</div>
+                <div class = 'flex items-center space-x-3'>
+                    <?php include 'notification_bar.php'; ?>
+                    <a href = 'addsubcategoryfrom.php'
+                        class = 'flex items-center px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition duration-300'>
+                        <i class = 'fas fa-plus mr-2'></i>Add sub Category
+                    </a>
+                    <a href = 'categorytable.php'
+                        class = 'flex items-center px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition duration-300'>
+                        <i class = 'fas fa-list mr-2'></i>View Categories
+                    </a>
+                </div>
 </div>
 </div>
 

@@ -4,7 +4,7 @@ session_start();
 
 // Check if user is logged in as admin
 if(!isset($_SESSION['super_admin_id'])){
-    header('location:superadminlogin.php');
+    header('location:index.php');
     exit;
 }
 
@@ -73,7 +73,7 @@ if (!$result) {
 
     <div class="flex">
         <!-- Sidebar Navigation -->
-        <?php include '../include/dashboardsidebar.php'; ?>
+        <?php include 'dashboardsidebar.php'; ?>
 
         <!-- Main Content -->
         <main class="flex-1 p-6 md:p-8">
@@ -103,7 +103,8 @@ if (!$result) {
                         </h1>
                         <p class="text-gray-600">Manage all research video content</p>
                     </div>
-                    <div class="mt-4 md:mt-0">
+                    <div class="mt-4 md:mt-0 flex items-center gap-3">
+                        <?php include 'notification_bar.php'; ?>
                         <a href="uploadvideoform.php"
                             class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg">
                             <i class="fas fa-plus mr-2"></i> Add New Video
@@ -244,10 +245,6 @@ if (!$result) {
 
                                 <th
                                     class="px-3 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                    Thumbnail</th>
-
-                                <th
-                                    class="px-3 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                                     Title</th>
                                 <th
                                     class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
@@ -257,16 +254,7 @@ if (!$result) {
                                     Sub Category</th>
                                 <th
                                     class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                    Research Leader</th>
-                                <th
-                                    class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                    Co-Leader</th>
-                                <th
-                                    class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                                     Date Added</th>
-                                <th
-                                    class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                    URL</th>
                                 <th
                                     class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                                     Actions</th>
@@ -290,16 +278,6 @@ if (!$result) {
                                             #<?php echo $counter++; ?>
                                         </p>
                                     </div>
-                                </td>
-                                <td class="px-3 py-2">
-                                    <?php if (!empty($video['thumbnail'])): ?>
-                                    <img src="<?php echo '../images/thumbnails/' . htmlspecialchars($video['thumbnail']); ?>"
-                                        alt="Thumb" class="video-thumbnail">
-                                    <?php else: ?>
-                                    <div
-                                        class="w-28 h-16 bg-gray-100 flex items-center justify-center text-gray-300 rounded">
-                                        No image</div>
-                                    <?php endif; ?>
                                 </td>
 
                                 <td class="px-3 py-2">
@@ -336,21 +314,6 @@ if (!$result) {
                                     </span>
                                 </td>
 
-
-                                <!-- Research Leader Column -->
-                                <td class="px-3 py-2">
-                                    <p class="text-sm text-gray-800 truncate max-w-[150px]">
-                                        <?php echo htmlspecialchars($video['research_leader'] ?? '—'); ?>
-                                    </p>
-                                </td>
-
-                                <!-- Co-Leader Column -->
-                                <td class="px-3 py-2">
-                                    <p class="text-sm text-gray-800 truncate max-w-[150px]">
-                                        <?php echo htmlspecialchars($video['co_leader'] ?? '—'); ?>
-                                    </p>
-                                </td>
-
                                 <!-- Date Added Column -->
                                 <td class="px-3 py-2">
                                     <p class="text-xs text-gray-700">
@@ -367,12 +330,6 @@ if (!$result) {
                                     </p>
                                 </td>
 
-                                <!-- URL Column -->
-                                <td class="px-3 py-2">
-                                    <p class="text-sm text-primary truncate max-w-[150px] truncate">
-                                        <?php echo htmlspecialchars($video['video_url']); ?>
-                                    </p>
-                                </td>
 
                                 <!-- Actions Column -->
                                 <td class="px-5 py-2 whitespace-nowrap">

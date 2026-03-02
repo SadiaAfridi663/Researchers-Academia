@@ -45,20 +45,25 @@ if ( isset( $_GET[ 'id' ] ) ) {
 
 <div class = 'flex'>
 <!-- Sidebar -->
-<?php include '../include/dashboardsidebar.php';
+<?php include 'dashboardsidebar.php';
 ?>
 
 <!-- Main Content -->
 <main class = 'flex-1 p-6 md:p-10'>
 
-<div class = 'mb-8'>
+<div class = 'mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4'>
+<div>
 <h1 class = 'text-3xl font-bold text-gray-900'>
 <?php echo $edit_mode ? 'Edit' : 'Add New';
 ?> Sub Category
 </h1>
-<p class = 'text-gray-600 mt-1'>
+<p class = 'text-gray-600 text-sm'>
 Manage sub categories under main categories
 </p>
+</div>
+<div class="flex items-center gap-3">
+    <?php include 'notification_bar.php'; ?>
+</div>
 </div>
 
 <!-- Form Card -->

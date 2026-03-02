@@ -74,16 +74,21 @@ $subCategoriesResult = mysqli_stmt_get_result($subStmt);
 <body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
 
     <div class="flex">
-        <?php include '../include/dashboardsidebar.php'; ?>
+        <?php include 'dashboardsidebar.php'; ?>
 
         <!-- Main Content -->
         <main class="flex-1 p-6 md:p-8">
             <!-- Header -->
-            <div class="mb-8">
-                <h1 class="text-3xl font-bold text-gray-900 mb-2">
-                    <i class="fas fa-edit text-primary mr-3"></i>Edit Research Detail
-                </h1>
-                <p class="text-gray-600">Update the research detail information</p>
+            <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                        <i class="fas fa-edit text-primary mr-3"></i>Edit Research Detail
+                    </h1>
+                    <p class="text-gray-600">Update the research detail information</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <?php include 'notification_bar.php'; ?>
+                </div>
             </div>
 
             <!-- Error/Success Messages -->
@@ -304,7 +309,7 @@ $subCategoriesResult = mysqli_stmt_get_result($subStmt);
             return;
         }
 
-        fetch('../PHP/get_subcategories.php?category_id=' + categoryId)
+        fetch('../get_subcategories.php?category_id=' + categoryId)
             .then(response => response.json())
             .then(data => {
                 let options = '<option value="">Select a sub-category</option>';

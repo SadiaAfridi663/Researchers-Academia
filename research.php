@@ -107,6 +107,29 @@ if($category_id > 0){
     #menu-btn.open #line3 {
         transform: rotate(-45deg) translate(5px, -5px);
     }
+
+    /* Video container responsive */
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        /* 16:9 aspect ratio */
+        height: 0;
+        overflow: hidden;
+    }
+
+    .video-container iframe,
+    .video-container video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Smooth transition for filter sidebar */
+    .filter-sidebar-transition {
+        transition: all 0.3s ease-in-out;
+    }
     </style>
 </head>
 
@@ -168,60 +191,67 @@ if($category_id > 0){
                     <?php if(mysqli_num_rows($result) > 0): ?>
                     <?php while($video = mysqli_fetch_assoc($result)): ?>
                     <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-                        <!-- Thumbnail with Play Button & Dark Overlay -->
+                        <!-- Video Container -->
                         <div
-                            class="relative h-48 w-full flex items-center justify-center bg-gray-500 overflow-hidden rounded-t-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                            class="video-container rounded-t-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
                             <?php
-    $thumbUrl = '';
-    if (!empty($video['thumbnail'])) {
-        $thumbFile = __DIR__ . '/images/thumbnails/' . $video['thumbnail'];
-        if (file_exists($thumbFile)) {
-            $thumbUrl = 'images/thumbnails/' . $video['thumbnail'];
-        }
-    }
-    ?>
-
-                            <?php if ($thumbUrl): ?>
-                            <a href="<?php echo htmlspecialchars($video['video_url']); ?>" target="_blank"
-                                class="relative w-full h-full block group">
-                                <img src="<?php echo htmlspecialchars($thumbUrl); ?>"
-                                    alt="<?php echo htmlspecialchars($video['title']); ?>"
-                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent opacity-70 group-hover:opacity-80 transition-opacity duration-300">
-                                </div>
-
-                                <!-- Professional Play Button -->
-                                <div class="absolute inset-0 flex items-center justify-center">
-                                    <div class="relative group-hover:scale-110 transition-transform duration-300">
-                                        <div
-                                            class="absolute inset-0 bg-white/20 rounded-full blur-md group-hover:blur-lg transition-all duration-300">
+                            $video_url = htmlspecialchars($video['video_url']);
+                            
+                            // Check if it's a YouTube URL
+                            if (strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false) {
+                                // Extract YouTube video ID
+                                $video_id = '';
+                                if (preg_match('/(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $video_url, $matches)) {
+                                    $video_id = $matches[1];
+                                }
+                                
+                                if ($video_id) {
+                                    echo '<iframe src="https://www.youtube.com/embed/' . $video_id . '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                } else {
+                                    echo '<div class="w-full h-full flex items-center justify-center bg-gray-800">
+                                            <div class="text-center">
+                                                <i class="fas fa-video text-gray-400 text-3xl mb-2"></i>
+                                                <span class="text-gray-300 font-medium block">Invalid Video URL</span>
+                                            </div>
+                                        </div>';
+                                }
+                            } 
+                            // Check if it's a Vimeo URL
+                            elseif (strpos($video_url, 'vimeo.com') !== false) {
+                                // Extract Vimeo video ID
+                                $video_id = '';
+                                if (preg_match('/vimeo\.com\/(\d+)/', $video_url, $matches)) {
+                                    $video_id = $matches[1];
+                                }
+                                
+                                if ($video_id) {
+                                    echo '<iframe src="https://player.vimeo.com/video/' . $video_id . '" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+                                } else {
+                                    echo '<div class="w-full h-full flex items-center justify-center bg-gray-800">
+                                            <div class="text-center">
+                                                <i class="fas fa-video text-gray-400 text-3xl mb-2"></i>
+                                                <span class="text-gray-300 font-medium block">Invalid Video URL</span>
+                                            </div>
+                                        </div>';
+                                }
+                            }
+                            // Check if it's a direct video file
+                            elseif (preg_match('/\.(mp4|webm|ogg|mov|avi)$/i', $video_url)) {
+                                echo '<video controls class="w-full h-full">
+                                        <source src="' . $video_url . '" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                      </video>';
+                            }
+                            // Default fallback
+                            else {
+                                echo '<div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-200 to-gray-300">
+                                        <div class="text-center">
+                                            <i class="fas fa-video text-gray-400 text-3xl mb-2"></i>
+                                            <span class="text-gray-500 font-medium block">Video Not Available</span>
                                         </div>
-                                        <div
-                                            class="relative w-16 h-16 bg-white rounded-full shadow-2xl flex items-center justify-center transform group-hover:shadow-3xl transition-all duration-300">
-                                            <div
-                                                class="absolute inset-0 rounded-full bg-gradient-to-br from-white to-gray-100">
-                                            </div>
-                                            <div class="relative flex items-center justify-center ml-1">
-                                                <i class="fa-solid fa-play text-2xl" style="color: #f52e2e;"></i>
-                                            </div>
-                                            <div
-                                                class="absolute inset-0 rounded-full border-2 border-white/30 animate-ping opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <?php else: ?>
-                            <div
-                                class="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-200 to-gray-300">
-                                <div class="text-center">
-                                    <i class="fas fa-video text-gray-400 text-3xl mb-2"></i>
-                                    <span class="text-gray-500 font-medium block">No Thumbnail</span>
-                                </div>
-                            </div>
-                            <?php endif; ?>
+                                    </div>';
+                            }
+                            ?>
                         </div>
 
                         <div class="p-6 mt-3">
@@ -243,28 +273,18 @@ if($category_id > 0){
                                 <?php echo htmlspecialchars($video['title']); ?>
                             </h3>
 
-                            <!-- Leaders -->
-                            <p class="text-gray-600 mb-4 text-sm">
-                                <?php echo htmlspecialchars($video['research_leader']); ?>
-                                <?php if(!empty($video['co_leader'])): ?>
-                                , <?php echo htmlspecialchars($video['co_leader']); ?>
-                                <?php endif; ?>
-                            </p>
-
                             <!-- Description -->
                             <p class="text-gray-700 mb-5 text-sm line-clamp-3">
                                 <?php echo htmlspecialchars($video['description']); ?>
                             </p>
 
                             <!-- Footer -->
-                            <div class="flex justify-start items-center">
-                                <div class="flex items-center space-x-3">
-                                    <!-- <a href="researchDetail.php?id=<?php echo $video['id']; ?>"
-                                        class="text-primary font-medium flex items-center text-sm hover:text-blue-800 transition">
-                                        Read Abstract
-                                        <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                                    </a> -->
-                                </div>
+                            <div class="flex justify-between items-center">
+                                <a href="researchDetail.php?id=<?php echo $video['id']; ?>"
+                                    class="text-primary font-medium flex items-center text-sm hover:text-blue-800 transition">
+                                    Read Abstract
+                                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                                </a>
                                 <span class="text-xs text-gray-500">
                                     <i class="far fa-calendar-alt mr-1"></i>
                                     <?php echo date('M Y', strtotime($video['created_at'])); ?>
@@ -290,7 +310,7 @@ if($category_id > 0){
 
             <!-- Sidebar Filters - Hidden by default -->
             <aside id="filterSidebar"
-                class="hidden fixed inset-y-0 right-0 w-80 bg-white transition-all  duration-300 ease-in-out lg:relative lg:w-1/3 z-50 lg:z-20 lg:z-0 overflow-y-auto">
+                class="hidden fixed inset-y-0 right-0 w-80 bg-white transition-all duration-300 ease-in-out lg:relative lg:w-1/3 z-50 lg:z-20 lg:z-0 overflow-y-auto">
                 <div class="bg-white p-6 lg:py-0 lg:px-6 rounded-lg h-full lg:sticky lg:top-24">
                     <div class="flex justify-between items-center mb-6">
                         <h2 class="text-xl font-bold text-primary">Filter Research</h2>
@@ -305,7 +325,7 @@ if($category_id > 0){
                         <div class="space-y-2 flex flex-col">
                             <label class="flex items-center">
                                 <input type="checkbox" class="form-checkbox text-primary rounded category-filter"
-                                    value="0" />
+                                    value="0" <?php echo ($category_id == 0) ? 'checked' : ''; ?> />
                                 <span class="ml-2">All Categories</span>
                             </label>
                             <?php foreach($categories as $cat): ?>
@@ -323,11 +343,27 @@ if($category_id > 0){
                     <div class="mb-6" id="subCategoryFilterSection">
                         <h3 class="font-semibold mb-3 text-primary">Sub Categories</h3>
                         <div class="space-y-2 flex flex-col" id="subCategoryList">
+                            <?php if($category_id > 0 && !empty($subcategories)): ?>
                             <label class="flex items-center">
                                 <input type="checkbox" class="form-checkbox text-primary rounded subcategory-filter"
-                                    value="0" />
+                                    value="0" <?php echo ($sub_category_id == 0) ? 'checked' : ''; ?> />
+                                <span class="ml-2">All Sub Categories</span>
+                            </label>
+                            <?php foreach($subcategories as $subcat): ?>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="form-checkbox text-primary rounded subcategory-filter"
+                                    value="<?php echo htmlspecialchars($subcat['id']); ?>"
+                                    <?php echo ($sub_category_id == $subcat['id']) ? 'checked' : ''; ?> />
+                                <span class="ml-2"><?php echo htmlspecialchars($subcat['name']); ?></span>
+                            </label>
+                            <?php endforeach; ?>
+                            <?php else: ?>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="form-checkbox text-primary rounded subcategory-filter"
+                                    value="0" disabled />
                                 <span class="ml-2 text-gray-600">Select a category first</span>
                             </label>
+                            <?php endif; ?>
                         </div>
                     </div>
 
@@ -396,8 +432,8 @@ if($category_id > 0){
 
 
     <!-- filter -->
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    <<script>
+        document.addEventListener("DOMContentLoaded", function() {
         const filterToggle = document.getElementById("filterToggle");
         const closeFilter = document.getElementById("closeFilter");
         const filterSidebar = document.getElementById("filterSidebar");
@@ -407,210 +443,100 @@ if($category_id > 0){
         const applyFiltersBtn = document.getElementById("applyFiltersBtn");
         const clearFiltersBtn = document.getElementById("clearFiltersBtn");
 
-        // Start hidden at right side
         filterSidebar.classList.add("translate-x-full");
 
-        // Open filter
         filterToggle.addEventListener("click", function() {
-            filterSidebar.classList.remove("hidden");
-            overlay.classList.remove("hidden"); // show overlay
-            setTimeout(() => {
-                filterSidebar.classList.remove("translate-x-full");
-                filterSidebar.classList.add("translate-x-0");
-            }, 10);
-
-            if (window.innerWidth >= 1024) {
-                researchGrid.classList.remove("w-full");
-                researchGrid.classList.add("lg:w-2/3");
-                researchCards.classList.remove("lg:grid-cols-3");
-                researchCards.classList.add("lg:grid-cols-2");
-            } else {
-                // Disable scroll on mobile/tablet
-                document.body.style.overflow = "hidden";
-            }
+        filterSidebar.classList.remove("hidden");
+        overlay.classList.remove("hidden");
+        setTimeout(() => {
+        filterSidebar.classList.remove("translate-x-full");
+        }, 10);
         });
 
-        // Close filter
         function closeSidebar() {
-            filterSidebar.classList.remove("translate-x-0");
-            filterSidebar.classList.add("translate-x-full");
-            overlay.classList.add("hidden"); // hide overlay
-
-            setTimeout(() => {
-                filterSidebar.classList.add("hidden");
-            }, 300);
-
-            if (window.innerWidth >= 1024) {
-                researchGrid.classList.remove("lg:w-2/3");
-                researchGrid.classList.add("w-full");
-                researchCards.classList.remove("lg:grid-cols-2");
-                researchCards.classList.add("lg:grid-cols-3");
-            } else {
-                // Re-enable scroll on mobile/tablet
-                document.body.style.overflow = "auto";
-            }
+        filterSidebar.classList.add("translate-x-full");
+        overlay.classList.add("hidden");
+        setTimeout(() => {
+        filterSidebar.classList.add("hidden");
+        }, 300);
         }
 
         closeFilter.addEventListener("click", closeSidebar);
-        overlay.addEventListener("click", closeSidebar); // close when clicking outside
+        overlay.addEventListener("click", closeSidebar);
 
-        // ===== DYNAMIC FILTER FUNCTIONALITY =====
-
-        // Handle category selection
         const categoryFilters = document.querySelectorAll('.category-filter');
-        categoryFilters.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                const selectedCategoryId = this.value;
 
-                // Uncheck other categories (single selection)
-                categoryFilters.forEach(cb => {
-                    if (cb !== this) {
-                        cb.checked = false;
-                    }
-                });
-
-                // Load subcategories for selected category
-                loadSubcategories(selectedCategoryId);
-            });
+        categoryFilters.forEach(cb => {
+        cb.addEventListener('change', function () {
+        categoryFilters.forEach(x => x.checked = false);
+        this.checked = true;
+        loadSubcategories(this.value);
+        });
         });
 
-        // Function to load subcategories dynamically
         function loadSubcategories(categoryId) {
-            const subCategoryList = document.getElementById('subCategoryList');
+        const subCategoryList = document.getElementById('subCategoryList');
 
-            if (categoryId === '0' || categoryId === 0) {
-                // Show "select a category first" message
-                subCategoryList.innerHTML = `
-                    <label class="flex items-center">
-                        <input type="checkbox" class="form-checkbox text-primary rounded subcategory-filter" value="0" disabled />
-                        <span class="ml-2 text-gray-600">Select a category first</span>
-                    </label>
-                `;
-                return;
-            }
-
-            // Fetch subcategories from server
-            fetch(`PHP/get_filter_subcategories.php?category_id=${categoryId}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success && data.data.length > 0) {
-                        let html = `
-                            <label class="flex items-center">
-                                <input type="checkbox" class="form-checkbox text-primary rounded subcategory-filter" value="0" />
-                                <span class="ml-2">All Sub Categories</span>
-                            </label>
-                        `;
-
-                        data.data.forEach(subcat => {
-                            html += `
-                                <label class="flex items-center">
-                                    <input type="checkbox" class="form-checkbox text-primary rounded subcategory-filter" value="${subcat.id}" />
-                                    <span class="ml-2">${subcat.name}</span>
-                                </label>
-                            `;
-                        });
-
-                        subCategoryList.innerHTML = html;
-
-                        // Attach event listeners to new subcategory checkboxes
-                        attachSubcategoryListeners();
-                    } else {
-                        subCategoryList.innerHTML = `
-                            <label class="flex items-center">
-                                <input type="checkbox" class="form-checkbox text-primary rounded subcategory-filter" value="0" disabled />
-                                <span class="ml-2 text-gray-600">No sub categories available</span>
-                            </label>
-                        `;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error loading subcategories:', error);
-                    subCategoryList.innerHTML = `
-                        <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox text-primary rounded subcategory-filter" value="0" disabled />
-                            <span class="ml-2 text-gray-600">Error loading sub categories</span>
-                        </label>
-                    `;
-                });
+        if (categoryId === '0') {
+        subCategoryList.innerHTML = `
+        <label class="flex items-center">
+            <input type="checkbox" disabled />
+            <span class="ml-2 text-gray-600">Select a category first</span>
+        </label>`;
+        return;
         }
 
+        fetch(`get_filter_subcategories.php?category_id=${categoryId}`)
+        .then(res => res.json())
+        .then(data => {
+        let html = `
+        <label class="flex items-center">
+            <input type="checkbox" class="subcategory-filter" value="0" />
+            <span class="ml-2">All Sub Categories</span>
+        </label>`;
+        data.data.forEach(sub => {
+        html += `
+        <label class="flex items-center">
+            <input type="checkbox" class="subcategory-filter" value="${sub.id}" />
+            <span class="ml-2">${sub.name}</span>
+        </label>`;
+        });
+        subCategoryList.innerHTML = html;
+        attachSubcategoryListeners();
+        });
+        }
 
-
-        // Function to attach listeners to subcategory filters
         function attachSubcategoryListeners() {
-            const subcategoryFilters = document.querySelectorAll('.subcategory-filter');
-            subcategoryFilters.forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
-                    if (this.value === '0') {
-                        // "All Sub Categories" option
-                        subcategoryFilters.forEach(cb => {
-                            if (cb !== this) {
-                                cb.checked = false;
-                            }
-                        });
-                    } else {
-                        // Uncheck "All Sub Categories" if a specific one is selected
-                        const allSubcatCheckbox = document.querySelector(
-                            '.subcategory-filter[value="0"]');
-                        if (allSubcatCheckbox) {
-                            allSubcatCheckbox.checked = false;
-                        }
-                    }
-                });
-            });
+        document.querySelectorAll('.subcategory-filter').forEach(cb => {
+        cb.addEventListener('change', function () {
+        document.querySelectorAll('.subcategory-filter').forEach(x => {
+        if (x !== this) x.checked = false;
+        });
+        });
+        });
         }
 
-        // Apply filters button
         applyFiltersBtn.addEventListener('click', function() {
-            const selectedCategory = document.querySelector('.category-filter:checked');
-            const selectedSubcategory = document.querySelector('.subcategory-filter:checked');
-
-            let url = 'research.php';
-            const params = new URLSearchParams();
-
-            if (selectedCategory && selectedCategory.value !== '0') {
-                params.append('category_id', selectedCategory.value);
-            }
-
-            if (selectedSubcategory && selectedSubcategory.value !== '0') {
-                params.append('sub_category_id', selectedSubcategory.value);
-            }
-
-            // Build URL with parameters
-            if (params.toString()) {
-                url += '?' + params.toString();
-            }
-
-            // Navigate to filtered page
-            window.location.href = url;
+        const c = document.querySelector('.category-filter:checked');
+        const s = document.querySelector('.subcategory-filter:checked');
+        let url = 'research.php';
+        const p = new URLSearchParams();
+        if (c && c.value !== '0') p.append('category_id', c.value);
+        if (s && s.value !== '0') p.append('sub_category_id', s.value);
+        if (p.toString()) url += '?' + p.toString();
+        window.location.href = url;
         });
 
-        // Clear filters button
         clearFiltersBtn.addEventListener('click', function() {
-            // Uncheck all filters
-            document.querySelectorAll('.category-filter').forEach(cb => cb.checked = false);
-            document.querySelectorAll('.subcategory-filter').forEach(cb => cb.checked = false);
-
-            // Reset subcategories list
-            document.getElementById('subCategoryList').innerHTML = `
-                <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox text-primary rounded subcategory-filter" value="0" disabled />
-                    <span class="ml-2 text-gray-600">Select a category first</span>
-                </label>
-            `;
-
-            // Navigate to research page without filters
-            window.location.href = 'research.php';
+        window.location.href = 'research.php';
         });
 
-        // Load subcategories on page load if category is already selected
-        const urlParams = new URLSearchParams(window.location.search);
-        const categoryIdFromUrl = urlParams.get('category_id');
-        if (categoryIdFromUrl) {
-            loadSubcategories(categoryIdFromUrl);
-        }
-    });
-    </script>
+        /* 🔥 THIS WAS MISSING — FIX */
+        attachSubcategoryListeners();
+
+        });
+        </script>
+
 </body>
 
 </html>

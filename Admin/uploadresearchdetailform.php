@@ -4,7 +4,7 @@ session_start();
 
 // Check if user is logged in as admin
 if(!isset($_SESSION['super_admin_id'])){
-    header('location:superadminlogin.php');
+    header('location:index.php');
     exit;
 }
 
@@ -45,19 +45,24 @@ $categoriesResult = mysqli_query($conn, $categoriesQuery);
 
     <div class="flex">
         <!-- Sidebar Navigation -->
-        <?php include '../include/dashboardsidebar.php'; ?>
+        <?php include 'dashboardsidebar.php'; ?>
 
         <!-- Main Content -->
         <main class="flex-1 p-6 md:p-8">
             <!-- Page Header -->
-            <div class="mb-8">
-                <a href="admindashboard.php" class="text-primary hover:text-blue-700 mb-4 inline-flex items-center">
-                    <i class="fas fa-arrow-left mr-2"></i> Back to Dashboard
-                </a>
-                <h1 class="text-3xl font-bold text-gray-900 mb-2">
-                    <i class="fas fa-file-alt text-primary mr-3"></i>Add Research Detail
-                </h1>
-                <p class="text-gray-600">Create a new research detail document</p>
+            <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <a href="admindashboard.php" class="text-primary hover:text-blue-700 mb-4 inline-flex items-center">
+                        <i class="fas fa-arrow-left mr-2"></i> Back to Dashboard
+                    </a>
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                        <i class="fas fa-file-alt text-primary mr-3"></i>Add Research Detail
+                    </h1>
+                    <p class="text-gray-600">Create a new research detail document</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <?php include 'notification_bar.php'; ?>
+                </div>
             </div>
 
             <!-- Form Container -->
@@ -235,7 +240,7 @@ $categoriesResult = mysqli_query($conn, $categoriesQuery);
 
         if (categoryId) {
             // Fetch subcategories via AJAX
-            fetch(`../PHP/get_subcategories.php?category_id=${categoryId}`)
+            fetch(`../get_subcategories.php?category_id=${categoryId}`)
                 .then(response => response.json())
                 .then(data => {
                     subCategorySelect.innerHTML = '<option value="">-- Select Sub Category --</option>';

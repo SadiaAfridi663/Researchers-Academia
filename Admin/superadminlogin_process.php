@@ -6,7 +6,7 @@ $email = isset( $_POST[ 'email' ] ) ? trim( $_POST[ 'email' ] ) : '';
 $password = isset( $_POST[ 'password' ] ) ? trim( $_POST[ 'password' ] ) : '';
 
 if ( empty( $email ) || empty( $password ) ) {
-    header( 'Location: superadminlogin.php?error=empty_fields' );
+    header( 'Location: index.php?error=empty_fields' );
     exit;
 }
 
@@ -14,7 +14,7 @@ $sql = 'SELECT * FROM super_admin WHERE email = ?';
 $stmt = $conn->prepare( $sql );
 
 if ( !$stmt ) {
-    header( 'Location: superadminlogin.php?error=database_error' );
+    header( 'Location: index.php?error=database_error' );
     exit;
 }
 
@@ -35,11 +35,11 @@ if ( $result->num_rows === 1 ) {
         header( 'Location: admindashboard.php' );
         exit;
     } else {
-        header( 'Location: superadminlogin.php?error=invalid_password' );
+        header( 'Location: index.php?error=invalid_password' );
         exit;
     }
 } else {
-    header( 'Location: superadminlogin.php?error=invalid_email' );
+    header( 'Location: index.php?error=invalid_email' );
     exit;
 }
 

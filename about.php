@@ -82,7 +82,7 @@
 
 <body>
     <!-- Header -->
-    <?php include 'include/navbar.php'?>
+    <?php include 'Include/navbar.php'?>
 
 
     <!-- Hero Section -->
@@ -501,11 +501,11 @@
 
 
     <!-- CTA Section -->
-    <?php include 'include/CTAsection.php'?>
+    <?php include 'Include/CTAsection.php'?>
 
 
     <!-- footer -->
-    <?php include 'include/footer.php'?>
+    <?php include 'Include/Footer.php'?>
 
 
 

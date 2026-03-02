@@ -298,7 +298,7 @@ if (count($related_videos) < 2) {
 
                                 <div class='flex justify-between py-2 border-b border-gray-100'>
                                     <span class='text-gray-600'>Downloads:</span>
-                                    <span class='font-medium'>
+                                    <span class='font-medium' id='download-count-text'>
                                         <?php echo number_format($research_detail['downloads'] ?? 0); ?>
                                     </span>
                                 </div>
@@ -314,14 +314,6 @@ if (count($related_videos) < 2) {
 
                         <!-- Action Buttons -->
                         <div class='pt-4 border-t border-gray-200'>
-                            <?php if (!empty($research_detail['pdf_file'])): ?>
-                            <a href='../research_pdfs/<?php echo htmlspecialchars($research_detail['pdf_file']); ?>'
-                                download
-                                class='block w-full bg-primary text-white py-3 rounded-lg font-medium mb-3 hover:bg-blue-800 transition flex items-center justify-center'>
-                                <i class='fas fa-download mr-2'></i> Download Full Paper
-                            </a>
-                            <?php endif; ?>
-
                             <!-- Video Link Button -->
                             <a href='<?php echo htmlspecialchars($video['video_url']); ?>' target='_blank'
                                 class='block w-full bg-secondary text-white py-3 rounded-lg font-medium mb-3 hover:bg-teal-600 transition flex items-center justify-center'>
@@ -330,9 +322,15 @@ if (count($related_videos) < 2) {
 
                             <!-- Share Button with copy link functionality -->
                             <button onclick='shareResearch()'
-                                class='w-full border border-primary text-primary py-3 rounded-lg font-medium hover:bg-primary/5 transition flex items-center justify-center'>
+                                class='w-full border border-primary text-primary py-3 rounded-lg font-medium mb-3 hover:bg-primary/5 transition flex items-center justify-center'>
                                 <i class='fas fa-share-alt mr-2'></i> Share Research
                             </button>
+
+                            <a href='download_research.php?id=<?php echo $detail_id; ?>'
+                                id='download-btn'
+                                class='block w-full bg-[#11327f] text-white py-3 rounded-lg font-medium mb-3 hover:bg-blue-800 transition flex items-center justify-center shadow-md'>
+                                <i class='fas fa-file-download mr-2'></i> Download Research File
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -390,7 +388,7 @@ if (count($related_videos) < 2) {
                                         style='height: <?php echo min(150, ($research_detail['downloads'] ?? 0) * 3); ?>px;'>
                                     </div>
                                     <span class='mt-2 text-sm font-medium'>Downloads</span>
-                                    <span
+                                    <span id='download-chart-count'
                                         class='text-xs text-gray-600'><?php echo $research_detail['downloads'] ?? 0; ?></span>
                                 </div>
                                 <div class='flex flex-col items-center'>
@@ -525,7 +523,7 @@ if (count($related_videos) < 2) {
     </div>
 
     <!-- Footer -->
-    <?php include 'include/footer.php'; ?>
+    <?php include 'Include/Footer.php'; ?>
 
     <script>
     // Share Research Functionality
@@ -573,14 +571,29 @@ if (count($related_videos) < 2) {
         });
     });
 
-    // Increment downloads count when download button is clicked
+    // Dynamic JS increment for download count when button is clicked
     document.addEventListener('DOMContentLoaded', function() {
-        const downloadBtn = document.querySelector('a[download]');
+        const downloadBtn = document.getElementById('download-btn');
         if (downloadBtn) {
-            downloadBtn.addEventListener('click', function() {
-                // You can send an AJAX request here to increment download count
-                fetch('increment_download.php?id=<?php echo $detail_id; ?>')
-                    .catch(err => console.log('Download tracking failed:', err));
+            downloadBtn.addEventListener('click', function(e) {
+                // Update text count
+                const downloadCountElem = document.getElementById('download-count-text');
+                if (downloadCountElem) {
+                    let currentCount = parseInt(downloadCountElem.innerText.replace(/,/g, ''));
+                    if (!isNaN(currentCount)) {
+                        downloadCountElem.innerText = (currentCount + 1).toLocaleString();
+                    }
+                }
+                
+                // Update chart label count
+                const chartCountElem = document.getElementById('download-chart-count');
+                if (chartCountElem) {
+                    let currentCount = parseInt(chartCountElem.innerText.replace(/,/g, ''));
+                    if (!isNaN(currentCount)) {
+                        chartCountElem.innerText = (currentCount + 1).toLocaleString();
+                    }
+                }
+                // The actual backend increment and file download is handled by download_research.php
             });
         }
     });
