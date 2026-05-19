@@ -273,22 +273,6 @@ $unreadCount = mysqli_fetch_assoc($unreadResult)['unread'] ?? 0;
             this.classList.add('bg-primary', 'text-white');
         });
     });
-
-
-    // / Admin dashboard admin login  logout button 
-    document.addEventListener("DOMContentLoaded", function() {
-        const adminBtn = document.getElementById("adminBtn");
-        const adminMenu = document.getElementById("adminMenu");
-
-        adminBtn.addEventListener("click", function(e) {
-            e.stopPropagation();
-            adminMenu.classList.toggle("hidden");
-        });
-
-        document.addEventListener("click", function() {
-            adminMenu.classList.add("hidden");
-        });
-    });
     </script>
 </body>
 
